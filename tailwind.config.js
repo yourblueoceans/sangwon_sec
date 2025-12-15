@@ -7,6 +7,7 @@ export default {
         navy: '#0a192f',
         card: '#112240',
         accent: '#64ffda',
+        light: '#f8f9fa',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
