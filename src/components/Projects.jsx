@@ -54,7 +54,10 @@ const Projects = () => {
   }, [selected]);
 
   return (
-    <section id="projects" className="space-y-8 rounded-3xl bg-[#f8f9fa] p-8 text-slate-900">
+    <section
+      id="projects"
+      className="space-y-8 rounded-3xl bg-[#0a101f] p-8 text-slate-100 shadow-[0_30px_90px_rgba(0,0,0,0.45)] ring-1 ring-white/5"
+    >
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -64,7 +67,7 @@ const Projects = () => {
       >
         <p className="text-sm font-mono uppercase tracking-[0.25em] text-[#64ffda]">Projects</p>
         <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">Case Studies</h2>
-        <p className="max-w-3xl text-slate-700">
+        <p className="max-w-3xl text-slate-200/80">
           비즈니스 요구사항을 보안 기술로 풀어낸 대표 프로젝트들입니다. 카드 클릭 시 상세 모달을 확인하세요.
         </p>
       </motion.div>
@@ -80,12 +83,12 @@ const Projects = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: idx * 0.1 }}
-            className="group relative flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-md transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#64ffda] focus:ring-offset-2 focus:ring-offset-[#f8f9fa]"
+            className="group relative flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-lg backdrop-blur-xl transition hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:border-[#64ffda]/60 focus:outline-none focus:ring-2 focus:ring-[#64ffda] focus:ring-offset-2 focus:ring-offset-[#0a101f]"
           >
             <div className="space-y-3">
               <p className="text-xs font-mono uppercase tracking-[0.25em] text-[#64ffda]">Security</p>
-              <h3 className="text-2xl font-semibold text-slate-900">{project.title}</h3>
-              <p className="text-sm text-slate-700">{project.subtitle}</p>
+              <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+              <p className="text-sm text-slate-200/80">{project.subtitle}</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
@@ -97,7 +100,7 @@ const Projects = () => {
                 </span>
               ))}
             </div>
-            <p className="mt-6 text-sm font-semibold text-slate-800">{project.highlight}</p>
+            <p className="mt-6 text-sm font-semibold text-slate-100">{project.highlight}</p>
           </motion.button>
         ))}
       </div>

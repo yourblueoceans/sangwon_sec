@@ -1,25 +1,24 @@
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
+import { getAssetPath } from '../utils/basePath';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
-const assetBase = import.meta.env.BASE_URL;
-
 const Footer = () => {
   return (
-    <footer className="relative isolate mt-12 overflow-hidden bg-[#0a192f]">
+    <footer className="relative isolate mt-12 overflow-hidden bg-[#050912]">
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-10"
-        src={`${assetBase}assets/footer-bg.mp4`}
+        src={getAssetPath('assets/footer-bg.mp4')}
         autoPlay
         loop
         muted
         playsInline
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-[#0a192f]/92 to-[#0a192f]/96" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050912] via-[#050912]/92 to-[#050912]/96" />
 
       <motion.div
         variants={fadeInUp}
