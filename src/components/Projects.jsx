@@ -6,36 +6,57 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: 'easeOut' } },
 };
 
-const projects = [
+const projectData = [
   {
+    id: 'lockument',
     title: 'LOCKUMENT',
-    subtitle: 'AWS KMS PII Masking Solution',
-    tags: ['AWS', 'Python', 'Docker'],
-    highlight: '캡스톤 금상, 탐지율 99.7%',
-    problem: '고객 PII가 로그/문서 전반에 노출되어 규제 리스크가 존재',
-    solution: 'AWS KMS를 활용한 토큰화 + 패턴 기반 마스킹 파이프라인 설계/구현',
-    result: '탐지율 99.7%, 오탐 최소화로 운영 부담 감소',
-    stack: ['AWS KMS', 'Lambda', 'Python', 'Docker', 'S3'],
+    subtitle: 'AWS KMS PII Masking & Encryption Platform',
+    category: 'Cloud Security',
+    tags: ['AWS KMS', 'Python', 'Docker', 'React', 'OCR'],
+    videoIds: ['6LKEwD0NfBc', 'mvpLv-ug0m0'],
+    overview: '개인정보(PII) 유출 사고 방지를 위한 AWS 기반 자동 마스킹 및 암호화 웹 서비스입니다.',
+    problem: '기업 내 개인정보가 포함된 이미지/문서가 평문으로 저장되어 발생하는 내부 유출 위협 증가.',
+    solution:
+      'AWS Rekognition/OCR을 활용해 PII를 자동 식별/마스킹하고, AWS KMS Envelope Encryption을 적용하여 암호화 키를 안전하게 격리 관리하는 아키텍처를 설계했습니다.',
+    results: [
+      '🏆 2025 캡스톤 디자인 어워드 금상 수상',
+      'PII 탐지율 99.7% 달성 (Regex + OCR 하이브리드 탐지)',
+      'Role-Based Access Control (RBAC) 구현',
+    ],
   },
   {
-    title: 'Drop the Port',
-    subtitle: '3-Zone Enterprise Network Infra',
-    tags: ['Network', 'Firewall', 'ELK'],
-    highlight: '방화벽 정책 12종 수립, 망분리 구축',
-    problem: '사내망/외부망 혼재로 정책 부재, 가시성 부족',
-    solution: '3-Zone 분리, 방화벽 정책 12종 수립, ELK 기반 로깅/모니터링',
-    result: '정책 미스/우회 트래픽 감소, 운영 가시성 확보',
-    stack: ['Firewall', 'ELK', 'HAProxy', 'VM'],
+    id: 'droptheport',
+    title: 'Drop the Port!',
+    subtitle: 'Secure 3-Zone Enterprise Network Infra',
+    category: 'Network Security',
+    tags: ['Cisco', 'Firewall', 'ELK Stack', 'VPN', 'Defense in Depth'],
+    videoIds: [],
+    overview: '사이버 위협에 대응하는 방어 심층(Defense in Depth) 기반의 3-Zone 엔터프라이즈 네트워크 구축 프로젝트입니다.',
+    problem: '플랫(Flat)한 네트워크 구조로 인한 횡적 이동(Lateral Movement) 취약점 및 로그 가시성 부재.',
+    solution:
+      'DMZ, Internal, External 3계층 망분리 구조를 설계하고, ELK Stack을 통한 로그 중앙화 및 방화벽 정책 고도화를 수행했습니다.',
+    results: [
+      '방화벽 정책 12종 수립 및 적용',
+      '전사적 로그 중앙화 및 시각화 (Kibana Dashboard)',
+      'VLAN 기반 논리적 망분리 및 접근 통제 구현',
+    ],
   },
   {
+    id: 'webvuln',
     title: 'Web Vulnerability Assessment',
-    subtitle: 'Technical Vulnerability Report',
-    tags: ['Pentest', 'OWASP', 'Report'],
-    highlight: '수동 진단 100%, 시나리오 기반 PoC',
-    problem: '웹 서비스 신규 출시 전 보안성 검증 필요',
-    solution: 'OWASP Top 10 기반 수동 진단과 PoC 보고서 작성',
-    result: '중요 취약점 선제 조치, 출시 지연 없이 완료',
-    stack: ['OWASP', 'Burp Suite', 'Kali', 'PoC scripting'],
+    subtitle: 'Penetration Testing & Remediation',
+    category: 'Offensive Security',
+    tags: ['OWASP Top 10', 'Burp Suite', 'Secure Coding', 'Linux'],
+    videoIds: [],
+    overview: '주요정보통신기반시설 기술적 취약점 가이드를 기준으로 수행한 웹 애플리케이션 모의해킹 및 조치 보고서입니다.',
+    problem: '레거시 웹 애플리케이션(LAMP)에 존재하는 5대 주요 취약점(SQLi, XSS 등) 방치.',
+    solution:
+      '공격자 관점의 모의해킹을 수행하여 취약점을 식별하고, 시큐어 코딩 및 서버 설정(Config) 강화를 통해 근본적인 조치를 수행했습니다.',
+    results: [
+      'SQL Injection, XSS 등 High Risk 취약점 100% 조치',
+      '시큐어 코딩 가이드라인 수립',
+      '관리자 페이지 접근 통제 및 파일 업로드 취약점 제거',
+    ],
   },
 ];
 
@@ -66,14 +87,14 @@ const Projects = () => {
         className="space-y-3"
       >
         <p className="text-sm font-mono uppercase tracking-[0.25em] text-[#64ffda]">Projects</p>
-        <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">Case Studies</h2>
+        <h2 className="text-3xl font-semibold tracking-tight text-slate-100 sm:text-4xl">Case Studies</h2>
         <p className="max-w-3xl text-slate-200/80">
           비즈니스 요구사항을 보안 기술로 풀어낸 대표 프로젝트들입니다. 카드 클릭 시 상세 모달을 확인하세요.
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {projects.map((project, idx) => (
+        {projectData.map((project, idx) => (
           <motion.button
             type="button"
             onClick={() => setSelected(project)}
@@ -89,7 +110,7 @@ const Projects = () => {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(100,255,218,0.12),transparent_35%),radial-gradient(circle_at_70%_10%,rgba(59,130,246,0.14),transparent_32%)]" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 transition duration-300 group-hover:opacity-100">
                 <span className="rounded-full bg-[#64ffda] px-4 py-2 text-sm font-semibold text-[#0a192f] shadow-lg">
-                  View Details
+                  {project.videoIds && project.videoIds.length > 0 ? 'Play Video' : 'View Case Study'}
                 </span>
               </div>
             </div>
@@ -136,8 +157,11 @@ const Projects = () => {
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-mono uppercase tracking-[0.25em] text-[#64ffda]">Project</p>
-                    <h3 className="text-3xl font-semibold text-slate-900">{selected.title}</h3>
+                    <h3 className="text-3xl font-semibold tracking-tight text-slate-900">{selected.title}</h3>
                     <p className="text-sm text-slate-700">{selected.subtitle}</p>
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                      {selected.category}
+                    </p>
                   </div>
                   <button
                     type="button"
@@ -148,35 +172,66 @@ const Projects = () => {
                   </button>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Problem</p>
-                    <p className="mt-1 text-slate-700">{selected.problem}</p>
+                <div className="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
+                  <div className="space-y-3 rounded-2xl bg-slate-50 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Overview</p>
+                    <p className="text-slate-700">{selected.overview}</p>
+                    <div className="space-y-2 rounded-xl bg-white p-3 shadow-sm">
+                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Problem</p>
+                      <p className="text-slate-700">{selected.problem}</p>
+                    </div>
+                    <div className="space-y-2 rounded-xl bg-white p-3 shadow-sm">
+                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Solution</p>
+                      <p className="text-slate-700">{selected.solution}</p>
+                    </div>
                   </div>
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Solution</p>
-                    <p className="mt-1 text-slate-700">{selected.solution}</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Result</p>
-                    <p className="mt-1 text-slate-700">{selected.result}</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Tech Stack</p>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {selected.stack?.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+
+                  <div className="space-y-3 rounded-2xl bg-slate-50 p-4">
+                    {selected.videoIds && selected.videoIds.length > 0 && (
+                      <div className="space-y-2 rounded-xl bg-white p-3 shadow-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+                          Live Demo / Video
+                        </p>
+                        <div className="space-y-3">
+                          {selected.videoIds.map((vid) => (
+                            <div key={vid} className="aspect-video overflow-hidden rounded-lg border border-slate-200">
+                              <iframe
+                                title={`${selected.title}-${vid}`}
+                                src={`https://www.youtube.com/embed/${vid}`}
+                                className="h-full w-full"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="space-y-2 rounded-xl bg-white p-3 shadow-sm">
+                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Key Results</p>
+                      <ul className="list-disc space-y-1 pl-4 text-slate-700">
+                        {selected.results?.map((r) => (
+                          <li key={r}>{r}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="space-y-2 rounded-xl bg-white p-3 shadow-sm">
+                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Tech Stack</p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {selected.tags?.map((tech) => (
+                          <span
+                            key={tech}
+                            className="tag-font rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <p className="text-sm font-semibold text-slate-800">{selected.highlight}</p>
               </div>
             </motion.div>
           </motion.div>

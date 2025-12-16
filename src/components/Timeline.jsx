@@ -59,7 +59,7 @@ const Timeline = () => {
         className="space-y-3"
       >
         <p className="text-sm font-mono uppercase tracking-[0.25em] text-[#64ffda]">Timeline</p>
-        <h2 className="text-3xl font-semibold text-white sm:text-4xl">Learning Journey</h2>
+        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Learning Journey</h2>
         <p className="max-w-3xl text-slate-200/80">
           1년 집중 커리큘럼(폴리텍 High-Tech) 과정을 요약한 성장 타임라인입니다.
         </p>

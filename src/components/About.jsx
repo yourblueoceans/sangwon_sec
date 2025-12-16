@@ -68,7 +68,7 @@ const About = () => {
         className="space-y-3"
       >
         <p className="text-sm font-mono uppercase tracking-[0.25em] text-[#64ffda]">About</p>
-        <h2 className="text-3xl font-semibold text-white sm:text-4xl">The Trust Grid</h2>
+        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">The Trust Grid</h2>
         <p className="max-w-3xl text-slate-200/80">
           비즈니스 가치와 보안을 동시에 설계하는 집요한 시큐리티 컨설턴트, 서상원입니다.
         </p>
