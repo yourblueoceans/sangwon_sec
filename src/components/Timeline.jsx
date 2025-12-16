@@ -50,7 +50,7 @@ const timelineData = [
 
 const Timeline = () => {
   return (
-    <section className="rounded-3xl bg-[#f8fafc] p-8 text-slate-900 shadow-[0_24px_80px_rgba(0,0,0,0.12)] ring-1 ring-slate-100">
+    <section id="timeline" className="rounded-3xl bg-[#f8fafc] p-8 text-slate-900 shadow-[0_24px_80px_rgba(0,0,0,0.12)] ring-1 ring-slate-100">
       <motion.div
         variants={fadeInUp}
         initial="hidden"
