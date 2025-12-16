@@ -9,20 +9,26 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
+        hand: ['Nanum Pen Script', 'cursive'],
       },
       colors: {
-        navy: {
-          900: '#020617', // Very Dark Blue (Background)
-          800: '#0F172A', // Slate 900 (Cards)
-          700: '#1E293B', // Slate 800 (Borders)
+        mint: {
+          50: '#f0fdfa',
+          100: '#ccfbf1',
+          400: '#2dd4bf',
+          600: '#0d9488',
+          700: '#0f766e',
+          900: '#134e4a',
         },
-        cyan: {
-          400: '#22d3ee', // Primary Accent (Neon)
-          500: '#06b6d4', // Secondary Accent
+        slate: {
+          850: '#1e293b',
         },
       },
+      boxShadow: {
+        soft: '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'brush-stroke': "url('https://s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=2dd4bf')",
       },
     },
   },
