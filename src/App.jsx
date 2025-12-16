@@ -1,29 +1,26 @@
-import About from './components/About';
-import Footer from './components/Footer';
+import React from 'react';
 import Hero from './components/Hero';
+import About from './components/About';
 import Projects from './components/Projects';
 import Timeline from './components/Timeline';
 
 const App = () => {
   return (
-    <div className="relative min-h-screen font-sans text-slate-900 selection:bg-accent/20 selection:text-accent">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(100,255,218,0.08),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(59,130,246,0.12),transparent_40%),radial-gradient(circle_at_50%_80%,rgba(59,130,246,0.08),transparent_40%),#050912]" />
+    <div className="bg-[#020617] min-h-screen text-slate-300">
       <Hero />
-      <main className="relative z-10 mx-auto flex max-w-7xl flex-col gap-32 px-6 pb-20 text-slate-900">
-        <div className="rounded-[32px] bg-[#f8fafc] px-4 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.25)]">
-          <div className="mx-auto flex max-w-7xl flex-col gap-24">
-            <About />
-            <Timeline />
-            <Projects />
-          </div>
-        </div>
+      <main className="relative z-10">
+        <About />
+        <Projects />
+        <Timeline />
       </main>
-      <Footer />
+      
+      <footer className="py-8 text-center text-slate-600 text-sm border-t border-slate-800/50">
+        <p>&copy; 2025 Sangwon Seo. All rights reserved.</p>
+        <p className="mt-2 font-mono text-xs">Built with React & Tailwind CSS</p>
+      </footer>
     </div>
   );
 };
 
 export default App;
-
-
 

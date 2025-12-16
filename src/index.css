@@ -1,50 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color: #e2e8f0;
-  background-color: #050912;
-  font-size: 17px;
+  color-scheme: dark;
 }
 
 body {
-  min-height: 100vh;
-  margin: 0;
-  background-color: #f8fafc;
-  color: #0f172a;
-  line-height: 1.6;
+  @apply bg-[#020617] text-slate-300 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200;
+  overflow-x: hidden;
 }
 
-* {
-  box-sizing: border-box;
+/* Custom Scrollbar for Chrome/Safari/Edge */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-[#020617];
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full hover:bg-slate-600;
 }
 
-:selection {
-  background: rgba(100, 255, 218, 0.25);
-  color: #64ffda;
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Subtle noise overlay for premium texture */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
-}
-
-.gradient-text {
-  @apply bg-gradient-to-r from-[#64ffda] via-[#7dd3fc] to-[#60a5fa] bg-clip-text text-transparent;
-  letter-spacing: -0.02em;
-}
-
-.tag-font {
-  font-family: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
+/* Utilities */
+.glass-panel {
+  @apply bg-slate-900/50 backdrop-blur-xl border border-white/5 shadow-2xl;
 }
 
