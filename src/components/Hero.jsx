@@ -4,20 +4,19 @@ import { getAssetPath } from '../utils/basePath';
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen w-full flex items-center pt-20 bg-white overflow-hidden">
-      {/* Background Decor (Subtle Mint Blobs) */}
-      <div className="pointer-events-none absolute top-0 right-0 w-[800px] h-[800px] bg-mint-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-      <div className="pointer-events-none absolute top-0 right-80 w-[600px] h-[600px] bg-blue-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-      <div className="pointer-events-none absolute -bottom-32 left-20 w-[600px] h-[600px] bg-mint-50/40 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
+    <section id="hero" className="relative min-h-screen w-full flex items-center pt-20 bg-[#F8FAFC] overflow-hidden">
+      {/* Background Decor */}
+      <div className="pointer-events-none absolute top-[-10%] right-[-5%] h-[600px] w-[600px] rounded-full bg-teal-100/40 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-[10%] left-[-10%] h-[500px] w-[500px] rounded-full bg-blue-50/60 blur-[100px]" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-20">
-        {/* Left: Text Content */}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
+        {/* Left: Text */}
         <div className="order-2 lg:order-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 inline-block rounded-full border border-mint-200 bg-mint-50 px-4 py-1.5 text-sm font-semibold text-mint-700 shadow-sm"
+            className="mb-6 inline-block rounded-full border border-teal-200 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-teal-700 shadow-sm"
           >
             Ready to Deploy 🚀
           </motion.div>
@@ -29,16 +28,7 @@ const Hero = () => {
             className="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-slate-900 lg:text-7xl"
           >
             SANGWON <br />
-            <span className="relative inline-block text-mint-700">
-              SUH.
-              <svg
-                className="absolute -bottom-2 left-0 h-4 w-full text-mint-300 opacity-60 -z-10"
-                viewBox="0 0 100 10"
-                preserveAspectRatio="none"
-              >
-                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="12" fill="none" opacity="0.6" />
-              </svg>
-            </span>
+            <span className="relative inline-block text-teal-600">SUH.</span>
           </motion.h1>
 
           <motion.h2
@@ -47,8 +37,8 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mb-8 text-xl font-medium text-slate-600 lg:text-2xl"
           >
-            <span className="marker-highlight">Cloud Security Engineer</span> & <br className="hidden lg:block" />
-            Infrastructure Architect
+            Cloud Security Engineer & <br className="hidden lg:block" />
+            <span className="font-bold text-teal-600">Infrastructure Architect</span>
           </motion.h2>
 
           <motion.p
@@ -70,29 +60,37 @@ const Hero = () => {
           >
             <a
               href="#projects"
-              className="rounded-xl bg-mint-700 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-mint-700/20 transition-all hover:-translate-y-1 hover:bg-mint-800 hover:shadow-mint-700/40"
+              className="rounded-xl bg-teal-700 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-teal-700/20 transition-all hover:-translate-y-1 hover:bg-teal-800"
             >
               View Projects
             </a>
             <a
               href="#about"
-              className="rounded-xl border border-slate-200 bg-white px-8 py-4 text-sm font-bold text-slate-700 shadow-sm transition-all hover:border-mint-500 hover:text-mint-700"
+              className="rounded-xl border border-slate-300 bg-white px-8 py-4 text-sm font-bold text-slate-700 shadow-sm transition-all hover:border-teal-500 hover:text-teal-700"
             >
               More About Me
             </a>
           </motion.div>
         </div>
 
-        {/* Right: Visual (Organic Blob Shape) */}
+        {/* Right: Visual */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="relative order-1 flex justify-center lg:order-2"
         >
-          <div className="absolute -z-10 h-[110%] w-[110%] rounded-[40%_60%_70%_30%/40%_50%_60%_50%] bg-mint-200 opacity-50 blur-md animate-blob" />
-          <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-[3rem] border-[6px] border-white bg-white shadow-2xl">
-            <video autoPlay loop muted playsInline className="h-full w-full object-cover">
+          <div className="absolute -z-10 h-[110%] w-[110%] rounded-full bg-teal-50 blur-3xl" />
+          <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2.5rem] border-[8px] border-white bg-white shadow-2xl">
+            <img
+              src={getAssetPath('assets/hero-profile.jpg')}
+              alt="Sangwon Suh"
+              className="absolute inset-0 h-full w-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover">
               <source src={getAssetPath('assets/hero-profile.mp4')} type="video/mp4" />
             </video>
           </div>
@@ -103,6 +101,4 @@ const Hero = () => {
 };
 
 export default Hero;
-
-
 

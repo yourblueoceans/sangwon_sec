@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +10,7 @@
 }
 
 body {
-  @apply bg-white text-slate-800 font-sans antialiased selection:bg-mint-100 selection:text-mint-900;
+  @apply bg-[#F8FAFC] text-slate-700 font-sans antialiased selection:bg-teal-100 selection:text-teal-900;
   overflow-x: hidden;
 }
 
@@ -60,6 +61,6 @@ html {
 
 /* 깔끔한 카드 스타일 */
 .clean-card {
-  @apply bg-white border border-slate-100 shadow-soft rounded-2xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-mint-100;
+  @apply bg-white border border-slate-100 shadow-soft rounded-2xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-teal-100;
 }
 
