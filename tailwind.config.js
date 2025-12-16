@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Montserrat', 'sans-serif'],
+        sans: ['Inter', 'Pretendard', 'sans-serif'],
+        heading: ['Montserrat', 'Pretendard', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
       colors: {
@@ -21,6 +21,7 @@ export default {
           100: '#CCFBF1',
           200: '#99F6E4',
           400: '#2DD4BF',
+          500: '#14B8A6',
           600: '#0D9488',
           700: '#0F766E',
           800: '#115E59',
@@ -28,17 +29,18 @@ export default {
         },
         slate: {
           850: '#1E293B',
+          900: '#0F172A',
         },
       },
       animation: {
-        marquee: 'marquee 40s linear infinite',
+        marquee: 'marquee 25s linear infinite',
         blob: 'blob 10s infinite',
-        shimmer: 'shimmer 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        float: 'float 6s ease-in-out infinite',
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         blob: {
           '0%': { transform: 'translate(0px, 0px) scale(1)' },
@@ -46,14 +48,14 @@ export default {
           '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
           '100%': { transform: 'translate(0px, 0px) scale(1)' },
         },
-        shimmer: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.7' },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
         },
       },
       boxShadow: {
-        soft: '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
-        premium: '0 20px 40px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+        glass: '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+        neon: '0 0 20px rgba(45, 212, 191, 0.3)',
       },
     },
   },

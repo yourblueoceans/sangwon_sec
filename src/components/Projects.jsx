@@ -75,17 +75,16 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-32 bg-white relative overflow-hidden">
+    <section id="projects" className="py-32 bg-white relative">
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-        <div className="mb-24 text-center md:text-left">
-          <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-heading mb-6 break-keep">
+        <div className="mb-20 text-center md:text-left">
+          <h2 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-heading mb-6 break-keep">
             Selected <span className="text-primary-600">Projects</span>
           </h2>
-          <p className="mt-4 text-xl text-slate-600 max-w-3xl leading-relaxed break-keep">
-            배운 지식을 실무에 적용하며, <br className="md:hidden" />
-            문제를 해결해나가는 과정입니다.
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl leading-relaxed break-keep">
+            배운 지식을 실무 수준으로 끌어올리기 위해 고민하고 해결한 기록들입니다.
           </p>
         </div>
 
@@ -95,7 +94,7 @@ const Projects = () => {
               key={project.id}
               layoutId={project.id}
               onClick={() => openModal(project.id)}
-              className="group cursor-pointer rounded-[2.5rem] bg-white border border-slate-200 overflow-hidden hover:border-primary-400 transition-all duration-500 hover:shadow-premium hover:-translate-y-3 hover-shimmer"
+              className="group cursor-pointer rounded-[2.5rem] bg-white border border-slate-200 overflow-hidden hover:border-primary-400 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 relative"
             >
               <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
                 <img
@@ -115,27 +114,23 @@ const Projects = () => {
 
                 <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
                   <span className="px-6 py-3 bg-white/95 rounded-full text-slate-900 text-sm font-extrabold shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                    자세히 보기 <Icon icon="mdi:arrow-right" className="text-primary-600" />
+                    자세히 보기 <Icon icon="mdi:arrow-right" />
                   </span>
-                </div>
-                <div className="absolute top-5 left-5 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-xs font-extrabold text-primary-700 shadow-sm uppercase tracking-wider border border-white/50">
-                  {project.category}
                 </div>
               </div>
 
               <div className="p-8">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="text-[11px] font-mono text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg font-bold flex items-center gap-2">
-                    <Icon icon="mdi:calendar-clock" /> {project.period}
-                  </div>
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-xs font-bold text-primary-600 uppercase tracking-wider">{project.category}</span>
+                  <span className="text-[10px] font-mono text-slate-400 bg-slate-50 px-2 py-1 rounded">{project.period}</span>
                 </div>
                 <h3 className="text-2xl font-extrabold text-slate-900 mb-3 leading-tight font-heading group-hover:text-primary-700 transition-colors break-keep">
                   {project.title}
                 </h3>
-                <p className="text-base text-slate-600 mb-6 font-medium line-clamp-2 leading-relaxed break-keep">{project.subtitle}</p>
+                <p className="text-sm text-slate-600 mb-6 font-medium line-clamp-2 break-keep">{project.subtitle}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.slice(0, 4).map((tag) => (
-                    <span key={tag} className="px-3 py-1.5 text-xs font-bold text-slate-700 bg-white rounded-lg border-2 border-slate-100 shadow-sm">
+                    <span key={tag} className="px-3 py-1.5 text-xs font-bold text-slate-600 bg-slate-50 rounded-lg border border-slate-200">
                       {tag}
                     </span>
                   ))}
@@ -167,8 +162,8 @@ const Projects = () => {
                     <span className="inline-block text-sm font-extrabold text-primary-600 uppercase tracking-wider mb-3 flex items-center gap-2">
                       <Icon icon="mdi:folder-open-outline" /> {selectedProject.category}
                     </span>
-                    <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4 font-heading leading-tight break-keep">{selectedProject.title}</h2>
-                    <p className="text-xl text-slate-600 font-medium break-keep">{selectedProject.subtitle}</p>
+                    <h2 className="text-3xl font-extrabold text-slate-900 mb-3 font-heading leading-tight break-keep">{selectedProject.title}</h2>
+                    <p className="text-lg text-primary-700 font-bold break-keep">{selectedProject.subtitle}</p>
                   </div>
 
                   {selectedProject.videos && selectedProject.videos.length > 0 && (
@@ -223,10 +218,10 @@ const Projects = () => {
                       href={getAssetPath(selectedProject.pdfUrl)}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-slate-900 text-white font-bold text-base hover:bg-primary-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-1 mb-10"
+                      className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-slate-900 text-white font-bold text-base hover:bg-primary-600 transition-all shadow-lg hover:-translate-y-1 mb-10"
                     >
-                      <Icon icon="mdi:file-pdf-box" className="text-2xl" />
-                      <span>프로젝트 PDF 보기/다운로드</span>
+                      <Icon icon="mdi:file-document-outline" className="text-2xl" />
+                      <span>프로젝트 보고서(PDF) 보기</span>
                     </a>
                   )}
 
