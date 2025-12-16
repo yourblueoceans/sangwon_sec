@@ -36,7 +36,7 @@ const Hero = () => {
           <p className="text-sm font-mono uppercase tracking-[0.35em] text-[#64ffda]">
             {'> SYSTEM_READY...'}
           </p>
-          <h1 className="gradient-text text-5xl font-semibold leading-tight sm:text-6xl lg:text-7xl lg:leading-[1.05]">
+          <h1 className="gradient-text text-5xl font-semibold leading-tight tracking-tighter sm:text-6xl lg:text-7xl lg:leading-[1.03]">
             Protecting Business Value through Security Technology.
           </h1>
           <p className="text-lg text-slate-200/90 tracking-tight">서상원 | Security Consultant</p>

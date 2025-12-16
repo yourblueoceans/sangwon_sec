@@ -50,7 +50,7 @@ const timelineData = [
 
 const Timeline = () => {
   return (
-    <section className="rounded-3xl bg-[#f8f9fa] p-8 text-slate-900">
+    <section className="rounded-3xl bg-[#0b1221] p-8 text-slate-100 shadow-[0_30px_90px_rgba(0,0,0,0.45)] ring-1 ring-white/5">
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -59,14 +59,14 @@ const Timeline = () => {
         className="space-y-3"
       >
         <p className="text-sm font-mono uppercase tracking-[0.25em] text-[#64ffda]">Timeline</p>
-        <h2 className="text-3xl font-semibold sm:text-4xl">Learning Journey</h2>
-        <p className="max-w-3xl text-slate-700">
+        <h2 className="text-3xl font-semibold text-white sm:text-4xl">Learning Journey</h2>
+        <p className="max-w-3xl text-slate-200/80">
           1년 집중 커리큘럼(폴리텍 High-Tech) 과정을 요약한 성장 타임라인입니다.
         </p>
       </motion.div>
 
       <div className="relative mt-10">
-        <div className="absolute left-[12px] top-0 h-full w-px bg-slate-200" aria-hidden />
+        <div className="absolute left-[16px] top-0 h-full w-px bg-slate-700/60" aria-hidden />
         <div className="space-y-8">
           {timelineData.map((item, idx) => (
             <motion.article
@@ -76,34 +76,35 @@ const Timeline = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.25 }}
               transition={{ delay: idx * 0.08 }}
-              className="relative rounded-2xl bg-white p-6 shadow-md"
+              className="relative grid items-start gap-4 md:grid-cols-[0.3fr_0.7fr]"
             >
-              <span
-                className="absolute left-[12px] top-6 h-3 w-3 -translate-x-1/2 rounded-full bg-[#64ffda] ring-4 ring-[#64ffda]/25"
-                aria-hidden
-              />
-              <div className="ml-8 space-y-3">
-                <p className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500">{item.period}</p>
+              <div className="relative flex items-start">
+                <span className="absolute left-[16px] top-3 h-3 w-3 -translate-x-1/2 rounded-full bg-[#64ffda] ring-4 ring-[#64ffda]/25" />
+                <div className="ml-8">
+                  <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#64ffda]">{item.period}</p>
+                </div>
+              </div>
+              <div className="rounded-3xl bg-white p-6 text-slate-900 shadow-lg">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                   <p className="text-sm font-semibold text-[#0a192f]">{item.role}</p>
                 </div>
-                <p className="text-slate-700">{item.summary}</p>
+                <p className="mt-2 text-slate-700">{item.summary}</p>
                 <p className="text-sm text-slate-600">{item.details}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm"
+                      className="tag-font rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
                 {item.cert && (
-                  <p className="text-sm font-semibold text-[#0a192f]">Cert: {item.cert}</p>
+                  <p className="mt-2 text-sm font-semibold text-[#0a192f]">Cert: {item.cert}</p>
                 )}
-                {item.highlight && <p className="text-sm font-semibold text-amber-600">{item.highlight}</p>}
+                {item.highlight && <p className="mt-1 text-sm font-semibold text-amber-600">{item.highlight}</p>}
               </div>
             </motion.article>
           ))}

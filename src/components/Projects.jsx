@@ -83,24 +83,34 @@ const Projects = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: idx * 0.1 }}
-            className="group relative flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 text-left shadow-lg backdrop-blur-xl transition hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:border-[#64ffda]/60 focus:outline-none focus:ring-2 focus:ring-[#64ffda] focus:ring-offset-2 focus:ring-offset-[#0a101f]"
+            className="group relative flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-5 text-left shadow-lg backdrop-blur-xl transition hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:border-[#64ffda]/60 focus:outline-none focus:ring-2 focus:ring-[#64ffda] focus:ring-offset-2 focus:ring-offset-[#0a101f]"
           >
-            <div className="space-y-3">
-              <p className="text-xs font-mono uppercase tracking-[0.25em] text-[#64ffda]">Security</p>
-              <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
-              <p className="text-sm text-slate-200/80">{project.subtitle}</p>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-[#64ffda]/30 bg-[#64ffda]/15 px-3 py-1 text-xs font-semibold text-[#0a192f]"
-                >
-                  {tag}
+            <div className="relative mb-4 h-48 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/70 via-slate-800/60 to-slate-900/70">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(100,255,218,0.12),transparent_35%),radial-gradient(circle_at_70%_10%,rgba(59,130,246,0.14),transparent_32%)]" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 transition duration-300 group-hover:opacity-100">
+                <span className="rounded-full bg-[#64ffda] px-4 py-2 text-sm font-semibold text-[#0a192f] shadow-lg">
+                  View Details
                 </span>
-              ))}
+              </div>
             </div>
-            <p className="mt-6 text-sm font-semibold text-slate-100">{project.highlight}</p>
+            <div className="flex h-full flex-col justify-between space-y-3">
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.25em] text-[#64ffda]">Security</p>
+                <h3 className="text-2xl font-semibold text-white">{project.title}</h3>
+                <p className="text-sm text-slate-200/80">{project.subtitle}</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="tag-font rounded-full border border-[#64ffda]/30 bg-[#64ffda]/15 px-3 py-1 text-xs font-semibold text-[#0a192f]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-sm font-semibold text-slate-100">{project.highlight}</p>
+            </div>
           </motion.button>
         ))}
       </div>

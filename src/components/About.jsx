@@ -9,7 +9,7 @@ const fadeInUp = {
 };
 
 const cardBase =
-  'relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 shadow-md backdrop-blur-xl transition hover:-translate-y-1 hover:shadow-2xl';
+  'relative overflow-hidden rounded-3xl border border-slate-200 bg-white/5 p-6 shadow-md backdrop-blur-xl transition hover:-translate-y-1 hover:shadow-2xl';
 
 const certs = [
   { src: 'assets/cert-sc900.jpg', title: 'SC-900', issuer: 'Microsoft' },
@@ -25,7 +25,7 @@ const SpotlightCard = ({ children }) => {
 
   const spotlightStyle = useMemo(
     () => ({
-      background: `radial-gradient(260px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.12), transparent 60%)`,
+      background: `radial-gradient(320px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.12), transparent 60%)`,
     }),
     [pos],
   );
@@ -40,7 +40,7 @@ const SpotlightCard = ({ children }) => {
       style={spotlightStyle}
     >
       <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 h-full">{children}</div>
     </div>
   );
 };
@@ -58,7 +58,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="space-y-8 rounded-3xl bg-[#080f1d] p-8 text-slate-100 shadow-[0_30px_90px_rgba(0,0,0,0.45)] ring-1 ring-white/5"
+      className="space-y-8 rounded-3xl bg-[#0a101f] p-8 text-slate-100 shadow-[0_30px_90px_rgba(0,0,0,0.45)] ring-1 ring-white/5"
     >
       <motion.div
         variants={fadeInUp}
@@ -74,7 +74,7 @@ const About = () => {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-4 md:auto-rows-[minmax(200px,1fr)] md:grid-cols-3 md:grid-rows-3">
+      <div className="grid grid-cols-1 gap-5 md:auto-rows-[minmax(220px,1fr)] md:grid-cols-3">
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -83,20 +83,17 @@ const About = () => {
           className="md:col-span-2 md:row-span-2"
         >
           <SpotlightCard>
-            <div className="flex h-full flex-col gap-4 md:flex-row">
-              <div className="overflow-hidden rounded-xl border border-white/10 bg-slate-900/40">
-                <img
-                  src={getAssetPath('assets/about-photo.jpg')}
-                  alt="Sangwon Seo portrait"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="flex flex-1 flex-col justify-center space-y-3">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#64ffda]">
-                  Profile
-                </p>
+            <div className="relative h-full overflow-hidden rounded-3xl">
+              <img
+                src={getAssetPath('assets/about-photo.jpg')}
+                alt="Sangwon Seo portrait"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="relative flex h-full flex-col justify-end space-y-3 p-6">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#64ffda]">Profile</p>
                 <h3 className="text-2xl font-semibold text-white">From Sales to Security Specialist</h3>
-                <p className="leading-relaxed text-slate-200/80">
+                <p className="leading-relaxed text-slate-200/85">
                   비전공자의 한계를 1년 만에 캡스톤 금상으로 증명한 집요함을 가졌습니다.
                 </p>
               </div>
@@ -112,13 +109,13 @@ const About = () => {
           className="md:col-span-1"
         >
           <SpotlightCard>
-            <div className="flex items-center gap-3">
-              <div className="rounded-xl bg-white/10 p-3 ring-1 ring-white/10">
-                <Icon icon="mdi:map-outline" className="h-6 w-6 text-[#64ffda]" />
+            <div className="flex h-full flex-col items-center justify-center gap-3 rounded-3xl bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.05),transparent_45%),radial-gradient(circle_at_70%_20%,rgba(100,255,218,0.08),transparent_35%),#0b1224] text-center">
+              <div className="rounded-2xl bg-white/10 p-3 ring-1 ring-slate-200">
+                <Icon icon="mdi:map-outline" className="h-7 w-7 text-[#64ffda]" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">Global Experience</p>
-                <p className="text-sm text-slate-200/80">USA(Sales) - Laos(PM) - Korea(Security)</p>
+                <p className="text-sm text-slate-200/80">USA(Sales) · Laos(PM) · Korea(Security)</p>
               </div>
             </div>
           </SpotlightCard>
@@ -139,12 +136,12 @@ const About = () => {
                   continuously learning
                 </span>
               </div>
-              <div className="relative overflow-hidden rounded-lg bg-white/5 ring-1 ring-white/10">
-                <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-transparent via-black/30 to-transparent" />
-                <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-transparent via-black/30 to-transparent" />
-                <div className="flex gap-8 whitespace-nowrap px-2 py-4 animate-marquee">
+              <div className="relative overflow-hidden rounded-3xl bg-white/5 ring-1 ring-slate-200/60">
+                <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0a101f] via-transparent to-transparent" />
+                <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0a101f] via-transparent to-transparent" />
+                <div className="flex gap-10 whitespace-nowrap px-4 py-5 animate-marquee" style={{ animationDuration: '24s' }}>
                   {techIcons.concat(techIcons).map((icon, idx) => (
-                    <Icon key={`${icon}-${idx}`} icon={icon} className="h-10 w-10 text-slate-100" />
+                    <Icon key={`${icon}-${idx}`} icon={icon} className="h-12 w-12 text-slate-100" />
                   ))}
                 </div>
               </div>
@@ -161,8 +158,8 @@ const About = () => {
         >
           <SpotlightCard>
             <div className="flex items-center gap-3">
-              <div className="rounded-xl bg-white/10 p-3 ring-1 ring-white/10">
-                <Icon icon="ph:trophy-duotone" className="h-6 w-6 text-[#64ffda]" />
+              <div className="rounded-2xl bg-white/10 p-3 ring-1 ring-slate-200">
+                <Icon icon="ph:trophy-duotone" className="h-7 w-7 text-[#64ffda]" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">Award</p>
@@ -189,10 +186,10 @@ const About = () => {
                 {certs.map((cert) => (
                   <div
                     key={cert.src}
-                    className="group relative flex flex-col items-start gap-2 overflow-hidden rounded-xl border border-white/10 bg-white/5 p-3 shadow-md"
+                    className="group relative flex flex-col items-start gap-2 overflow-hidden rounded-3xl border border-slate-200 bg-white/5 p-3 shadow-md"
                     title={`${cert.title} - ${cert.issuer}`}
                   >
-                    <div className="h-20 w-full overflow-hidden rounded-lg bg-slate-900/60 ring-1 ring-white/10">
+                    <div className="h-20 w-full overflow-hidden rounded-2xl bg-slate-900/60 ring-1 ring-slate-200/60">
                       <img
                         src={getAssetPath(cert.src)}
                         alt={cert.title}
@@ -219,8 +216,8 @@ const About = () => {
         >
           <SpotlightCard>
             <div className="flex items-start gap-3">
-              <div className="rounded-xl bg-white/10 p-3 ring-1 ring-white/10">
-                <Icon icon="mdi:handshake-outline" className="h-6 w-6 text-[#64ffda]" />
+              <div className="rounded-2xl bg-white/10 p-3 ring-1 ring-slate-200">
+                <Icon icon="mdi:handshake-outline" className="h-7 w-7 text-[#64ffda]" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">Crisis Management &amp; Communication</p>
