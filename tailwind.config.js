@@ -12,6 +12,8 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['Fira Code', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        title: ['Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
       boxShadow: {
         glow: '0 0 40px rgba(100,255,218,0.25)',
