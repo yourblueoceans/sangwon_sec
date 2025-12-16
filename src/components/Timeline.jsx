@@ -50,7 +50,7 @@ const timelineData = [
 
 const Timeline = () => {
   return (
-    <section className="rounded-3xl bg-[#0b1221] p-8 text-slate-100 shadow-[0_30px_90px_rgba(0,0,0,0.45)] ring-1 ring-white/5">
+    <section className="rounded-3xl bg-[#f8fafc] p-8 text-slate-900 shadow-[0_24px_80px_rgba(0,0,0,0.12)] ring-1 ring-slate-100">
       <motion.div
         variants={fadeInUp}
         initial="hidden"
@@ -59,14 +59,14 @@ const Timeline = () => {
         className="space-y-3"
       >
         <p className="text-sm font-mono uppercase tracking-[0.25em] text-[#64ffda]">Timeline</p>
-        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Learning Journey</h2>
-        <p className="max-w-3xl text-slate-200/80">
+        <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Learning Journey</h2>
+        <p className="max-w-3xl text-slate-700">
           1년 집중 커리큘럼(폴리텍 High-Tech) 과정을 요약한 성장 타임라인입니다.
         </p>
       </motion.div>
 
       <div className="relative mt-10">
-        <div className="absolute left-[16px] top-0 h-full w-px bg-slate-700/60" aria-hidden />
+        <div className="absolute left-[16px] top-0 h-full w-px bg-slate-300" aria-hidden />
         <div className="space-y-8">
           {timelineData.map((item, idx) => (
             <motion.article
@@ -81,10 +81,10 @@ const Timeline = () => {
               <div className="relative flex items-start">
                 <span className="absolute left-[16px] top-3 h-3 w-3 -translate-x-1/2 rounded-full bg-[#64ffda] ring-4 ring-[#64ffda]/25" />
                 <div className="ml-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#64ffda]">{item.period}</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#2563eb]">{item.period}</p>
                 </div>
               </div>
-              <div className="rounded-3xl bg-white p-6 text-slate-900 shadow-lg">
+              <div className="rounded-3xl bg-white p-6 text-slate-900 shadow-lg ring-1 ring-slate-100">
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                   <p className="text-sm font-semibold text-[#0a192f]">{item.role}</p>
