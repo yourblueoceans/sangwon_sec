@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,7 +11,7 @@
 }
 
 body {
-  @apply bg-bg-main text-slate-700 font-sans antialiased selection:bg-primary-100 selection:text-primary-900;
+  @apply bg-[#F8FAFC] text-slate-700 font-sans antialiased selection:bg-teal-100 selection:text-teal-900;
   overflow-x: hidden;
 }
 
@@ -25,24 +25,17 @@ body::before {
   height: 100%;
   pointer-events: none;
   background: radial-gradient(
-    circle at var(--cursor-x) var(--cursor-y),
-    rgba(45, 212, 191, 0.08) 0%,
-    rgba(0, 0, 0, 0) 50%
+    600px circle at var(--cursor-x) var(--cursor-y),
+    rgba(13, 148, 136, 0.06),
+    transparent 40%
   );
   z-index: 9999;
-  mix-blend-mode: multiply;
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  @apply bg-bg-main;
-}
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full hover:bg-slate-400;
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { @apply bg-[#F8FAFC]; }
+::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded-full border-2 border-[#F8FAFC] hover:bg-slate-400; }
 
 html {
   scroll-behavior: smooth;

@@ -13,41 +13,37 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative flex min-h-screen w-full items-center overflow-hidden bg-bg-main pt-20">
-      <div className="pointer-events-none absolute top-[-10%] right-[-5%] h-[700px] w-[700px] rounded-full bg-primary-100/60 blur-[100px] opacity-70 mix-blend-multiply animate-blob" />
-      <div className="pointer-events-none absolute bottom-[10%] left-[-10%] h-[600px] w-[600px] rounded-full bg-blue-100/60 blur-[100px] opacity-70 mix-blend-multiply animate-blob animation-delay-2000" />
+    <section id="hero" className="relative min-h-screen w-full flex items-center justify-center pt-20 overflow-hidden bg-[#F8FAFC]">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-teal-100/50 rounded-full blur-[100px] opacity-70 animate-blob mix-blend-multiply" />
+        <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[100px] opacity-70 animate-blob animation-delay-2000 mix-blend-multiply" />
+      </div>
 
-      <div className="relative z-10 grid w-full max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-2 lg:px-8">
-        <div className="order-2 lg:order-1">
+      <div className="relative z-10 grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20 px-6 lg:px-8">
+        <div className="order-2 lg:order-1 text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-wide text-primary-800 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-teal-100 text-teal-800 text-xs font-bold mb-6 shadow-sm uppercase tracking-wider"
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary-600" />
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-600"></span>
             </span>
-            Ready to Deploy: 즉시 전력감
+            Communication & Security
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-5xl font-heading font-extrabold leading-[1.1] tracking-tight text-slate-900 lg:text-7xl"
+            className="text-5xl lg:text-7xl font-extrabold tracking-tight text-slate-900 mb-6 leading-[1.15] font-heading"
           >
-            SANGWON <br />
-            <span className="relative inline-block text-primary-600">
-              SUH.
-              <svg
-                className="absolute -bottom-1 left-0 h-3 w-full text-primary-200 -z-10"
-                viewBox="0 0 100 10"
-                preserveAspectRatio="none"
-              >
-                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="15" fill="none" />
-              </svg>
+            사람을 설득하던 언어로,<br />
+            이제는{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600 relative inline-block">
+              시스템을 지킵니다.
             </span>
           </motion.h1>
 
@@ -55,21 +51,24 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-8 text-xl font-medium text-slate-600 lg:text-2xl"
+            className="text-xl lg:text-2xl text-slate-600 font-medium mb-8"
           >
-            Cloud Security Engineer & <br className="hidden lg:block" />
-            <span className="font-bold text-primary-700">Infrastructure Architect</span>
+            SANGWON SUH.
+            <br />
+            <span className="text-base text-slate-500 font-normal">Cloud Security Engineer based in Korea</span>
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-10 max-w-lg text-lg leading-relaxed text-slate-600"
+            className="text-slate-600 max-w-lg leading-relaxed mb-10 text-lg"
           >
-            "문서를 잠그다(Lockument)"라는 아이디어를
+            Sales와 PM으로 쌓은 <strong>소통의 유연함</strong> 위에,
             <br />
-            <strong>비즈니스를 지키는 보안 아키텍처</strong>로 구현합니다.
+            <strong>보안의 견고함</strong>을 더했습니다.
+            <br />
+            비즈니스의 언어를 이해하는 보안 엔지니어입니다.
           </motion.p>
 
           <motion.div
@@ -80,56 +79,61 @@ const Hero = () => {
           >
             <a
               href="#projects"
-              className="rounded-xl bg-primary-600 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-primary-600/20 transition-all hover:-translate-y-1 hover:bg-primary-700"
+              className="px-8 py-4 rounded-2xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/10 hover:-translate-y-1"
             >
-              View Projects
+              프로젝트 보기
             </a>
             <a
               href="#about"
-              className="rounded-xl border border-slate-300 bg-white px-8 py-4 text-sm font-bold text-slate-700 shadow-sm transition-all hover:border-primary-500 hover:text-primary-700"
+              className="px-8 py-4 rounded-2xl bg-white border border-slate-200 text-slate-700 font-bold text-sm hover:border-teal-500 hover:text-teal-700 transition-all shadow-sm"
             >
-              More About Me
+              더 알아보기
             </a>
           </motion.div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="order-1 relative flex justify-center lg:order-2"
+          className="order-1 lg:order-2 relative flex justify-center"
         >
-          <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2.5rem] border-[8px] border-white bg-white shadow-2xl">
+          <div className="relative w-full max-w-md aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] border-white bg-white group">
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="h-full w-full object-cover"
-              poster={getAssetPath('assets/hero-profile.jpg')}
-              onError={(e) => {
-                e.currentTarget.poster = getAssetPath('assets/hero-profile.jpg');
-              }}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              poster="/sangwon_sec/assets/hero-profile.png"
             >
               <source src={getAssetPath('assets/hero-profile.mp4')} type="video/mp4" />
             </video>
+            <img
+              src={getAssetPath('assets/hero-profile.png')}
+              alt="Sangwon Suh"
+              className="absolute inset-0 w-full h-full object-cover -z-10"
+              onError={(e) => (e.currentTarget.style.display = 'none')}
+            />
           </div>
+
           <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute -left-4 bottom-10 flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-xl"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute bottom-12 -left-4 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-lg border border-white/50 flex items-center gap-3"
           >
-            <div className="rounded-lg bg-primary-100 p-2 text-primary-600">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <div className="bg-teal-50 p-2.5 rounded-xl text-teal-600">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
-                  fill="currentColor"
-                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 12c5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                 />
               </svg>
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-500">Security Level</p>
-              <p className="text-sm font-bold text-slate-900">Enterprise Grade</p>
+              <p className="text-xs text-slate-500 font-bold uppercase tracking-wide">Specialty</p>
+              <p className="text-sm font-bold text-slate-900">Cloud Security</p>
             </div>
           </motion.div>
         </motion.div>
