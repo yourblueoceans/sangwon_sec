@@ -12,31 +12,39 @@ const App = () => {
     <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-100 selection:text-primary-900">
       <Navbar />
       <main className="relative z-10">
-        <Intro />        {/* 1. 화려한 랜딩 페이지 */}
-        <Profile />      {/* 2. 프로필 및 소개 (기존 첫 화면) */}
-        <About />        {/* 3. 경력, 기술스택, 자격증 */}
-        <Education />    {/* 4. 교육 과정 상세 */}
-        <Projects />     {/* 5. 프로젝트 */}
+        <Intro />
+        <Profile />
+        <About />
+        <Education />
+        <Projects />
       </main>
-
-      {/* Footer */}
-      <footer className="relative bg-slate-900 text-white py-24 overflow-hidden text-center border-t-4 border-primary-600">
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-extrabold font-heading mb-8 leading-tight break-keep">
-                "안전한 비즈니스 환경을 위한<br/>
-                <span className="text-primary-400">든든한 기초</span>를 다지고 있습니다."
+      
+      <footer className="relative bg-slate-900 text-white py-32 overflow-hidden text-center border-t-[6px] border-primary-600">
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+            <Icon icon="mdi:shield-account-outline" className="text-7xl text-primary-500 mx-auto mb-10" />
+            
+            {/* Footer Copy 수정: 성장 가능성 강조 */}
+            <h2 className="text-4xl md:text-5xl font-extrabold font-heading mb-10 leading-tight break-keep">
+                안전한 비즈니스를 위한<br/>
+                <span className="text-primary-400">가능성</span>을 열어갑니다.
             </h2>
-            <div className="flex justify-center gap-6 mb-12">
-                 <a href="mailto:yourblueoceans@gmail.com" className="flex items-center gap-2 px-8 py-4 bg-primary-600 rounded-xl font-bold hover:bg-primary-500 transition-all shadow-lg hover:-translate-y-1">
-                   <Icon icon="mdi:email-outline" className="text-xl" /> 프로젝트 문의
+            <p className="text-slate-300 mb-16 text-2xl font-medium leading-relaxed break-keep max-w-3xl mx-auto">
+                지금은 단단한 기초를 다지는 단계지만,<br/>
+                함께 성장하며 내일의 가치를 만들어갈 준비가 되어있습니다.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center gap-8 mb-20">
+                 <a href="mailto:yourblueoceans@gmail.com" className="group flex items-center justify-center gap-4 px-12 py-6 bg-primary-600 rounded-3xl font-bold text-xl hover:bg-primary-500 transition-all shadow-xl hover:-translate-y-2">
+                   <Icon icon="mdi:email-fast-outline" className="text-3xl group-hover:animate-pulse" /> 이메일 보내기
                  </a>
-                 <a href="https://github.com/yourblueoceans" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-8 py-4 bg-white/10 border border-white/20 rounded-xl font-bold hover:bg-white/20 transition-all">
-                   <Icon icon="mdi:github" className="text-xl" /> GitHub
+                 <a href="https://github.com/yourblueoceans" target="_blank" rel="noreferrer" className="group flex items-center justify-center gap-4 px-12 py-6 bg-white/10 border-2 border-white/10 rounded-3xl font-bold text-xl hover:bg-white/20 transition-all hover:-translate-y-2">
+                   <Icon icon="mdi:github" className="text-3xl transition-transform group-hover:rotate-12" /> GitHub 방문
                  </a>
             </div>
-            <p className="text-slate-500 text-sm">
-                &copy; 2025 SANGWON SUH. All rights reserved.
-            </p>
+            
+            <div className="pt-10 border-t border-white/10 text-slate-400 text-base flex flex-col md:flex-row justify-between items-center font-medium">
+                <p>&copy; 2025 SANGWON SUH. All rights reserved.</p>
+            </div>
         </div>
       </footer>
     </div>
@@ -44,4 +52,3 @@ const App = () => {
 };
 
 export default App;
-
