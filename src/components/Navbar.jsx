@@ -25,7 +25,7 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
-        <a href="#hero" className="text-xl font-bold tracking-tight text-slate-900 font-mono group">
+        <a href="#profile" className="text-xl font-bold tracking-tight text-slate-900 font-mono group">
           S.SUH<span className="text-primary-600 transition-colors group-hover:text-primary-500">_SEC</span>
         </a>
 
