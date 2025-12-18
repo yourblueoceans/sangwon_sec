@@ -2,65 +2,22 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 자격증 데이터 (수정 반영됨)
+// [중요] 자격증 이미지: 실제 파일명과 확장자(.png vs .jpg)를 꼭 확인하세요!
 const certifications = [
-  {
-    name: "정보보안기사",
-    img: "/sangwon_sec/assets/cert-sec-engineer.png",
-    date: "2025.11.15 (실기 응시)",
-    issuer: "KISA",
-    desc: "정보보안 분야 최고 수준의 국가기술자격. 필기 합격 후 실기 응시 완료.",
-  },
-  {
-    name: "리눅스마스터 2급",
-    img: "/sangwon_sec/assets/cert-linux.png",
-    date: "2025.10",
-    issuer: "KAIT",
-    desc: "Linux 시스템 관리 및 활용 능력 입증 (서버 구축 및 명령어 활용)",
-  },
-  {
-    name: "네트워크관리사 2급",
-    img: "/sangwon_sec/assets/cert-network.png",
-    date: "2025.04",
-    issuer: "ICQA",
-    desc: "네트워크 인프라 전반의 실무 능력 및 케이블링/설정 능력 인증",
-  },
-  {
-    name: "Cisco CCST Cybersecurity",
-    img: "/sangwon_sec/assets/cert-ccst.png",
-    date: "2025.11",
-    issuer: "Cisco",
-    desc: "글로벌 네트워크 보안 기초 역량 및 보안 위협 대응 능력 인증",
-  },
-  {
-    name: "Microsoft SC-900",
-    img: "/sangwon_sec/assets/cert-sc900.png",
-    date: "2025.12",
-    issuer: "Microsoft",
-    desc: "MS 클라우드 보안, 컴플라이언스 및 자격 증명 기초 지식",
-  },
-  {
-    name: "TOEIC Speaking IH",
-    img: "/sangwon_sec/assets/cert-toeic.png",
-    date: "150점",
-    issuer: "ETS",
-    desc: "실무 비즈니스 영어 커뮤니케이션 능력 (Intermediate High)",
-  },
-  {
-    name: "한국사능력검정 1급",
-    img: "/sangwon_sec/assets/cert-korean-history.png",
-    date: "2017.02",
-    issuer: "국사편찬위원회",
-    desc: "인문학적 소양 및 역사적 사고력 인증",
-  },
+  { name: "정보보안기사", img: "/sangwon_sec/assets/cert-sec-engineer.png", date: "2025.11 (실기 응시)", issuer: "KISA" },
+  { name: "리눅스마스터 2급", img: "/sangwon_sec/assets/cert-linux.png", date: "2025.10", issuer: "KAIT" },
+  { name: "네트워크관리사 2급", img: "/sangwon_sec/assets/cert-network.png", date: "2025.04", issuer: "ICQA" },
+  { name: "Cisco CCST", img: "/sangwon_sec/assets/cert-ccst.png", date: "2025.11", issuer: "Cisco" },
+  { name: "Microsoft SC-900", img: "/sangwon_sec/assets/cert-sc900.png", date: "2025.12", issuer: "Microsoft" },
+  { name: "한국사 1급", img: "/sangwon_sec/assets/cert-korean-history.png", date: "2017.02", issuer: "국사편찬위원회" },
+  { name: "TOEIC Speaking IH", img: "/sangwon_sec/assets/cert-toeic.png", date: "150점", issuer: "ETS" },
 ];
 
-// 기술 스택 (ELK 제거, 아이콘 크기 확대)
-const techItems = [
+const techStack = [
   { icon: "logos:linux-tux", name: "Linux" },
   { icon: "logos:docker-icon", name: "Docker" },
-  { icon: "logos:aws", name: "AWS" },
   { icon: "logos:python", name: "Python" },
+  { icon: "logos:aws", name: "AWS" },
   { icon: "logos:react", name: "React" },
   { icon: "logos:nginx", name: "Nginx" },
   { icon: "simple-icons:cisco", name: "Cisco", color: "#1BA0D7" },
@@ -69,28 +26,26 @@ const techItems = [
   { icon: "logos:git-icon", name: "Git" },
   { icon: "logos:mysql", name: "MySQL" },
 ];
-const techStack = [...techItems, ...techItems];
 
-// 경력 데이터
 const experience = [
-  {
-    role: "교육생 (클라우드 보안 엔지니어 과정)",
-    company: "한국폴리텍대학 대전캠퍼스",
-    period: "2025.03 - 2026.02 (예정)",
-    desc: "총 1,200시간. 리눅스/윈도우 서버 및 가상화 인프라 구축, 보안 관제 실습. 캡스톤 프로젝트 팀장으로 아키텍처 설계 주도.",
-  },
-  {
-    role: "해외 지점 운영 지원 (Intern)",
-    company: "대한항공 (미주본부)",
-    period: "2023.02 - 2023.09",
-    desc: "미주 지역 항공 화물 데이터 집계 및 분석 리포팅. 현지 파트너사(GSA)와의 커뮤니케이션 및 지점 행정 업무 지원.",
-  },
-  {
-    role: "Pharmacy Clerk",
-    company: "Apotheco Pharmacy (USA)",
-    period: "2022.02 - 2023.02",
-    desc: "처방전 접수 및 고객 데이터 관리. 약국 내 재고 관리(Inventory) 및 워크플로우 효율화를 위한 현장 업무 수행.",
-  },
+    {
+        role: "교육생 (클라우드 보안 엔지니어 과정)",
+        company: "한국폴리텍대학 대전캠퍼스",
+        period: "2025.03 - 2026.02 (예정)",
+        desc: "총 1,200시간. 리눅스/윈도우 서버 구축 및 보안 관제 실습. 캡스톤 프로젝트 팀장으로 인프라 설계 주도."
+    },
+    {
+        role: "해외 지점 운영 지원 (Intern)",
+        company: "대한항공 (미주본부)",
+        period: "2023.02 - 2023.09",
+        desc: "항공 화물 데이터 집계 및 분석 리포팅. 현지 파트너사와의 커뮤니케이션 및 지점 행정 업무 지원."
+    },
+    {
+        role: "Pharmacy Clerk",
+        company: "Apotheco Pharmacy (USA)",
+        period: "2022.02 - 2023.02",
+        desc: "처방전 접수 및 고객 응대, 약국 내 재고 관리 및 워크플로우 효율화 업무 수행."
+    }
 ];
 
 const About = () => {
@@ -100,7 +55,6 @@ const About = () => {
     <section id="about" className="py-32 relative bg-bg-main overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
         <div className="mb-24">
           <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-6 font-heading">
             성장을 향한 <span className="text-primary-600">기록</span>
@@ -110,7 +64,7 @@ const About = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
             
-            {/* Experience (Career Path) */}
+            {/* Experience */}
             <div className="bg-white rounded-[2.5rem] p-10 shadow-premium border border-white/50 relative hover:shadow-2xl transition-all duration-300">
                 <h3 className="text-3xl font-bold text-slate-900 mb-12 flex items-center gap-4 font-heading">
                     <Icon icon="mdi:briefcase-clock-outline" className="text-primary-600 text-4xl" />
@@ -131,7 +85,7 @@ const About = () => {
                 </div>
             </div>
 
-            {/* Technical Arsenal (Marquee) */}
+            {/* Technical Arsenal (Marquee 멈춤 제거) */}
             <div className="space-y-12">
                 <div className="bg-white rounded-[2.5rem] p-10 shadow-premium border border-white/50 group">
                     <h3 className="text-3xl font-bold text-slate-900 mb-10 flex items-center gap-4 font-heading">
@@ -139,14 +93,13 @@ const About = () => {
                          Technical Arsenal
                     </h3>
                     
-                    {/* Marquee Container */}
                     <div className="relative flex overflow-x-hidden py-8">
-                        <div className="animate-marquee whitespace-nowrap flex gap-16 px-4 group-hover:[animation-play-state:paused]">
-                            {techStack.map((tech, index) => (
+                        <div className="animate-marquee whitespace-nowrap flex gap-16 px-4">
+                            {[...techStack, ...techStack].map((tech, index) => (
                                 <div key={index} className="flex flex-col items-center gap-4 min-w-[100px] transition-all duration-500">
                                     <Icon 
                                         icon={tech.icon} 
-                                        className="text-7xl filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 drop-shadow-md" 
+                                        className="text-7xl filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform drop-shadow-md" 
                                         color={tech.color} 
                                     />
                                     <span className="text-sm font-bold text-slate-400 group-hover:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
@@ -158,16 +111,16 @@ const About = () => {
                     </div>
                     
                     <p className="text-center text-slate-400 text-sm mt-4 font-medium">
-                        * 마우스를 올리면 전체 스택이 활성화됩니다.
+                        * 마우스를 올리면 전체 스택의 색상이 활성화됩니다.
                     </p>
                 </div>
 
-                {/* Global Mindset Badge */}
+                {/* Global Mindset */}
                 <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] p-10 text-white text-center shadow-2xl relative overflow-hidden group">
                     <div className="relative z-10">
                         <Icon icon="mdi:earth" className="text-primary-400 text-7xl mb-6 mx-auto group-hover:rotate-12 transition-transform duration-700" />
                         <h3 className="text-2xl font-extrabold mb-4 font-heading">Global Communication</h3>
-                        <p className="text-slate-300 text-lg font-medium mb-6">USA (Intern/Work) & Laos (PM)</p>
+                        <p className="text-slate-300 text-lg font-medium mb-6">USA Experience & English Communication</p>
                         <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 border border-white/20 text-sm font-bold text-primary-200 backdrop-blur-sm">
                             <Icon icon="mdi:translate" /> English: Professional Working
                         </div>
@@ -177,7 +130,7 @@ const About = () => {
             </div>
         </div>
 
-        {/* Certifications (Grid) */}
+        {/* Certifications (이미지 경로 예외처리 강화) */}
         <div>
             <h3 className="text-3xl font-bold text-slate-900 mb-10 flex items-center gap-4 font-heading">
                 <Icon icon="mdi:license" className="text-primary-600 text-4xl" /> Certifications
@@ -202,9 +155,9 @@ const About = () => {
                                     e.target.nextSibling.style.display='flex';
                                 }}
                             />
+                            {/* Fallback Icon if Image Fails */}
                             <div className="hidden flex-col items-center justify-center text-slate-300 group-hover:text-primary-400 transition-colors">
                                 <Icon icon="mdi:file-certificate-outline" className="text-5xl mb-2" />
-                                <span className="text-[10px] font-bold uppercase tracking-wider">No Image</span>
                             </div>
                         </div>
                         
@@ -220,7 +173,7 @@ const About = () => {
 
       </div>
 
-      {/* Cert Modal (이미지 연동 & Fallback) */}
+      {/* Cert Modal */}
       <AnimatePresence>
         {selectedCert && (
             <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/70 backdrop-blur-md p-4" onClick={() => setSelectedCert(null)}>
@@ -240,13 +193,9 @@ const About = () => {
                             className="h-full object-contain drop-shadow-md" 
                             onError={(e) => {
                                 e.target.style.display = 'none';
-                                e.target.nextSibling.style.display = 'flex';
+                                e.target.parentElement.innerHTML = '<div class="flex flex-col items-center text-slate-400"><Icon icon="mdi:image-off-outline" class="text-5xl mb-2" /><span>이미지 없음</span></div>';
                             }} 
                         />
-                        <div className="hidden flex-col items-center text-slate-400">
-                            <Icon icon="mdi:image-off-outline" className="text-5xl mb-2" />
-                            <span className="text-sm font-bold">이미지를 불러올 수 없습니다</span>
-                        </div>
                     </div>
                     
                     <h3 className="text-2xl font-extrabold text-center text-slate-900 mb-3 font-heading break-keep">{selectedCert.name}</h3>
@@ -255,9 +204,11 @@ const About = () => {
                             {selectedCert.issuer} | {selectedCert.date}
                         </p>
                     </div>
-                    <p className="text-slate-600 text-center leading-relaxed text-base break-keep bg-slate-50 p-4 rounded-2xl mb-6">
-                        {selectedCert.desc}
-                    </p>
+                    {selectedCert.desc && (
+                        <p className="text-slate-600 text-center leading-relaxed text-base break-keep bg-slate-50 p-4 rounded-2xl mb-6">
+                            {selectedCert.desc}
+                        </p>
+                    )}
                     <button onClick={() => setSelectedCert(null)} className="w-full py-4 bg-slate-900 text-white rounded-2xl text-lg font-bold hover:bg-primary-600 transition-all shadow-md">닫기</button>
                 </motion.div>
             </div>

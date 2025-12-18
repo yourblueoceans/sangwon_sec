@@ -34,21 +34,22 @@ const Hero = () => {
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-primary-200 text-primary-700 text-xs font-bold mb-6 shadow-sm uppercase tracking-wider"
           >
             <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
-            Communication & Engineering
+            Proven Consistency
           </motion.div>
 
-          {/* Copywriting Upgrade */}
+          {/* Copywriting: Fact-based Impact */}
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl lg:text-6xl font-extrabold text-slate-900 mb-8 leading-tight break-keep font-heading"
+            className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-8 leading-tight break-keep font-heading"
           >
-            소통의 언어 위에<br/>
+            비전공의 한계를<br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600">
-               보안의 로직
-            </span>을 더하다.
+               성실함이라는 데이터
+            </span>로<br/>
+            증명했습니다.
           </motion.h2>
 
           <motion.div
@@ -59,14 +60,14 @@ const Hero = () => {
             className="text-slate-600 text-lg lg:text-xl leading-relaxed space-y-6 break-keep font-medium"
           >
             <p>
-              대한항공 인턴과 미국 현지 근무를 통해 다양한 사람들과 호흡하며 <strong>'문제 해결을 위한 유연함'</strong>을 배웠습니다.
+              <strong>1,200시간</strong>의 교육 과정, <strong>평균 92점</strong>의 성적, 그리고 <strong>6개의 자격증</strong>.
             </p>
             <p>
-              이제 그 유연함에 <strong>1,200시간</strong>의 집요한 기술 훈련을 더해, 시스템과 비즈니스를 모두 지키는 <strong>보안 엔지니어</strong>로 첫발을 내딛습니다.
+              화려한 말보다 맡은 바를 끝까지 해내는 <strong>'책임감'</strong>과 동료들과 협업하며 문제를 해결하는 <strong>'소통 능력'</strong>이 저의 진짜 무기입니다.
             </p>
             <div className="mt-8 p-6 bg-white border-l-4 border-primary-500 shadow-premium rounded-r-2xl">
               <p className="italic text-slate-800 font-bold text-lg">
-                "화려한 기술보다 중요한 건, <br className="md:hidden"/>비즈니스가 멈추지 않게 하는 단단한 기초입니다."
+                "요령 피우지 않고, 우직하게 결과를 만들어내는<br/>든든한 팀원이 되겠습니다."
               </p>
             </div>
           </motion.div>
@@ -79,10 +80,10 @@ const Hero = () => {
             className="mt-10 flex flex-wrap gap-4"
           >
              <a href="#projects" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white font-bold text-lg rounded-2xl hover:bg-slate-800 transition-all shadow-lg hover:-translate-y-1">
-                프로젝트 보기 <Icon icon="mdi:arrow-down" />
+                프로젝트 성과 보기 <Icon icon="mdi:arrow-down" />
              </a>
              <a href="/sangwon_sec/assets/resume.pdf" target="_blank" className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold text-lg rounded-2xl hover:border-primary-500 hover:text-primary-700 transition-all shadow-sm">
-                <Icon icon="mdi:file-document-outline" /> 이력서
+                <Icon icon="mdi:file-document-outline" /> 이력서 확인
              </a>
           </motion.div>
         </div>
@@ -112,7 +113,7 @@ const Hero = () => {
                
                {/* Badge */}
                <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl shadow-lg border border-slate-100 text-right">
-                   <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Focus</p>
+                   <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Target</p>
                    <p className="text-xl font-extrabold text-primary-800 leading-none">Cloud<br/>Infra Security</p>
                </div>
             </div>
