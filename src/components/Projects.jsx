@@ -8,7 +8,7 @@ const projectData = [
     title: "LOCKUMENT",
     subtitle: "SecureDoc Cloud: AWS PII Masking Platform",
     category: "Cloud Security",
-    image: "/sangwon_sec/assets/project-lockument.jpg",
+    image: "/sangwon_sec/assets/project-lockument.png",
     pdfUrl: "/sangwon_sec/assets/lockument.pdf",
     tags: ["AWS KMS", "Python Flask", "Docker", "React", "OCR"],
     videos: [
@@ -30,7 +30,7 @@ const projectData = [
     title: "Drop the Port!",
     subtitle: "Defense in Depth: 3-Zone Network Architecture",
     category: "Network Infrastructure",
-    image: "/sangwon_sec/assets/project-droptheport.jpg",
+    image: "/sangwon_sec/assets/project-droptheport.png",
     pdfUrl: "/sangwon_sec/assets/drop the port.pdf",
     tags: ["Cisco L3/L2", "Firewall", "ELK Stack", "VPN"],
     period: "2025.05 - 2025.07",
@@ -48,7 +48,7 @@ const projectData = [
     title: "Web Vulnerability Assessment",
     subtitle: "Penetration Testing & Secure Coding Report",
     category: "Offensive Security",
-    image: "/sangwon_sec/assets/project-webvuln.jpg",
+    image: "/sangwon_sec/assets/project-webvuln.png",
     pdfUrl: "/sangwon_sec/assets/web vuln.pdf",
     tags: ["OWASP Top 10", "Burp Suite", "Linux", "Apache/PHP"],
     period: "2025.09 - 2025.10",
@@ -166,6 +166,7 @@ const Projects = () => {
                     <p className="text-2xl text-primary-700 font-bold break-keep">{selectedProject.subtitle}</p>
                   </div>
 
+                  {/* Video Tabs */}
                   {selectedProject.videos && selectedProject.videos.length > 0 && (
                     <div className="mb-12">
                       <div className="flex gap-3 mb-5 p-2 bg-slate-200/50 rounded-2xl w-fit">
@@ -199,7 +200,7 @@ const Projects = () => {
                       <p className="text-slate-700 text-lg leading-relaxed font-medium break-keep">{selectedProject.problem}</p>
                     </div>
                     <div className="bg-primary-50 p-8 rounded-3xl border border-primary-100 shadow-sm">
-                      <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-3"><Icon icon="mdi:lightbulb-on-outline" className="text-primary-600 text-2xl" /> Solution</h3>
+                      <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-centered gap-3"><Icon icon="mdi:lightbulb-on-outline" className="text-primary-600 text-2xl" /> Solution</h3>
                       <p className="text-primary-900 text-lg font-bold leading-relaxed break-keep">{selectedProject.solution}</p>
                     </div>
                   </div>
