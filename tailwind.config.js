@@ -1,40 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', 'sans-serif'], // 본문: 프리텐다드
-        heading: ['Montserrat', 'sans-serif'], // 제목: 몬세라트
+        sans: ['Pretendard', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
       colors: {
-        bg: {
-          main: '#F8FAFC',
-          paper: '#FFFFFF',
-        },
+        bg: { main: '#F8FAFC', paper: '#FFFFFF' },
         primary: {
-          50: '#F0FDFA',
-          100: '#CCFBF1',
-          200: '#99F6E4',
-          300: '#5EEAD4',
-          400: '#2DD4BF',
-          500: '#14B8A6',
-          600: '#0D9488',
-          700: '#0F766E',
-          800: '#115E59',
-          900: '#134E4A',
+          50: '#F0FDFA', 100: '#CCFBF1', 200: '#99F6E4',
+          400: '#2DD4BF', 600: '#0D9488', 700: '#0F766E',
+          800: '#115E59', 900: '#134E4A',
         },
-        slate: {
-          850: '#1E293B',
-          900: '#0F172A',
-        },
+        slate: { 850: '#1E293B' },
       },
       animation: {
-        marquee: 'marquee 25s linear infinite',
+        marquee: 'marquee 30s linear infinite',
         blob: 'blob 10s infinite',
         float: 'float 6s ease-in-out infinite',
       },
@@ -55,10 +42,9 @@ export default {
         },
       },
       boxShadow: {
-        glass: '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-        neon: '0 0 20px rgba(45, 212, 191, 0.3)',
+        premium: '0 20px 40px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
       },
     },
   },
   plugins: [],
-};
+}
