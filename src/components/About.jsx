@@ -2,50 +2,51 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 자격증 데이터 (.jpg 수정 완료)
+// 자격증 데이터 (HSE 3급 포함, .jpg 통일)
 const certifications = [
-  { name: "정보보안기사", img: "/sangwon_sec/assets/cert-sec-engineer.jpg", date: "2025.11 (실기 응시)", issuer: "KISA", desc: "정보보안 분야 최고 수준의 국가기술자격" },
-  { name: "리눅스마스터 2급", img: "/sangwon_sec/assets/cert-linux.jpg", date: "2025.10", issuer: "KAIT", desc: "Linux 시스템 관리 및 활용 능력 입증" },
-  { name: "네트워크관리사 2급", img: "/sangwon_sec/assets/cert-network.jpg", date: "2025.04", issuer: "ICQA", desc: "네트워크 인프라 실무 능력 인증" },
-  { name: "Cisco CCST", img: "/sangwon_sec/assets/cert-ccst.jpg", date: "2025.11", issuer: "Cisco", desc: "글로벌 네트워크 보안 기초 자격" },
-  { name: "Microsoft SC-900", img: "/sangwon_sec/assets/cert-sc900.jpg", date: "2025.12", issuer: "Microsoft", desc: "MS 클라우드 보안 기초" },
-  { name: "TOEIC Speaking IH", img: "/sangwon_sec/assets/cert-toeic.jpg", date: "150점", issuer: "ETS", desc: "실무 비즈니스 영어 구사력" },
-  { name: "한국사 1급", img: "/sangwon_sec/assets/cert-korean-history.jpg", date: "2017.02", issuer: "국사편찬위원회", desc: "인문학적 소양 인증" },
+  { name: '정보보안기사', img: '/sangwon_sec/assets/cert-sec-engineer.jpg', date: '2025.11 (실기 응시)', issuer: 'KISA', desc: '정보보안 분야 최고 수준의 국가기술자격' },
+  { name: '리눅스마스터 2급', img: '/sangwon_sec/assets/cert-linux.jpg', date: '2025.10', issuer: 'KAIT', desc: 'Linux 시스템 관리 및 활용 능력 입증' },
+  { name: '네트워크관리사 2급', img: '/sangwon_sec/assets/cert-network.jpg', date: '2025.04', issuer: 'ICQA', desc: '네트워크 인프라 실무 능력 인증' },
+  { name: 'HSE 3급 (해킹보안전문가)', img: '/sangwon_sec/assets/cert-hse.jpg', date: '2025.06', issuer: '한국해킹보안협회', desc: '해킹 및 보안 기초 실무 능력 인증' },
+  { name: 'Cisco CCST', img: '/sangwon_sec/assets/cert-ccst.jpg', date: '2025.11', issuer: 'Cisco', desc: '글로벌 네트워크 보안 기초 자격' },
+  { name: 'Microsoft SC-900', img: '/sangwon_sec/assets/cert-sc900.jpg', date: '2025.12', issuer: 'Microsoft', desc: 'MS 클라우드 보안 기초' },
+  { name: 'TOEIC Speaking IH', img: '/sangwon_sec/assets/cert-toeic.jpg', date: '150점', issuer: 'ETS', desc: '실무 비즈니스 영어 구사력' },
+  { name: '한국사 1급', img: '/sangwon_sec/assets/cert-korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회', desc: '인문학적 소양 인증' },
 ];
 
 const techStack = [
-  { icon: "logos:linux-tux", name: "Linux" },
-  { icon: "logos:docker-icon", name: "Docker" },
-  { icon: "logos:aws", name: "AWS" },
-  { icon: "logos:python", name: "Python" },
-  { icon: "logos:react", name: "React" },
-  { icon: "logos:nginx", name: "Nginx" },
-  { icon: "simple-icons:cisco", name: "Cisco", color: "#1BA0D7" },
-  { icon: "simple-icons:wireshark", name: "Wireshark", color: "#1679A7" },
-  { icon: "devicon:flask", name: "Flask" },
-  { icon: "logos:git-icon", name: "Git" },
-  { icon: "logos:mysql", name: "MySQL" },
+  { icon: 'logos:linux-tux', name: 'Linux' },
+  { icon: 'logos:docker-icon', name: 'Docker' },
+  { icon: 'logos:aws', name: 'AWS' },
+  { icon: 'logos:python', name: 'Python' },
+  { icon: 'logos:react', name: 'React' },
+  { icon: 'logos:nginx', name: 'Nginx' },
+  { icon: 'simple-icons:cisco', name: 'Cisco', color: '#1BA0D7' },
+  { icon: 'simple-icons:wireshark', name: 'Wireshark', color: '#1679A7' },
+  { icon: 'devicon:flask', name: 'Flask' },
+  { icon: 'logos:git-icon', name: 'Git' },
+  { icon: 'logos:mysql', name: 'MySQL' },
 ];
 
-// 이력서 기반 경력 수정 (Fact 반영)
+// 이력서 기반 경력 (Fact & Impact)
 const experience = [
   {
-    role: "교육생 (클라우드 보안 엔지니어 과정)",
-    company: "한국폴리텍대학 대전캠퍼스",
-    period: "2025.03 - 2026.02 (예정)",
-    desc: "총 1,200시간. AWS/Linux 기반 보안 인프라 구축. Drop the Port 프로젝트 팀장으로서 방화벽 정책 설계를 주도하고, 캡스톤 디자인 금상을 수상하며 실무 역량을 증명함.",
+    role: '교육생 (클라우드 보안 엔지니어 과정)',
+    company: '한국폴리텍대학 대전캠퍼스',
+    period: '2025.03 - 2026.02 (예정)',
+    desc: '총 1,200시간. AWS/Linux 기반 보안 인프라 구축. Drop the Port 프로젝트 팀장으로서 방화벽 정책 설계를 주도하고, 캡스톤 디자인 금상을 수상하며 실무 역량을 증명함.',
   },
   {
-    role: "운영 지원 및 위기 관리 (Intern)",
-    company: "대한항공 (미주본부)",
-    period: "2023.02 - 2023.09",
-    desc: "태풍으로 인한 공항 마비 상황에서 12시간 동안 승객 안내 및 파트너사 비상 연락망을 가동하여 위기를 관리함. 데이터 기반 리포팅으로 지점 운영 효율화 지원.",
+    role: '운영 지원 및 위기 관리',
+    company: '대한항공 (미주본부)',
+    period: '2023.02 - 2023.09',
+    desc: '태풍으로 인한 공항 마비 시 파트너사(GSA, 조업사)와의 비상 연락망 가동 및 협업 조율. 데이터 기반 리포팅으로 지점 운영 효율화 지원.',
   },
   {
-    role: "Tech Sales Specialist",
-    company: "Computer Ahnex (USA)",
-    period: "2022.02 - 2022.09", // 이력서 기간 (7개월)
-    desc: "McAfee 등 보안 솔루션의 기술적 스펙을 비즈니스 언어로 번역하여 고객에게 제안. 입사 3개월 만에 매장 최고 매출 달성 및 고객 신뢰 확보.",
+    role: 'Pharmacy Clerk',
+    company: 'Apotheco Pharmacy (USA)',
+    period: '2022.02 - 2023.02',
+    desc: '처방전 접수 및 고객 데이터 관리. 약국 내 재고 관리(Inventory) 및 워크플로우 효율화를 위한 현장 업무 수행.',
   },
 ];
 
@@ -55,17 +56,14 @@ const About = () => {
   return (
     <section id="about" className="py-32 relative bg-bg-main overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        
         {/* Header */}
         <div className="mb-24 text-center md:text-left">
-          <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-6 font-heading">
+          <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-6 font-heading section-title-underline inline-block">
             성장을 향한 <span className="text-primary-600">증명</span>
           </h2>
-          <div className="h-2 w-24 bg-primary-500 rounded-full mx-auto md:mx-0"></div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
-            
             {/* Experience */}
             <div className="bg-white rounded-[2.5rem] p-10 shadow-premium border border-white/50 relative hover:shadow-2xl transition-all duration-300">
                 <h3 className="text-3xl font-bold text-slate-900 mb-12 flex items-center gap-4 font-heading">
@@ -91,7 +89,7 @@ const About = () => {
                 </div>
             </div>
 
-            {/* Technical Arsenal (Marquee) */}
+            {/* Technical Arsenal & Global Mindset */}
             <div className="space-y-12">
                 <div className="bg-white rounded-[2.5rem] p-10 shadow-premium border border-white/50 group">
                     <h3 className="text-3xl font-bold text-slate-900 mb-10 flex items-center gap-4 font-heading">
@@ -131,7 +129,7 @@ const About = () => {
                             <span className="text-sm opacity-80 font-normal">위기 상황 대처 및 비즈니스 커뮤니케이션</span>
                         </p>
                         <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 border border-white/20 text-sm font-bold text-primary-200 backdrop-blur-sm">
-                            <Icon icon="mdi:translate" /> English: Professional Working
+                            <Icon icon="mdi:translate" /> English: Business Communication (B2B)
                         </div>
                     </div>
                     <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/20 rounded-full blur-3xl"></div>

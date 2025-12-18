@@ -20,14 +20,10 @@ body {
   @apply bg-[#F8FAFC] text-slate-700 font-sans antialiased selection:bg-teal-100 selection:text-teal-900;
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   overflow-x: hidden;
+  cursor: none;
 }
 
-/* Titles (Montserrat) */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
-}
-
-/* Smoke Glow Text Effect (연기처럼 빛나는 효과) */
+/* Smoke Glow Text Effect (legacy 사용 가능) */
 .smoke-text {
   color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
@@ -77,8 +73,62 @@ body::before {
     rgba(13, 148, 136, 0.04),
     transparent 50%
   );
-  z-index: 9999;
+  z-index: 9998;
   mix-blend-mode: multiply;
+}
+
+/* 1. Custom Cursor & Trail Effect */
+.cursor-dot,
+.cursor-dot-outline {
+  pointer-events: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  z-index: 9999;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #0D9488;
+}
+
+.cursor-dot-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(13, 148, 136, 0.5);
+}
+
+/* 2. Section Title Underline Design */
+.section-title-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: #0D9488;
+  border-radius: 2px;
+}
+
+.section-title-underline::before {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 65px;
+  width: 8px;
+  height: 8px;
+  background-color: #2DD4BF;
+  border-radius: 50%;
 }
 
 /* Custom Scrollbar */

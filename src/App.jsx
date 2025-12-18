@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Intro from './components/Intro';
 import Profile from './components/Hero';
@@ -8,8 +8,37 @@ import Projects from './components/Projects';
 import { Icon } from '@iconify/react';
 
 const App = () => {
+  const cursorDot = useRef(null);
+  const cursorOutline = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
+
+      if (cursorDot.current) {
+        cursorDot.current.style.left = `${posX}px`;
+        cursorDot.current.style.top = `${posY}px`;
+      }
+
+      if (cursorOutline.current) {
+        cursorOutline.current.animate(
+          { left: `${posX}px`, top: `${posY}px` },
+          { duration: 500, fill: 'forwards' }
+        );
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
     <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-100 selection:text-primary-900">
+      {/* Custom Cursor */}
+      <div ref={cursorDot} className="cursor-dot"></div>
+      <div ref={cursorOutline} className="cursor-dot-outline"></div>
+
       <Navbar />
       <main className="relative z-10">
         <Intro />
@@ -22,8 +51,6 @@ const App = () => {
       <footer className="relative bg-slate-900 text-white py-32 overflow-hidden text-center border-t-[6px] border-primary-600">
         <div className="relative z-10 max-w-5xl mx-auto px-6">
             <Icon icon="mdi:shield-account-outline" className="text-7xl text-primary-500 mx-auto mb-10" />
-            
-            {/* Footer Copy 수정: 성장 가능성 강조 */}
             <h2 className="text-4xl md:text-5xl font-extrabold font-heading mb-10 leading-tight break-keep">
                 안전한 비즈니스를 위한<br/>
                 <span className="text-primary-400">가능성</span>을 열어갑니다.
