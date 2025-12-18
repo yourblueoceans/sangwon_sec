@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
+// 데이터는 기존 유지
 const certifications = [
   { name: '정보보안기사', img: '/sangwon_sec/assets/cert-sec-engineer.jpg', date: '2025.11 (실기 응시)', issuer: 'KISA', desc: '정보보안 분야 최고 수준 자격' },
   { name: 'HSE 3급 (해킹보안전문가)', img: '/sangwon_sec/assets/cert-hse.jpg', date: '2025.12.18', issuer: '한국해킹보안협회', desc: '해킹 공격 기법 이해 및 보안 기초' },
@@ -50,35 +51,39 @@ const experience = [
 ];
 
 const About = () => {
+  const [selectedCert, setSelectedCert] = useState(null);
+
   return (
-    <section id="about" className="py-32 relative bg-bg-main overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="mb-24 text-center md:text-left">
-          <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-relaxed break-keep text-balance section-title-underline inline-block">
+    <section id="about" className="py-20 md:py-32 relative bg-bg-main overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="mb-16 md:mb-24 text-center md:text-left">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-snug break-keep section-title-underline inline-block">
             성장을 향한 <span className="text-primary-600">증명</span>
           </h2>
         </div>
 
-        <div className="bg-white rounded-[3rem] p-12 lg:p-16 shadow-premium border border-white/50 relative hover:shadow-2xl transition-all duration-300 mb-24 w-full">
-          <h3 className="text-3xl font-extrabold text-slate-900 mb-12 flex items-center gap-4 font-heading">
-            <Icon icon="mdi:briefcase-clock-outline" className="text-primary-600 text-4xl" />
+        {/* History */}
+        <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 lg:p-16 shadow-premium border border-white/50 relative hover:shadow-2xl transition-all duration-300 mb-16 md:mb-24 w-full">
+          <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-12 flex items-center gap-4 font-heading">
+            <Icon icon="mdi:briefcase-clock-outline" className="text-primary-600 text-3xl md:text-4xl" />
             History
           </h3>
-          <div className="space-y-16 border-l-[4px] border-slate-200 pl-8 md:pl-12 ml-2 md:ml-4">
+          <div className="space-y-12 md:space-y-16 border-l-[3px] md:border-l-[4px] border-slate-200 pl-6 md:pl-12 ml-1 md:ml-4">
             {experience.map((exp, index) => (
               <div key={index} className="relative group">
-                <span className="absolute -left-[46px] md:-left-[62px] top-2 w-6 h-6 md:w-8 md:h-8 rounded-full bg-white border-[6px] border-primary-500 shadow-sm group-hover:scale-110 transition-transform"></span>
+                <span className="absolute -left-[35px] md:-left-[62px] top-1.5 md:top-2 w-5 h-5 md:w-8 md:h-8 rounded-full bg-white border-[4px] md:border-[6px] border-primary-500 shadow-sm group-hover:scale-110 transition-transform"></span>
 
-                <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 mb-4">
-                  <h4 className="text-2xl font-extrabold text-slate-900 break-keep text-balance">{exp.company}</h4>
-                  <span className="text-slate-500 text-xs md:text-sm font-mono bg-slate-100 px-4 py-1.5 rounded-lg border border-slate-200 w-fit">{exp.period}</span>
+                <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 mb-3 md:mb-4">
+                  <h4 className="text-xl md:text-2xl font-extrabold text-slate-900 break-keep">{exp.company}</h4>
+                  <span className="text-slate-500 text-xs md:text-sm font-mono bg-slate-100 px-3 py-1 rounded-lg border border-slate-200 w-fit">{exp.period}</span>
                 </div>
 
-                <p className="text-primary-700 font-bold text-lg md:text-xl mb-4 flex items-center gap-2">
-                  <Icon icon="mdi:account-star" className="text-2xl" /> {exp.role}
+                <p className="text-primary-700 font-bold text-base md:text-xl mb-3 md:mb-4 flex items-center gap-2">
+                  <Icon icon="mdi:account-star" className="text-xl md:text-2xl" /> {exp.role}
                 </p>
 
-                <p className="text-slate-700 text-base md:text-lg leading-loose font-medium break-keep text-balance bg-slate-50/50 p-6 rounded-2xl border border-slate-100/50 hover:bg-slate-50 transition-colors">
+                <p className="text-slate-700 text-sm md:text-lg leading-relaxed md:leading-loose font-medium break-keep bg-slate-50/50 p-4 md:p-6 rounded-2xl border border-slate-100/50 hover:bg-slate-50 transition-colors">
                   {exp.desc}
                 </p>
               </div>
@@ -86,75 +91,77 @@ const About = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-[2.5rem] p-12 shadow-premium border border-white/50 group mb-20 w-full max-w-full">
-          <h3 className="text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-4 font-heading">
-            <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-4xl" />
+        {/* Technical Arsenal */}
+        <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 shadow-premium border border-white/50 group mb-16 md:mb-20">
+          <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-10 flex items-center gap-4 font-heading">
+            <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-3xl md:text-4xl" />
             Technical Arsenal
           </h3>
-          <div className="relative flex overflow-x-hidden py-8 w-full">
-            <div className="animate-marquee whitespace-nowrap flex gap-20 px-4">
+          <div className="relative flex overflow-x-hidden py-4 md:py-8">
+            <div className="animate-marquee whitespace-nowrap flex gap-10 md:gap-20 px-4">
               {techStack.map((tech, index) => (
-                <div key={index} className="flex flex-col items-center gap-4 min-w-[120px] transition-all duration-500">
+                <div key={index} className="flex flex-col items-center gap-3 md:gap-4 min-w-[80px] md:min-w-[120px] transition-all duration-500">
                   <Icon
                     icon={tech.icon}
-                    className="text-8xl filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 drop-shadow-md"
+                    className="text-5xl md:text-8xl filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 drop-shadow-md"
                     color={tech.color}
                   />
-                  <span className="text-base font-bold text-slate-400 group-hover:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
+                  <span className="text-xs md:text-base font-bold text-slate-400 group-hover:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
                 </div>
               ))}
             </div>
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] p-10 text-white text-center shadow-2xl relative overflow-hidden group flex flex-col justify-center items-center">
+        {/* Global & Certifications */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+          <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2rem] p-8 md:p-10 text-white text-center shadow-2xl relative overflow-hidden group flex flex-col justify-center items-center">
             <div className="relative z-10">
-              <Icon icon="mdi:earth" className="text-primary-400 text-8xl mb-8 mx-auto group-hover:rotate-12 transition-transform duration-700" />
-              <h3 className="text-3xl font-extrabold mb-6 font-heading leading-snug">Global<br/>Capability</h3>
-              <p className="text-slate-300 text-lg font-medium mb-8 leading-relaxed">
+              <Icon icon="mdi:earth" className="text-primary-400 text-6xl md:text-8xl mb-6 md:mb-8 mx-auto group-hover:rotate-12 transition-transform duration-700" />
+              <h3 className="text-2xl md:text-3xl font-extrabold mb-4 md:mb-6 font-heading leading-snug">Global<br/>Capability</h3>
+              <p className="text-slate-300 text-base md:text-lg font-medium mb-6 md:mb-8 leading-relaxed">
                 US Tech Sales &<br/>Airline Operation
               </p>
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-sm font-bold text-primary-200 backdrop-blur-sm">
-                <Icon icon="mdi:translate" className="text-xl" /> English: Business Level
+              <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/10 border border-white/20 text-xs md:text-sm font-bold text-primary-200 backdrop-blur-sm">
+                <Icon icon="mdi:translate" className="text-lg md:text-xl" /> English: Business Level
               </div>
             </div>
             <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/20 rounded-full blur-3xl"></div>
           </div>
 
           <div className="lg:col-span-8">
-            <h3 className="text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-4 font-heading">
-              <Icon icon="mdi:license" className="text-primary-600 text-4xl" /> Certifications
+            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-10 flex items-center gap-4 font-heading">
+              <Icon icon="mdi:license" className="text-primary-600 text-3xl md:text-4xl" /> Certifications
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
               {certifications.map((cert, idx) => (
                 <div
                   key={idx}
-                  className="relative group cursor-pointer bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-primary-400 transition-all overflow-hidden h-64"
+                  className="relative group cursor-pointer bg-white rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-primary-400 transition-all overflow-hidden h-56 md:h-64"
+                  onMouseEnter={() => setSelectedCert(cert.name)}
+                  onMouseLeave={() => setSelectedCert(null)}
                 >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 transition-all duration-300 group-hover:opacity-10">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-6 transition-all duration-300 group-hover:opacity-10">
                     <img
                       src={cert.img}
                       alt={cert.name}
-                      className="h-24 object-contain mb-4 drop-shadow-sm"
+                      className="h-16 md:h-24 object-contain mb-3 md:mb-4 drop-shadow-sm"
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.nextSibling.style.display = 'flex';
                       }}
                     />
                     <div className="hidden flex-col items-center justify-center text-slate-300">
-                      <Icon icon="mdi:file-certificate-outline" className="text-5xl mb-2" />
+                      <Icon icon="mdi:file-certificate-outline" className="text-4xl md:text-5xl mb-2" />
                     </div>
-                    <p className="text-sm font-extrabold text-slate-900 text-center leading-tight">{cert.name}</p>
-                    <p className="text-xs text-slate-400 mt-2 font-mono">{cert.date}</p>
+                    <p className="text-xs md:text-sm font-extrabold text-slate-900 text-center leading-tight">{cert.name}</p>
+                    <p className="text-[10px] md:text-xs text-slate-400 mt-2 font-mono">{cert.date}</p>
                   </div>
 
-                  <div className="absolute inset-0 bg-slate-900/95 flex flex-col items-center justify-center p-6 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
-                    <p className="text-white font-bold text-lg mb-2">{cert.name}</p>
-                    <p className="text-primary-400 text-xs font-bold uppercase mb-4 tracking-wider">{cert.issuer}</p>
-                    <p className="text-slate-300 text-sm leading-relaxed break-keep font-medium">{cert.desc}</p>
+                  <div className="absolute inset-0 bg-slate-900/95 flex flex-col items-center justify-center p-4 md:p-6 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+                    <p className="text-white font-bold text-sm md:text-lg mb-1 md:mb-2">{cert.name}</p>
+                    <p className="text-primary-400 text-[10px] md:text-xs font-bold uppercase mb-2 md:mb-4 tracking-wider">{cert.issuer}</p>
+                    <p className="text-slate-300 text-xs md:text-sm leading-relaxed break-keep font-medium">{cert.desc}</p>
                   </div>
                 </div>
               ))}

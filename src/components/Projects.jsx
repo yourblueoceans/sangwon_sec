@@ -37,9 +37,7 @@ const projectData = [
     subtitle: 'Defense in Depth: 3-Zone Network Architecture',
     category: 'Network Infrastructure',
     image: '/sangwon_sec/assets/project-droptheport.png',
-    docs: [
-      { name: '최종 보고서', url: '/sangwon_sec/assets/drop the port.pdf' },
-    ],
+    docs: [{ name: '최종 보고서', url: '/sangwon_sec/assets/drop the port.pdf' }],
     gallery: ['/sangwon_sec/assets/project-droptheport.png'],
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     period: '2025.08.21 - 2025.11.03',
@@ -79,7 +77,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-32 bg-white relative">
+    <section id="projects" className="py-20 md:py-32 bg-white relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-24 text-center md:text-left">
           <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-heading mb-6 section-title-underline inline-block leading-snug">
@@ -146,46 +144,49 @@ const Projects = () => {
 
       <AnimatePresence>
         {selectedId && selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/80 backdrop-blur-xl overflow-y-auto py-10">
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/80 backdrop-blur-xl overflow-y-auto py-6 md:py-10">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-6xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col my-auto border border-white/20 min-h-[80vh]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedId(null)}
+              className="absolute inset-0"
+            />
+            <motion.div
+              layoutId={selectedId}
+              className="relative w-[95%] md:w-full max-w-6xl bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl overflow-hidden flex flex-col my-auto border border-white/20 max-h-[90vh]"
             >
-              {/* Header & Tabs */}
-              <div className="bg-slate-50 border-b border-slate-200 p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+              <div className="bg-slate-50 border-b border-slate-200 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 sticky top-0 z-10">
                 <div>
-                  <h2 className="text-3xl font-black text-slate-900 mb-2">{selectedProject.title}</h2>
-                  <p className="text-primary-700 font-bold">{selectedProject.subtitle}</p>
+                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-1">{selectedProject.title}</h2>
+                  <p className="text-primary-700 font-bold text-sm md:text-base">{selectedProject.subtitle}</p>
                 </div>
 
-                <div className="flex bg-white p-1.5 rounded-xl border border-slate-200 shadow-sm">
+                <div className="flex bg-white p-1 rounded-xl border border-slate-200 shadow-sm w-full md:w-auto overflow-x-auto">
                   {['overview', 'docs', 'gallery'].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all capitalize ${
+                      className={`flex-1 md:flex-none px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all capitalize whitespace-nowrap ${
                         activeTab === tab
                           ? 'bg-slate-900 text-white shadow-md'
                           : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
                       }`}
                     >
-                      {tab === 'overview' ? 'Overview' : tab === 'docs' ? `Documents (${selectedProject.docs?.length || 0})` : 'Gallery'}
+                      {tab === 'overview' ? 'Overview' : tab === 'docs' ? 'Docs' : 'Gallery'}
                     </button>
                   ))}
                 </div>
 
                 <button
                   onClick={() => setSelectedId(null)}
-                  className="absolute top-6 right-6 p-2 rounded-full bg-white text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-100"
+                  className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-white text-slate-400 hover:text-slate-900 border border-slate-100"
                 >
-                  <Icon icon="mdi:close" className="text-2xl" />
+                  <Icon icon="mdi:close" className="text-xl md:text-2xl" />
                 </button>
               </div>
 
-              {/* Content */}
-              <div className="p-8 lg:p-12 overflow-y-auto flex-grow bg-white">
+              <div className="p-6 md:p-12 overflow-y-auto flex-grow bg-white">
                 {activeTab === 'overview' && (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div className="space-y-8">
