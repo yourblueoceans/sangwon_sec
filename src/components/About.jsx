@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 자격증 데이터 (.jpg 경로 사용)
 const certifications = [
   { name: '정보보안기사', img: '/sangwon_sec/assets/cert-sec-engineer.jpg', date: '2025.11 (실기 응시)', issuer: 'KISA', desc: '정보보안 분야 최고 수준 자격' },
   { name: 'HSE 3급 (해킹보안전문가)', img: '/sangwon_sec/assets/cert-hse.jpg', date: '2025.12.18', issuer: '한국해킹보안협회', desc: '해킹 공격 기법 이해 및 보안 기초' },
@@ -29,7 +28,6 @@ const techItems = [
 ];
 const techStack = [...techItems, ...techItems, ...techItems];
 
-// 이력서 기반 경력 (순서: 폴리텍 - 대한항공 - Computer Ahnex)
 const experience = [
   {
     role: '교육생 (클라우드 보안 엔지니어 과정)',
@@ -55,34 +53,32 @@ const About = () => {
   return (
     <section id="about" className="py-32 relative bg-bg-main overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="mb-24">
-          <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-relaxed break-keep section-title-underline inline-block">
+        <div className="mb-24 text-center md:text-left">
+          <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-relaxed break-keep text-balance section-title-underline inline-block">
             성장을 향한 <span className="text-primary-600">증명</span>
           </h2>
         </div>
 
-        {/* History (Full Width) */}
-        <div className="bg-white rounded-[2.5rem] p-12 shadow-premium border border-white/50 relative hover:shadow-2xl transition-all duration-300 mb-20">
+        <div className="bg-white rounded-[3rem] p-12 lg:p-16 shadow-premium border border-white/50 relative hover:shadow-2xl transition-all duration-300 mb-24 w-full">
           <h3 className="text-3xl font-extrabold text-slate-900 mb-12 flex items-center gap-4 font-heading">
             <Icon icon="mdi:briefcase-clock-outline" className="text-primary-600 text-4xl" />
             History
           </h3>
-          <div className="space-y-16 border-l-[4px] border-slate-200 pl-12 ml-4">
+          <div className="space-y-16 border-l-[4px] border-slate-200 pl-8 md:pl-12 ml-2 md:ml-4">
             {experience.map((exp, index) => (
               <div key={index} className="relative group">
-                <span className="absolute -left-[60px] top-2 w-8 h-8 rounded-full bg-white border-[6px] border-primary-500 shadow-sm group-hover:scale-110 transition-transform"></span>
+                <span className="absolute -left-[46px] md:-left-[62px] top-2 w-6 h-6 md:w-8 md:h-8 rounded-full bg-white border-[6px] border-primary-500 shadow-sm group-hover:scale-110 transition-transform"></span>
 
-                <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                  <h4 className="text-2xl font-extrabold text-slate-900 break-keep">{exp.company}</h4>
-                  <span className="text-slate-500 text-sm font-mono bg-slate-100 px-4 py-1.5 rounded-lg border border-slate-200 w-fit">{exp.period}</span>
+                <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 mb-4">
+                  <h4 className="text-2xl font-extrabold text-slate-900 break-keep text-balance">{exp.company}</h4>
+                  <span className="text-slate-500 text-xs md:text-sm font-mono bg-slate-100 px-4 py-1.5 rounded-lg border border-slate-200 w-fit">{exp.period}</span>
                 </div>
 
-                <p className="text-primary-700 font-bold text-xl mb-4 flex items-center gap-2">
+                <p className="text-primary-700 font-bold text-lg md:text-xl mb-4 flex items-center gap-2">
                   <Icon icon="mdi:account-star" className="text-2xl" /> {exp.role}
                 </p>
 
-                <p className="text-slate-700 text-lg leading-loose font-medium break-keep bg-slate-50/50 p-6 rounded-2xl border border-slate-100/50 hover:bg-slate-50 transition-colors">
+                <p className="text-slate-700 text-base md:text-lg leading-loose font-medium break-keep text-balance bg-slate-50/50 p-6 rounded-2xl border border-slate-100/50 hover:bg-slate-50 transition-colors">
                   {exp.desc}
                 </p>
               </div>
@@ -90,13 +86,12 @@ const About = () => {
           </div>
         </div>
 
-        {/* Technical Arsenal (Full Width) */}
-        <div className="bg-white rounded-[2.5rem] p-12 shadow-premium border border-white/50 group mb-20">
+        <div className="bg-white rounded-[2.5rem] p-12 shadow-premium border border-white/50 group mb-20 w-full max-w-full">
           <h3 className="text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-4 font-heading">
             <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-4xl" />
             Technical Arsenal
           </h3>
-          <div className="relative flex overflow-x-hidden py-8">
+          <div className="relative flex overflow-x-hidden py-8 w-full">
             <div className="animate-marquee whitespace-nowrap flex gap-20 px-4">
               {techStack.map((tech, index) => (
                 <div key={index} className="flex flex-col items-center gap-4 min-w-[120px] transition-all duration-500">
@@ -114,9 +109,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Global & Certifications */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Global Mindset */}
           <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] p-10 text-white text-center shadow-2xl relative overflow-hidden group flex flex-col justify-center items-center">
             <div className="relative z-10">
               <Icon icon="mdi:earth" className="text-primary-400 text-8xl mb-8 mx-auto group-hover:rotate-12 transition-transform duration-700" />
@@ -131,7 +124,6 @@ const About = () => {
             <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/20 rounded-full blur-3xl"></div>
           </div>
 
-          {/* Certifications with Hover Reveal */}
           <div className="lg:col-span-8">
             <h3 className="text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-4 font-heading">
               <Icon icon="mdi:license" className="text-primary-600 text-4xl" /> Certifications

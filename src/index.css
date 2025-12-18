@@ -16,17 +16,22 @@ html {
 }
 
 body {
-  /* Pretendard를 기본으로, 영문 제목은 Montserrat 사용 */
   @apply bg-[#F8FAFC] text-slate-700 font-sans antialiased selection:bg-teal-100 selection:text-teal-900;
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   overflow-x: hidden;
   cursor: none;
 }
 
-/* Smoke Glow Text Effect (legacy 사용 가능) */
+/* 1. Cinematic Smoke Text Effect */
+.smoke-container {
+  filter: blur(1px);
+}
+
 .smoke-text {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
   position: relative;
   z-index: 1;
 }
@@ -34,30 +39,56 @@ body {
 .smoke-text::before {
   content: attr(data-text);
   position: absolute;
-  inset: 0;
-  color: #2DD4BF;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #2DD4BF 0%, #0D9488 50%, transparent 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   opacity: 0;
-  filter: blur(12px);
-  animation: smokeGlow 4s infinite linear;
+  filter: blur(15px);
+  animation: smokePulse 4s infinite alternate;
   z-index: -1;
 }
 
-.smoke-text::after {
-  content: attr(data-text);
+@keyframes smokePulse {
+  0% { opacity: 0.2; filter: blur(15px); transform: scale(0.98); }
+  100% { opacity: 0.8; filter: blur(8px); transform: scale(1.02); }
+}
+
+/* 2. 타이틀 밑줄 디자인 */
+.section-title-underline {
+  position: relative;
+  display: inline-block;
+}
+.section-title-underline::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  color: white;
-  opacity: 0;
-  filter: blur(5px);
-  animation: smokeGlow 4s infinite linear;
-  animation-delay: 0.5s;
-  z-index: -1;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 4px;
+  background-color: #0D9488;
 }
 
-@keyframes smokeGlow {
-  0%, 100% { opacity: 0; transform: scale(1); filter: blur(10px); }
-  50% { opacity: 1; transform: scale(1.02); filter: blur(4px); text-shadow: 0 0 20px rgba(45, 212, 191, 0.8); }
+/* 3. 텍스트 줄바꿈 강제 (단어 단위 유지) */
+.text-balance {
+  text-wrap: balance;
+  word-break: keep-all;
 }
+
+.break-keep {
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
 /* 마우스 스포트라이트 */
 body::before {
@@ -77,7 +108,7 @@ body::before {
   mix-blend-mode: multiply;
 }
 
-/* 1. Custom Cursor & Trail Effect */
+/* 커스텀 커서 */
 .cursor-dot,
 .cursor-dot-outline {
   pointer-events: none;
@@ -90,66 +121,8 @@ body::before {
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   z-index: 9999;
 }
-
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #0D9488;
-}
-
-.cursor-dot-outline {
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(13, 148, 136, 0.5);
-}
-
-/* 2. Section Title Underline Design */
-.section-title-underline {
-  position: relative;
-  display: inline-block;
-}
-
-.section-title-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 60px;
-  height: 4px;
-  background-color: #0D9488;
-  border-radius: 2px;
-}
-
-.section-title-underline::before {
-  content: '';
-  position: absolute;
-  bottom: -14px;
-  left: 65px;
-  width: 8px;
-  height: 8px;
-  background-color: #2DD4BF;
-  border-radius: 50%;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.break-keep {
-  word-break: keep-all;
-  word-wrap: break-word;
-}
+.cursor-dot { width: 8px; height: 8px; background-color: #0D9488; }
+.cursor-dot-outline { width: 40px; height: 40px; border: 2px solid rgba(13, 148, 136, 0.5); }
 
 /* 유리 질감 카드 효과 */
 .glass-card {
@@ -160,10 +133,7 @@ body::before {
 }
 
 /* 고급 카드 호버 효과 (Shimmer Border) */
-.hover-shimmer {
-  position: relative;
-  isolation: isolate;
-}
+.hover-shimmer { position: relative; isolation: isolate; }
 .hover-shimmer::before {
   content: '';
   position: absolute;
@@ -176,10 +146,7 @@ body::before {
   background-size: 200% 200%;
   animation: none;
 }
-.hover-shimmer:hover::before {
-  opacity: 1;
-  animation: shimmerBorder 3s linear infinite;
-}
+.hover-shimmer:hover::before { opacity: 1; animation: shimmerBorder 3s linear infinite; }
 
 @keyframes shimmerBorder {
   0% { background-position: 0% 50%; }
