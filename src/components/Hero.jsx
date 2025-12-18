@@ -23,9 +23,9 @@ const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mb-10"
+            className="mb-12"
           >
-            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-[1.3] font-heading section-title-underline inline-block">
+            <h2 className="text-4xl lg:text-6xl font-black text-slate-900 leading-[1.6] break-keep font-heading section-title-underline inline-block">
               위기 관리의 경험 위에,<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600">보안의 전문성</span>을 더하다.
             </h2>
