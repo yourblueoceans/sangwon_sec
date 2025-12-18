@@ -20,7 +20,7 @@ body {
   cursor: none;
 }
 
-/* 1. Cinematic Smoke Text Effect */
+/* Smoke Text Effect */
 .smoke-container { filter: blur(1px); }
 .smoke-text {
   color: transparent;
@@ -48,7 +48,6 @@ body {
   100% { opacity: 0.8; filter: blur(8px); transform: scale(1.02); }
 }
 
-/* 2. 타이틀 밑줄 디자인 */
 .section-title-underline { position: relative; display: inline-block; }
 .section-title-underline::after {
   content: '';
@@ -60,7 +59,6 @@ body {
   background-color: #0D9488;
 }
 
-/* 3. 텍스트 줄바꿈 강제 (단어 단위 유지) */
 .text-balance { text-wrap: balance; word-break: keep-all; }
 .break-keep { word-break: keep-all; word-wrap: break-word; }
 .text-glow { text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); }
@@ -83,7 +81,7 @@ body {
   100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
 }
 
-/* Glassmorphism Utilities */
+/* Glassmorphism */
 .glass-panel {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
@@ -103,7 +101,7 @@ body {
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-/* 마우스 스포트라이트 */
+/* Spotlight */
 body::before {
   content: '';
   position: fixed;
@@ -119,7 +117,7 @@ body::before {
   mix-blend-mode: multiply;
 }
 
-/* 커스텀 커서 */
+/* Custom Cursor */
 .cursor-dot,
 .cursor-dot-outline {
   pointer-events: none;
@@ -145,3 +143,17 @@ body::before {
 }
 .hover-shimmer:hover::before { opacity: 1; animation: shimmerBorder 3s linear infinite; }
 @keyframes shimmerBorder { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+/* Zig-Zag Timeline Line */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #CBD5E1 10%, #CBD5E1 90%, transparent);
+  transform: translateX(-50%);
+}
+
+@keyframes slide-slow { 0% { background-position: 0 0; } 100% { background-position: 100% 0; } }
+.animate-slide-slow { animation: slide-slow 60s linear infinite; }

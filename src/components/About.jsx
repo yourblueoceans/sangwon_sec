@@ -13,7 +13,7 @@ const certifications = [
   { name: '한국사 1급', img: '/sangwon_sec/assets/cert-korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회' },
 ];
 
-const techStack = [
+const techItems = [
   { icon: 'logos:linux-tux', name: 'Linux' },
   { icon: 'logos:docker-icon', name: 'Docker' },
   { icon: 'logos:aws', name: 'AWS' },
@@ -26,32 +26,20 @@ const techStack = [
   { icon: 'logos:git-icon', name: 'Git' },
   { icon: 'logos:mysql', name: 'MySQL' },
 ];
+const techStack = [...techItems, ...techItems, ...techItems, ...techItems];
 
-// 7-step career path
 const experience = [
   {
-    role: '운영자 (E-Commerce)',
-    company: '스마트스토어 (Personal)',
-    period: '2015.01 - 2016.01',
-    desc: '상품 소싱부터 판매, CS까지 이커머스 전 과정 1인 운영. 온라인 유통 프로세스 경험.'
+    role: '교육생 (클라우드 보안 엔지니어 과정)',
+    company: '한국폴리텍대학 대전캠퍼스',
+    period: '2025.03 - 2026.02 (예정)',
+    desc: '총 1,200시간. AWS/Linux 기반 보안 인프라 구축. 캡스톤 금상 수상.'
   },
   {
-    role: '대표 (운영 및 마케팅)',
-    company: '하얀책상 4호점 (Cafe)',
-    period: '2016.03 - 2018.02',
-    desc: '매장 운영 총괄 및 로컬 마케팅 기획. 월 매출 200% 신장 달성 및 단골 고객 유치 전략 실행.'
-  },
-  {
-    role: '해외 현지 관리자 (PM)',
-    company: 'LKSTC (Laos)',
-    period: '2019.01 - 2020.06',
-    desc: '현지 인력 관리 및 프로젝트 일정 조율. 한국 본사와의 커뮤니케이션 브릿지 역할 수행.'
-  },
-  {
-    role: 'Tech Sales Specialist',
-    company: 'Computer Ahnex (USA)',
-    period: '2021.05 - 2021.12',
-    desc: '보안 소프트웨어(McAfee) 및 하드웨어 기술 영업. 입사 3개월 차 매장 최고 매출 달성.'
+    role: '운영 지원 및 위기 관리',
+    company: '대한항공 (미주본부)',
+    period: '2023.02 - 2023.09',
+    desc: '미주 지역 항공 화물 데이터 분석. 태풍 위기 시 비상 연락망 가동 및 파트너사 조율.'
   },
   {
     role: 'Pharmacy Clerk',
@@ -60,16 +48,28 @@ const experience = [
     desc: '처방전 접수 및 고객 데이터 관리. 약국 내 재고 관리 및 워크플로우 효율화.'
   },
   {
-    role: '운영 지원 및 위기 관리',
-    company: '대한항공 (미주본부)',
-    period: '2023.02 - 2023.09',
-    desc: '미주 지역 화물 데이터 분석 및 리포팅. 태풍 위기 시 비상 연락망 가동 및 파트너사 조율.'
+    role: 'Tech Sales Specialist',
+    company: 'Computer Ahnex (USA)',
+    period: '2021.05 - 2021.12',
+    desc: '보안 소프트웨어(McAfee) 및 하드웨어 기술 영업. 입사 3개월 차 매장 최고 매출 달성.'
   },
   {
-    role: '교육생 (클라우드 보안 엔지니어 과정)',
-    company: '한국폴리텍대학 대전캠퍼스',
-    period: '2025.03 - 2026.02 (예정)',
-    desc: '총 1,200시간 클라우드/보안 인프라 교육, Linux/Windows 서버, Docker 실습, 캡스톤 금상.'
+    role: '해외 현지 관리자 (PM)',
+    company: 'LKSTC (Laos)',
+    period: '2019.01 - 2020.06',
+    desc: '현지 인력 관리 및 프로젝트 일정 조율. 한국 본사와의 커뮤니케이션 브릿지 역할.'
+  },
+  {
+    role: '대표 (운영 및 마케팅)',
+    company: '하얀책상 4호점 (Cafe)',
+    period: '2016.03 - 2018.02',
+    desc: '매장 운영 총괄 및 로컬 마케팅 기획. 월 매출 200% 신장 달성.'
+  },
+  {
+    role: '운영자 (E-Commerce)',
+    company: '스마트스토어 (Personal)',
+    period: '2015.01 - 2016.01',
+    desc: '상품 소싱부터 판매, CS까지 이커머스 전 과정 1인 운영.'
   }
 ];
 
@@ -79,84 +79,77 @@ const About = () => {
   return (
     <section id="about" className="py-32 relative bg-bg-main overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="mb-24 text-center md:text-left">
-          <h2 className="text-4xl lg:text-6xl font-black tracking-tight text-slate-900 mb-8 font-heading leading-relaxed break-keep section-title-underline inline-block">
-            성장을 향한 <span className="text-primary-600">증명</span>
+        <div className="mb-32 text-center">
+          <h2 className="text-4xl lg:text-6xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-tight break-keep section-title-underline inline-block">
+            성장을 향한 <span className="text-primary-600">여정</span>
           </h2>
         </div>
 
-        {/* History */}
-        <div className="glass-panel rounded-[2.5rem] p-12 lg:p-16 relative mb-24 w-full bg-white/60">
-          <h3 className="text-3xl font-extrabold text-slate-900 mb-16 flex items-center gap-4 font-heading">
-            <Icon icon="mdi:briefcase-clock-outline" className="text-primary-600 text-4xl" />
-            History Timeline
-          </h3>
-
-          <div className="space-y-16 border-l-[4px] border-slate-300/50 pl-8 md:pl-12 ml-2 md:ml-4">
+        {/* History: S-shape timeline */}
+        <div className="relative mb-32">
+          <div className="hidden md:block timeline-line"></div>
+          <div className="space-y-12 md:space-y-0">
             {experience.map((exp, index) => (
-              <div key={index} className="relative group">
-                <div className="absolute -left-[43px] md:-left-[60px] top-2 w-6 h-6 md:w-8 md:h-8 rounded-full bg-white border-[6px] border-primary-500 shadow-md group-hover:scale-125 transition-transform duration-300 z-10"></div>
+              <div key={index} className={`flex flex-col md:flex-row items-center w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="hidden md:block w-1/2" />
 
-                <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-6 mb-4">
-                  <h4 className="text-2xl md:text-3xl font-black text-slate-800 break-keep">{exp.company}</h4>
-                  <span className="text-slate-500 text-xs md:text-sm font-bold font-mono bg-white px-4 py-1.5 rounded-full border border-slate-200 shadow-sm w-fit">{exp.period}</span>
+                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 bg-white border-4 border-primary-500 rounded-full shadow-md z-10 items-center justify-center">
+                  <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
                 </div>
 
-                <p className="text-primary-700 font-extrabold text-lg md:text-xl mb-4 flex items-center gap-2">
-                  <Icon icon="mdi:account-star" className="text-2xl" /> {exp.role}
-                </p>
+                <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-100px' }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="glass-panel bg-white p-8 rounded-3xl border border-white/60 shadow-lg hover:shadow-2xl transition-all duration-300 relative group"
+                  >
+                    <div className="md:hidden absolute left-[-10px] top-8 w-5 h-5 bg-white border-4 border-primary-500 rounded-full shadow-sm z-10"></div>
 
-                <p className="text-slate-600 text-base md:text-lg leading-loose font-medium break-keep bg-white/50 p-6 rounded-3xl border border-slate-100 hover:bg-white transition-colors shadow-sm">
-                  {exp.desc}
-                </p>
+                    <span className="text-primary-600 text-xs font-bold font-mono uppercase tracking-wider mb-2 block">{exp.period}</span>
+                    <h3 className="text-2xl font-black text-slate-900 mb-1 break-keep leading-tight">{exp.company}</h3>
+                    <p className={`text-lg font-bold text-teal-700 mb-4 flex items-center gap-2 ${index % 2 === 0 ? 'md:justify-end justify-start' : 'justify-start'}`}>
+                      {index % 2 !== 0 && <Icon icon="mdi:account-star" />}
+                      {exp.role}
+                      {index % 2 === 0 && <Icon icon="mdi:account-star" />}
+                    </p>
+                    <p className="text-slate-600 text-base font-medium leading-relaxed break-keep">{exp.desc}</p>
+                  </motion.div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Technical Arsenal & Global */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
-          <div className="glass-panel rounded-[2.5rem] p-12 bg-white/70">
-            <h3 className="text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-4 font-heading">
-              <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-4xl" />
-              Technical Arsenal
-            </h3>
+        {/* Technical Arsenal full width */}
+        <div className="mb-24 w-full">
+          <h3 className="text-3xl font-extrabold text-slate-900 mb-12 text-center flex items-center justify-center gap-4 font-heading">
+            <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-4xl" /> Technical Arsenal
+          </h3>
+          <div className="glass-panel rounded-[3rem] p-8 md:p-12 bg-white/70 shadow-xl border border-white/50 w-full overflow-hidden">
             <div className="relative flex overflow-x-hidden py-4">
-              <div className="animate-marquee whitespace-nowrap flex gap-16 px-4" style={{ animationDuration: '60s' }}>
+              <div className="animate-marquee whitespace-nowrap flex gap-20 px-4" style={{ animationDuration: '80s' }}>
                 {techStack.map((tech, index) => (
-                  <div key={index} className="flex flex-col items-center gap-4 min-w-[100px] transition-all duration-500">
+                  <div key={index} className="flex flex-col items-center gap-4 min-w-[120px] transition-all duration-500">
                     <Icon
                       icon={tech.icon}
-                      className="text-7xl filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 drop-shadow-md"
+                      className="text-8xl filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110 drop-shadow-md"
                       color={tech.color}
                     />
-                    <span className="text-sm font-bold text-slate-500 uppercase tracking-wider">{tech.name}</span>
+                    <span className="text-base font-bold text-slate-400 group-hover:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
                   </div>
                 ))}
               </div>
-              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white/80 to-transparent z-10"></div>
-              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white/80 to-transparent z-10"></div>
-            </div>
-          </div>
-
-          <div className="bg-[#0F172A] rounded-[2.5rem] p-12 text-white text-center shadow-2xl relative overflow-hidden group flex flex-col justify-center border border-white/10">
-            <div className="relative z-10">
-              <Icon icon="mdi:earth" className="text-primary-400 text-8xl mb-8 mx-auto group-hover:rotate-12 transition-transform duration-700 drop-shadow-[0_0_15px_rgba(45,212,191,0.5)]" />
-              <h3 className="text-3xl font-extrabold mb-6 font-heading leading-snug">Global<br/>Capability</h3>
-              <p className="text-slate-300 text-lg font-medium mb-8 leading-relaxed">
-                USA & Laos Experience<br />
-                <span className="text-sm opacity-70 font-normal">Diverse Business Environment</span>
-              </p>
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-base font-bold text-primary-200 backdrop-blur-sm">
-                <Icon icon="mdi:translate" className="text-xl" /> English: Business Level
-              </div>
+              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10"></div>
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10"></div>
             </div>
           </div>
         </div>
 
         {/* Certifications */}
         <div>
-          <h3 className="text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-4 font-heading">
+          <h3 className="text-3xl font-extrabold text-slate-900 mb-10 text-center flex items-center justify-center gap-4 font-heading">
             <Icon icon="mdi:license" className="text-primary-600 text-4xl" /> Certifications
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -165,13 +158,13 @@ const About = () => {
                 key={idx}
                 whileHover={{ y: -8 }}
                 onClick={() => setSelectedCert(cert)}
-                className="glass-panel cursor-pointer bg-white/80 p-6 rounded-[2rem] hover:border-primary-400 transition-all flex flex-col items-center text-center group relative overflow-hidden h-64 justify-between"
+                className="glass-panel cursor-pointer bg-white/80 p-6 rounded-[2rem] hover:border-primary-400 transition-all flex flex-col items-center text-center group relative overflow-hidden h-64 justify-between shadow-sm hover:shadow-xl"
               >
                 <div className="flex-1 flex items-center justify-center w-full relative z-10">
                   <img
                     src={cert.img}
                     alt={cert.name}
-                    className="max-h-24 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                    className="max-h-24 object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'flex';
