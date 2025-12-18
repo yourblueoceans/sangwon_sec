@@ -1,7 +1,4 @@
-/* Google Fonts: Montserrat & Fira Code */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Fira+Code:wght@400;500&display=swap');
-
-/* Pretendard (Korean Standard Font) via CDN */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&family=Fira+Code:wght@400;500&display=swap');
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
 
 @tailwind base;
@@ -30,7 +27,43 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* 마우스 스포트라이트 (더 부드럽게) */
+/* Smoke Glow Text Effect (연기처럼 빛나는 효과) */
+.smoke-text {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.smoke-text::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: #2DD4BF;
+  opacity: 0;
+  filter: blur(12px);
+  animation: smokeGlow 4s infinite linear;
+  z-index: -1;
+}
+
+.smoke-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: white;
+  opacity: 0;
+  filter: blur(5px);
+  animation: smokeGlow 4s infinite linear;
+  animation-delay: 0.5s;
+  z-index: -1;
+}
+
+@keyframes smokeGlow {
+  0%, 100% { opacity: 0; transform: scale(1); filter: blur(10px); }
+  50% { opacity: 1; transform: scale(1.02); filter: blur(4px); text-shadow: 0 0 20px rgba(45, 212, 191, 0.8); }
+}
+
+/* 마우스 스포트라이트 */
 body::before {
   content: '';
   position: fixed;
@@ -42,7 +75,7 @@ body::before {
   background: radial-gradient(
     800px circle at var(--cursor-x) var(--cursor-y),
     rgba(13, 148, 136, 0.04),
-    transparent 60%
+    transparent 50%
   );
   z-index: 9999;
   mix-blend-mode: multiply;
@@ -102,4 +135,3 @@ body::before {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
-
