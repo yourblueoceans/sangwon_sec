@@ -4,9 +4,9 @@ import { Icon } from '@iconify/react';
 
 const Hero = () => {
   return (
-    <section id="profile" className="relative min-h-screen w-full flex items-center justify-center py-24 bg-bg-main overflow-hidden">
+    <section id="profile" className="relative min-h-screen w-full flex items-center justify-center py-32 bg-bg-main overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
-        {/* Left: Text Content */}
+        {/* Left */}
         <div className="order-2 lg:order-1 text-left">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -18,7 +18,6 @@ const Hero = () => {
             Profile & Philosophy
           </motion.div>
 
-          {/* Title with balanced breaks */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -26,11 +25,9 @@ const Hero = () => {
             viewport={{ once: true }}
             className="mb-10"
           >
-            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black text-slate-900 leading-tight whitespace-pre-line text-balance break-keep font-heading section-title-underline">
-              위기 관리의 경험 위에,
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600">보안의 전문성</span>
-              을 더하다.
+            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-[1.3] font-heading section-title-underline inline-block">
+              위기 관리의 경험 위에,<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600">보안의 전문성</span>을 더하다.
             </h2>
           </motion.div>
 
@@ -39,7 +36,7 @@ const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-slate-600 text-lg lg:text-xl leading-relaxed space-y-8 break-keep text-balance font-medium"
+            className="text-slate-600 text-lg lg:text-xl leading-loose space-y-8 break-keep font-medium"
           >
             <p>
               대한항공 미주본부에서 태풍으로 인한 공항 마비 상황을 조율하며 <strong>'위기 속에서의 침착함'</strong>을 배웠고, 미국 현지 기술 영업 경험을 통해 <strong>'기술을 비즈니스 언어로 통역하는 법'</strong>을 익혔습니다.
@@ -72,7 +69,7 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right: Visual */}
+        {/* Right */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -80,7 +77,7 @@ const Hero = () => {
           viewport={{ once: true }}
           className="order-1 lg:order-2 flex flex-col items-center"
         >
-          <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white bg-slate-100 group hover:scale-[1.02] transition-transform duration-500 mb-8">
+          <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white bg-slate-100 group hover:scale-[1.02] transition-transform duration-500 mb-8 glass-panel">
             <video
               autoPlay
               loop

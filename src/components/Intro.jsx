@@ -1,119 +1,76 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
-import { TypeAnimation } from 'react-type-animation';
+import { Icon } from '@iconify/react';
 
 const Intro = () => {
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
-
-  const particlesOptions = {
-    fullScreen: { enable: false, zIndex: 0 },
-    background: { color: '#0F172A' },
-    fpsLimit: 120,
-    interactivity: {
-      events: {
-        onClick: { enable: true, mode: 'push' },
-        onHover: { enable: true, mode: 'repulse' },
-        resize: true,
-      },
-      modes: {
-        push: { quantity: 4 },
-        repulse: { distance: 100, duration: 0.4 },
-      },
-    },
-    particles: {
-      color: { value: '#2DD4BF' },
-      links: {
-        color: '#0D9488',
-        distance: 150,
-        enable: true,
-        opacity: 0.3,
-        width: 1,
-      },
-      collisions: { enable: true },
-      move: {
-        direction: 'none',
-        enable: true,
-        outModes: { default: 'bounce' },
-        random: false,
-        speed: 1.5,
-        straight: false,
-      },
-      number: { density: { enable: true, area: 800 }, value: 60 },
-      opacity: { value: 0.5 },
-      shape: { type: 'circle' },
-      size: { value: { min: 1, max: 3 } },
-    },
-    detectRetina: true,
-  };
-
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-slate-900 text-white">
-      <Particles id="tsparticles" init={particlesInit} options={particlesOptions} className="absolute inset-0" />
+    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0B1120] text-white">
+      {/* Animated Cyber Grid */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="cyber-grid"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-[#0B1120]"></div>
+      </div>
 
-      <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
+      {/* Glowing Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-teal-600/20 rounded-full blur-[120px] animate-pulse pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] animate-pulse delay-1000 pointer-events-none" />
+
+      <div className="relative z-10 text-center px-4 w-full max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-primary-300 font-mono text-xs md:text-xl tracking-[0.3em] md:tracking-[0.5em] uppercase mb-6 md:mb-8"
+          transition={{ duration: 1 }}
+          className="inline-block mb-6 px-4 py-1 rounded-full border border-teal-500/30 bg-teal-500/10 backdrop-blur-md"
         >
-          Cloud & Infra Security
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="flex flex-col md:flex-row justify-center items-center md:items-baseline font-black tracking-tighter leading-none"
-        >
-          <span className="text-8xl md:text-[10rem] lg:text-[12rem] text-transparent bg-clip-text bg-gradient-to-br from-primary-400 to-blue-600 drop-shadow-[0_0_30px_rgba(45,212,191,0.5)]">
-            S
-          </span>
-
-          <span className="text-5xl md:text-8xl lg:text-[9rem] text-white mt-2 md:mt-0">
-            <TypeAnimation
-              sequence={['ECURITY', 2500, 'ANGWON', 2500]}
-              wrapper="span"
-              speed={20}
-              repeat={Infinity}
-              cursor
-            />
+          <span className="text-teal-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase font-bold">
+            Cloud & Infra Security
           </span>
         </motion.div>
 
+        <div className="flex flex-col items-center justify-center relative">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-6xl md:text-8xl lg:text-[9rem] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-500 drop-shadow-2xl"
+          >
+            SECURITY
+          </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-6xl md:text-8xl lg:text-[9rem] font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-teal-400 via-teal-200 to-transparent opacity-80"
+          >
+            ENGINEER
+          </motion.h1>
+        </div>
+
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, width: 0 }}
+          animate={{ opacity: 1, width: '120px' }}
           transition={{ duration: 1, delay: 1 }}
-          className="text-4xl md:text-6xl lg:text-[5rem] font-black text-slate-500 tracking-tighter mt-2 leading-none opacity-50"
-        >
-          ENGINEER
-        </motion.div>
+          className="mt-12 h-1.5 bg-gradient-to-r from-transparent via-teal-500 to-transparent mx-auto rounded-full blur-[1px]"
+        />
 
-        <motion.div
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          className="mt-12 md:mt-16 px-4"
+          transition={{ duration: 1, delay: 1.2 }}
+          className="mt-8 text-slate-400 text-lg md:text-2xl font-medium tracking-widest uppercase"
         >
-          <p className="text-slate-400 text-sm md:text-lg font-medium tracking-wide break-keep">
-            Protecting Value through Communication & Tech
-          </p>
-        </motion.div>
+          SANGWON SUH
+        </motion.p>
       </div>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ duration: 2, delay: 2.5, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 flex flex-col items-center gap-2 pointer-events-none"
+        transition={{ duration: 2, delay: 2, repeat: Infinity }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-slate-500 flex flex-col items-center gap-2 pointer-events-none"
       >
-        <span className="text-[10px] font-bold tracking-widest uppercase">Scroll Down</span>
-        <div className="w-px h-8 md:h-12 bg-gradient-to-b from-primary-500 to-transparent"></div>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-teal-500 to-transparent"></div>
+        <span className="text-[10px] font-bold tracking-widest uppercase text-teal-500/50">Scroll</span>
       </motion.div>
     </section>
   );
