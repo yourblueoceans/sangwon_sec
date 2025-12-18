@@ -4,61 +4,61 @@ import { Icon } from '@iconify/react';
 
 const projectData = [
   {
-    id: "lockument",
-    title: "LOCKUMENT",
-    subtitle: "SecureDoc Cloud: AWS PII Masking Platform",
-    category: "Cloud Security",
-    image: "/sangwon_sec/assets/project-lockument.png",
-    pdfUrl: "/sangwon_sec/assets/lockument.pdf",
-    tags: ["AWS KMS", "Python Flask", "Docker", "React", "OCR"],
+    id: 'lockument',
+    title: 'LOCKUMENT',
+    subtitle: 'SecureDoc Cloud: AWS PII Masking Platform',
+    category: 'Cloud Security',
+    image: '/sangwon_sec/assets/project-lockument.png',
+    pdfUrl: '/sangwon_sec/assets/lockument.pdf',
+    tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
     videos: [
-      { title: "발표 영상 (PPT)", id: "6LKEwD0NfBc" },
-      { title: "시스템 시연", id: "mvpLv-ug0m0" },
+      { title: '발표 영상 (PPT)', id: '6LKEwD0NfBc' },
+      { title: '시스템 시연', id: 'mvpLv-ug0m0' },
     ],
-    period: "2025.08 - 2025.10",
-    overview: "개인정보(PII) 유출 사고 방지를 위한 AWS 기반 자동 마스킹 및 암호화 웹 서비스입니다.",
-    problem: "기업 내 개인정보가 포함된 문서가 평문으로 저장되어 발생하는 내부 유출 위협.",
-    solution: "AWS Rekognition PII 식별 및 KMS Envelope Encryption을 통한 데이터 암호화 격리.",
+    period: '2025.08.18 - 2025.10.30',
+    overview: '개인정보(PII) 유출 사고 방지를 위한 AWS 기반 자동 마스킹 및 암호화 웹 서비스입니다.',
+    problem: '기업 내 개인정보가 포함된 문서가 평문으로 저장되어 발생하는 내부 유출 위협.',
+    solution: 'AWS Rekognition PII 식별 및 KMS Envelope Encryption을 통한 데이터 암호화 격리.',
     results: [
-      "🏆 2025 캡스톤 디자인 어워드 금상 수상",
-      "PII 탐지율 99.7% 달성 (Regex + OCR)",
-      "RBAC 및 감사 로그 구현",
-    ],
-  },
-  {
-    id: "droptheport",
-    title: "Drop the Port!",
-    subtitle: "Defense in Depth: 3-Zone Network Architecture",
-    category: "Network Infrastructure",
-    image: "/sangwon_sec/assets/project-droptheport.png",
-    pdfUrl: "/sangwon_sec/assets/drop the port.pdf",
-    tags: ["Cisco L3/L2", "Firewall", "ELK Stack", "VPN"],
-    period: "2025.05 - 2025.07",
-    overview: "사이버 위협에 대응하는 방어 심층(Defense in Depth) 기반의 3-Zone 엔터프라이즈 네트워크 구축.",
-    problem: "플랫(Flat)한 네트워크 구조로 인한 횡적 이동 취약점 및 로그 가시성 부재.",
-    solution: "DMZ, Internal, External 3계층 망분리 설계 및 ELK Stack 로그 중앙화.",
-    results: [
-      "방화벽 정책 12종 수립 및 적용 (Whitelist)",
-      "Kibana 대시보드 실시간 트래픽 모니터링",
-      "VLAN 기반 논리적 망분리",
+      '🏆 2025 캡스톤 디자인 어워드 금상 수상',
+      'PII 탐지율 99.7% 달성 (Regex + OCR)',
+      'RBAC 및 감사 로그 구현',
     ],
   },
   {
-    id: "webvuln",
-    title: "Web Vulnerability Assessment",
-    subtitle: "Penetration Testing & Secure Coding Report",
-    category: "Offensive Security",
-    image: "/sangwon_sec/assets/project-webvuln.png",
-    pdfUrl: "/sangwon_sec/assets/web vuln.pdf",
-    tags: ["OWASP Top 10", "Burp Suite", "Linux", "Apache/PHP"],
-    period: "2025.09 - 2025.10",
-    overview: "주요정보통신기반시설 기술적 취약점 가이드를 기준으로 수행한 웹 애플리케이션 모의해킹.",
-    problem: "레거시 웹(LAMP)에 존재하는 SQL Injection, XSS 등 주요 취약점 방치.",
-    solution: "공격자 관점 모의해킹(Pentest) 및 시큐어 코딩/서버 설정 강화 조치.",
+    id: 'droptheport',
+    title: 'Drop the Port!',
+    subtitle: 'Defense in Depth: 3-Zone Network Architecture',
+    category: 'Network Infrastructure',
+    image: '/sangwon_sec/assets/project-droptheport.png',
+    pdfUrl: '/sangwon_sec/assets/drop the port.pdf',
+    tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
+    period: '2025.08.21 - 2025.11.03',
+    overview: '사이버 위협에 대응하는 방어 심층(Defense in Depth) 기반의 3-Zone 엔터프라이즈 네트워크 구축.',
+    problem: '플랫(Flat)한 네트워크 구조로 인한 횡적 이동 취약점 및 로그 가시성 부재.',
+    solution: 'DMZ, Internal, External 3계층 망분리 설계 및 ELK Stack 로그 중앙화.',
     results: [
-      "High Risk 취약점 100% 조치 완료",
-      "관리자 페이지 접근 통제 적용",
-      "시큐어 코딩 가이드라인 수립",
+      '방화벽 정책 12종 수립 및 적용 (Whitelist)',
+      'Kibana 대시보드 실시간 트래픽 모니터링',
+      'VLAN 기반 논리적 망분리',
+    ],
+  },
+  {
+    id: 'webvuln',
+    title: 'Web Vulnerability Assessment',
+    subtitle: 'Penetration Testing & Secure Coding Report',
+    category: 'Offensive Security',
+    image: '/sangwon_sec/assets/project-webvuln.png',
+    pdfUrl: '/sangwon_sec/assets/web vuln.pdf',
+    tags: ['OWASP Top 10', 'Burp Suite', 'Linux', 'Apache/PHP'],
+    period: '2025.11.28 (보고서 기준)',
+    overview: '주요정보통신기반시설 기술적 취약점 가이드를 기준으로 수행한 웹 애플리케이션 모의해킹.',
+    problem: '레거시 웹(LAMP)에 존재하는 SQL Injection, XSS 등 주요 취약점 방치.',
+    solution: '공격자 관점 모의해킹(Pentest) 및 시큐어 코딩/서버 설정 강화 조치.',
+    results: [
+      'High Risk 취약점 100% 조치 완료',
+      '관리자 페이지 접근 통제 적용',
+      '시큐어 코딩 가이드라인 수립',
     ],
   },
 ];
@@ -77,7 +77,7 @@ const Projects = () => {
     <section id="projects" className="py-32 bg-white relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-24 text-center md:text-left">
-          <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-heading mb-6">
+          <h2 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-heading mb-6 section-title-underline inline-block leading-snug">
             Selected <span className="text-primary-600">Projects</span>
           </h2>
           <p className="mt-6 text-xl text-slate-600 max-w-3xl leading-relaxed break-keep font-medium">
@@ -139,10 +139,9 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedId && selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/70 backdrop-blur-xl overflow-y-auto py-10">
+          <div className="fixed inset-0 z-50 flex itemscenter justify-center px-4 bg-slate-900/70 backdrop-blur-xl overflow-y-auto py-10">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -154,19 +153,22 @@ const Projects = () => {
               layoutId={selectedId}
               className="relative w-full max-w-6xl bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col my-auto border border-white/20"
             >
-              <button onClick={() => setSelectedId(null)} className="absolute top-6 right-6 p-3 rounded-full bg-white text-slate-500 hover:bg-slate-100 z-10 transition-colors shadow-sm">
+              <button
+                onClick={() => setSelectedId(null)}
+                className="absolute top-6 right-6 p-3 rounded-full bg-white text-slate-500 hover:bg-slate-100 z-10 transition-colors shadow-sm"
+              >
                 <Icon icon="mdi:close" className="text-3xl" />
               </button>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 h-full">
-                {/* Left Content */}
                 <div className="lg:col-span-7 p-12 lg:p-16 bg-slate-50 border-r border-slate-100 flex flex-col">
                   <div className="mb-10">
-                    <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 font-heading leading-tight break-keep">{selectedProject.title}</h2>
+                    <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 font-heading leading-tight break-keep">
+                      {selectedProject.title}
+                    </h2>
                     <p className="text-2xl text-primary-700 font-bold break-keep">{selectedProject.subtitle}</p>
                   </div>
 
-                  {/* Video Tabs */}
                   {selectedProject.videos && selectedProject.videos.length > 0 && (
                     <div className="mb-12">
                       <div className="flex gap-3 mb-5 p-2 bg-slate-200/50 rounded-2xl w-fit">
@@ -196,19 +198,21 @@ const Projects = () => {
 
                   <div className="mt-auto space-y-8">
                     <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-                      <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-3"><Icon icon="mdi:alert-circle-outline" className="text-red-500 text-2xl" /> Problem</h3>
+                      <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-3">
+                        <Icon icon="mdi:alert-circle-outline" className="text-red-500 text-2xl" /> Problem
+                      </h3>
                       <p className="text-slate-700 text-lg leading-relaxed font-medium break-keep">{selectedProject.problem}</p>
                     </div>
                     <div className="bg-primary-50 p-8 rounded-3xl border border-primary-100 shadow-sm">
-                      <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-centered gap-3"><Icon icon="mdi:lightbulb-on-outline" className="text-primary-600 text-2xl" /> Solution</h3>
+                      <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-3">
+                        <Icon icon="mdi:lightbulb-on-outline" className="text-primary-600 text-2xl" /> Solution
+                      </h3>
                       <p className="text-primary-900 text-lg font-bold leading-relaxed break-keep">{selectedProject.solution}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Right Content */}
                 <div className="lg:col-span-5 p-12 lg:p-16 bg-white flex flex-col">
-                  {/* PDF Download Button */}
                   {selectedProject.pdfUrl && (
                     <a
                       href={selectedProject.pdfUrl}
