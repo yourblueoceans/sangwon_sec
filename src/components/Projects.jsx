@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// [경로] public/assets/projects 폴더 기준
 const IMG_BASE = '/sangwon_sec/assets/projects';
+
+// [스마트 함수] 숫자만 입력하면 이미지 경로 배열을 자동 생성 (확장자 기본 png)
+const generateGallery = (projectId, count, ext = 'png') => {
+  return Array.from({ length: count }, (_, i) => `${IMG_BASE}/${projectId}/${i + 1}.${ext}`);
+};
 
 const projectData = [
   {
@@ -11,7 +15,6 @@ const projectData = [
     title: 'LOCKUMENT',
     subtitle: 'SecureDoc Cloud: AWS PII Masking Platform',
     category: 'Cloud Security',
-    // [확인] lockument/main.png
     image: `${IMG_BASE}/lockument/main.png`,
     docs: [
       { name: '발표 자료 (PPTX)', url: 'https://docs.google.com/presentation/d/1OQjpDeIZ-SR2JQZf-gSj7b22bpQ02eop/edit?usp=drive_link&ouid=105295933511816127645&rtpof=true&sd=true', type: 'pptx' },
@@ -24,13 +27,8 @@ const projectData = [
       { name: '04 모듈별 상세 사양', url: `${IMG_BASE}/lockument/04_LDIP_보고서_B__모듈별_상세_사양.pdf`, type: 'pdf' },
       { name: '04 거버넌스/배포/운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_C__거버넌스배포운영(정책키프로필DevOps).pdf`, type: 'pdf' }
     ],
-    // [갤러리] 파일명이 1.png, 2.png... 이어야 합니다.
-    gallery: [
-      `${IMG_BASE}/lockument/1.png`,
-      `${IMG_BASE}/lockument/2.png`,
-      `${IMG_BASE}/lockument/3.png`,
-      `${IMG_BASE}/lockument/4.png`,
-    ],
+    // [중요] 실제 폴더에 있는 사진 개수만큼 숫자를 적으세요 (예: 15장)
+    gallery: generateGallery('lockument', 15, 'png'), 
     tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
     videos: [
       { title: '발표 영상', id: '6LKEwD0NfBc' },
@@ -47,19 +45,14 @@ const projectData = [
     title: 'Drop the Port!',
     subtitle: 'Defense in Depth: 3-Zone Network Architecture',
     category: 'Network Infrastructure',
-    // [확인] droptheport/main.png
     image: `${IMG_BASE}/droptheport/main.png`,
     docs: [
       { name: '발표 자료 (PPTX)', url: 'https://docs.google.com/presentation/d/1wKRqT4S5Jee_ecUnWhkwLLOOVu-7LlkY/edit?usp=drive_link&ouid=105295933511816127645&rtpof=true&sd=true', type: 'pptx' },
       { name: '프로젝트 보고서', url: `${IMG_BASE}/droptheport/report.pdf`, type: 'pdf' },
       { name: '프로젝트 요청서', url: `${IMG_BASE}/droptheport/requesting.pdf`, type: 'pdf' }
     ],
-    // [갤러리] 1.png, 2.png, 3.png
-    gallery: [
-      `${IMG_BASE}/droptheport/1.png`,
-      `${IMG_BASE}/droptheport/2.png`,
-      `${IMG_BASE}/droptheport/3.png`,
-    ],
+    // [중요] 사진 개수 수정 (예: 10장)
+    gallery: generateGallery('droptheport', 10, 'png'),
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     videos: [],
     period: '2025.08.21 - 2025.11.03',
@@ -73,18 +66,13 @@ const projectData = [
     title: 'Web Vulnerability Assessment',
     subtitle: 'Penetration Testing & Secure Coding Report',
     category: 'Offensive Security',
-    // [수정 완료] main.jpg -> main.png로 변경 (서상원 님 파일도 main.png여야 함)
-    image: `${IMG_BASE}/webvuln/main.png`,
+    // [중요] 여기도 main.png 로 통일
+    image: `${IMG_BASE}/webvuln/main.png`, 
     docs: [
       { name: '취약점 진단 보고서', url: `${IMG_BASE}/webvuln/report.pdf`, type: 'pdf' }
     ],
-    // [갤러리] 1.png, 2.png... (모두 png로 통일)
-    gallery: [
-      `${IMG_BASE}/webvuln/1.png`,
-      `${IMG_BASE}/webvuln/2.png`,
-      `${IMG_BASE}/webvuln/3.png`,
-      `${IMG_BASE}/webvuln/4.png`,
-    ],
+    // [중요] 사진 개수 수정 (예: 10장)
+    gallery: generateGallery('webvuln', 10, 'png'),
     tags: ['OWASP Top 10', 'Burp Suite', 'Linux', 'Apache/PHP'],
     videos: [],
     period: '2025.11.28 (보고서 기준)',
@@ -119,6 +107,7 @@ const Projects = () => {
           </p>
         </div>
 
+        {/* Project Cards Grid */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
           {projectData.map((project) => (
             <motion.div
@@ -134,10 +123,9 @@ const Projects = () => {
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
-                {/* 엑스박스 대신 텍스트 표시 */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 -z-10">
                     <Icon icon="mdi:image-off-outline" className="text-3xl text-slate-300 mb-2" />
-                    <span className="text-xs text-slate-400 font-bold uppercase">Image Check Needed</span>
+                    <span className="text-xs text-slate-400 font-bold uppercase">No Thumbnail</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                 <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-xs font-extrabold text-primary-700 shadow-sm uppercase tracking-wider border border-white/50">
@@ -168,9 +156,10 @@ const Projects = () => {
         </div>
       </div>
 
+      {/* Detail Modal (UI/UX Upgrade) */}
       <AnimatePresence>
         {selectedId && selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-md overflow-hidden">
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-xl overflow-hidden p-4 md:p-8">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -180,9 +169,10 @@ const Projects = () => {
             />
             <motion.div
               layoutId={selectedId}
-              className="relative w-full max-w-6xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col my-auto border border-white/40 max-h-[85vh]"
+              className="relative w-full max-w-6xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col my-auto border border-white/40 max-h-[90vh]"
             >
-              <div className="bg-white border-b border-slate-100 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sticky top-0 z-10 shrink-0">
+              {/* Modal Header */}
+              <div className="bg-white/90 backdrop-blur-md border-b border-slate-100 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sticky top-0 z-10 shrink-0">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-1">
                     {selectedProject.title}
@@ -192,14 +182,14 @@ const Projects = () => {
                   </p>
                 </div>
 
-                <div className="flex bg-slate-100 p-1.5 rounded-xl border border-slate-200 self-start md:self-center">
+                <div className="flex bg-slate-100 p-1.5 rounded-full border border-slate-200 self-start md:self-center shadow-inner">
                   {['overview', 'docs', 'gallery'].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all capitalize ${
+                      className={`px-6 py-2.5 rounded-full text-xs md:text-sm font-bold transition-all capitalize ${
                         activeTab === tab
-                          ? 'bg-white text-slate-900 shadow-sm border border-slate-100'
+                          ? 'bg-white text-slate-900 shadow-sm ring-1 ring-black/5'
                           : 'text-slate-500 hover:text-slate-900'
                       }`}
                     >
@@ -210,141 +200,181 @@ const Projects = () => {
 
                 <button
                   onClick={() => setSelectedId(null)}
-                  className="absolute top-6 right-6 p-2 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+                  className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-900 transition-colors"
                 >
                   <Icon icon="mdi:close" className="text-2xl" />
                 </button>
               </div>
 
+              {/* Modal Content */}
               <div className="p-6 md:p-10 overflow-y-auto flex-grow bg-[#FAFAFA]">
                 {activeTab === 'overview' && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 animate-fadeIn">
+                  <div className="flex flex-col gap-10 animate-fadeIn">
                     
-                    {/* Media Section (Videos / Image) */}
-                    <div className="space-y-8">
-                      {selectedProject.videos.length > 0 ? (
-                        <div className="space-y-6">
-                            {selectedProject.videos.map((vid, idx) => (
-                                <div key={idx} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                                    <p className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-3">
-                                        <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-                                        {vid.title}
-                                    </p>
-                                    <div className="aspect-video rounded-xl overflow-hidden bg-black relative shadow-inner">
-                                        <iframe
-                                            src={`https://www.youtube.com/embed/${vid.id}`}
-                                            className="w-full h-full"
-                                            allowFullScreen
-                                            title={vid.title}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
+                    {/* 1. Summary Cards (Problem & Solution) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-white p-8 rounded-3xl border border-red-100 shadow-sm relative overflow-hidden">
+                          <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-[4rem] -mr-4 -mt-4 z-0" />
+                          <h4 className="font-black text-slate-900 mb-4 flex items-center gap-2 text-lg relative z-10">
+                            <Icon icon="mdi:alert-decagram" className="text-red-500 text-2xl" /> Problem
+                          </h4>
+                          <p className="text-slate-600 text-base leading-relaxed relative z-10 font-medium break-keep">
+                            {selectedProject.problem}
+                          </p>
                         </div>
-                      ) : (
-                        <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
-                            <img src={selectedProject.image} alt="Main" className="w-full h-auto object-cover" />
+                        <div className="bg-white p-8 rounded-3xl border border-teal-100 shadow-sm relative overflow-hidden">
+                          <div className="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-[4rem] -mr-4 -mt-4 z-0" />
+                          <h4 className="font-black text-teal-800 mb-4 flex items-center gap-2 text-lg relative z-10">
+                            <Icon icon="mdi:checkbox-marked-circle" className="text-teal-500 text-2xl" /> Solution
+                          </h4>
+                          <p className="text-teal-900 text-base leading-relaxed relative z-10 font-medium break-keep">
+                            {selectedProject.solution}
+                          </p>
                         </div>
-                      )}
                     </div>
 
-                    {/* Text & Specs Section */}
-                    <div className="space-y-8">
-                      <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
-                        <div>
-                            <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2 text-sm uppercase tracking-wider">
-                                <Icon icon="mdi:alert-circle-outline" className="text-red-500 text-lg" /> Problem
-                            </h4>
-                            <p className="text-slate-600 text-sm leading-relaxed">{selectedProject.problem}</p>
-                        </div>
-                        <div className="w-full h-px bg-slate-100"></div>
-                        <div>
-                            <h4 className="font-bold text-teal-700 mb-2 flex items-center gap-2 text-sm uppercase tracking-wider">
-                                <Icon icon="mdi:check-circle-outline" className="text-teal-600 text-lg" /> Solution
-                            </h4>
-                            <p className="text-teal-800 text-sm leading-relaxed">{selectedProject.solution}</p>
-                        </div>
-                      </div>
+                    <hr className="border-slate-200/60" />
 
-                      <div className="grid grid-cols-1 gap-6">
-                        <div>
-                            <h3 className="text-lg font-extrabold text-slate-900 mb-4">Key Results</h3>
-                            <ul className="space-y-3">
-                                {selectedProject.results.map((res, i) => (
-                                    <li key={i} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                        <Icon icon="mdi:trophy-variant-outline" className="text-yellow-500 text-xl shrink-0" />
-                                        <span className="font-bold text-slate-700 text-sm">{res}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                    {/* 2. Media & Details */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                        {/* Media */}
+                        <div className="space-y-6">
+                            <h3 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                                <Icon icon="mdi:youtube-tv" className="text-red-600 text-2xl"/> Demo & Presentation
+                            </h3>
+                            {selectedProject.videos.length > 0 ? (
+                                <div className="space-y-6">
+                                    {selectedProject.videos.map((vid, idx) => (
+                                        vid.id && (
+                                            <div key={idx} className="bg-white p-2 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                                                <div className="px-4 py-3 text-sm font-bold text-slate-700 flex items-center justify-between">
+                                                    <span>{vid.title}</span>
+                                                    <span className="flex h-2 w-2 relative">
+                                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                                    </span>
+                                                </div>
+                                                <div className="aspect-video rounded-2xl overflow-hidden bg-slate-900 relative">
+                                                    <iframe
+                                                        src={`https://www.youtube.com/embed/${vid.id}`}
+                                                        className="w-full h-full"
+                                                        allowFullScreen
+                                                        title={vid.title}
+                                                    />
+                                                </div>
+                                            </div>
+                                        )
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+                                    <img src={selectedProject.image} alt="Main" className="w-full h-auto object-cover" />
+                                </div>
+                            )}
                         </div>
-                        <div>
-                            <h3 className="text-lg font-extrabold text-slate-900 mb-4">Tech Stack</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {selectedProject.tags.map((t) => (
-                                    <span key={t} className="px-4 py-2 bg-white rounded-lg text-sm font-bold text-slate-600 border border-slate-200 shadow-sm">
-                                        {t}
-                                    </span>
-                                ))}
+
+                        {/* Specs */}
+                        <div className="space-y-8">
+                            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                                <h3 className="text-lg font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+                                    <Icon icon="mdi:trophy-award" className="text-yellow-500 text-2xl"/> Key Results
+                                </h3>
+                                <ul className="space-y-4">
+                                    {selectedProject.results.map((res, i) => (
+                                        <li
+                                            key={i}
+                                            className="flex items-start gap-4 p-3 hover:bg-slate-50 rounded-xl transition-colors"
+                                        >
+                                            <div className="p-1 bg-primary-100 text-primary-600 rounded-full mt-0.5">
+                                                <Icon icon="mdi:check" className="text-sm" />
+                                            </div>
+                                            <span className="font-bold text-slate-700 text-sm leading-relaxed">{res}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-2 px-2">
+                                    <Icon icon="mdi:code-braces" className="text-slate-400 text-2xl"/> Tech Stack
+                                </h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {selectedProject.tags.map((t) => (
+                                        <span
+                                            key={t}
+                                            className="px-4 py-2 bg-white rounded-xl text-sm font-bold text-slate-600 border border-slate-200 shadow-sm hover:border-primary-300 hover:text-primary-600 transition-all cursor-default"
+                                        >
+                                            {t}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                      </div>
                     </div>
                   </div>
                 )}
 
                 {activeTab === 'docs' && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 animate-fadeIn">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeIn">
                     {selectedProject.docs?.map((doc, idx) => (
                       <a
                         key={idx}
                         href={doc.url}
                         target="_blank"
                         rel="noreferrer"
-                        className={`flex items-center gap-4 p-5 rounded-2xl bg-white border hover:shadow-md transition-all group ${
-                            doc.type === 'pptx' ? 'border-orange-100 hover:border-orange-300' : 'border-slate-200 hover:border-primary-400'
+                        className={`flex items-center gap-5 p-6 rounded-3xl bg-white border transition-all group hover:-translate-y-1 hover:shadow-lg ${
+                            doc.type === 'pptx' ? 'border-orange-100 hover:border-orange-200' : 'border-slate-100 hover:border-primary-200'
                         }`}
                       >
-                        <div className={`p-3 rounded-xl transition-colors ${
-                            doc.type === 'pptx' ? 'bg-orange-50 text-orange-500 group-hover:bg-orange-500 group-hover:text-white' : 'bg-red-50 text-red-500 group-hover:bg-red-500 group-hover:text-white'
+                        <div className={`p-4 rounded-2xl transition-colors shadow-inner ${
+                            doc.type === 'pptx' ? 'bg-orange-50 text-orange-500 group-hover:bg-orange-500 group-hover:text-white' : 'bg-slate-50 text-slate-500 group-hover:bg-primary-600 group-hover:text-white'
                         }`}>
-                          <Icon icon={doc.type === 'pptx' ? "mdi:microsoft-powerpoint" : "mdi:file-pdf-box"} className="text-2xl" />
+                          <Icon icon={doc.type === 'pptx' ? "mdi:microsoft-powerpoint" : "mdi:file-pdf-box"} className="text-3xl" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-bold text-slate-800 text-sm mb-0.5 truncate group-hover:text-primary-700">
+                          <p className="font-extrabold text-slate-800 text-base mb-1 truncate group-hover:text-primary-700">
                             {doc.name}
                           </p>
-                          <p className="text-xs text-slate-400 uppercase">{doc.type || 'DOCUMENT'}</p>
+                          <p className="text-xs text-slate-400 font-bold tracking-wider uppercase flex items-center gap-1">
+                            {doc.type === 'pptx' ? 'Google Slides' : 'PDF Document'} <Icon icon="mdi:open-in-new" className="text-[10px]" />
+                          </p>
                         </div>
-                        <Icon
-                          icon="mdi:open-in-new"
-                          className="text-slate-300 group-hover:text-primary-500"
-                        />
                       </a>
                     ))}
                   </div>
                 )}
 
+                {/* [Gallery UI Improved: Masonry-like Grid] */}
                 {activeTab === 'gallery' && (
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 animate-fadeIn">
+                  <div className="columns-1 md:columns-2 gap-6 space-y-6 animate-fadeIn p-2">
                     {selectedProject.gallery?.map((img, idx) => (
                       <motion.div
                         key={idx}
                         whileHover={{ scale: 1.02 }}
                         onClick={() => setViewImage(img)}
-                        className="cursor-zoom-in rounded-xl overflow-hidden border border-slate-200 shadow-sm aspect-[4/3] relative bg-slate-100 group"
+                        className="cursor-zoom-in rounded-3xl overflow-hidden border-4 border-white shadow-lg bg-slate-100 group relative break-inside-avoid"
                       >
                         <img
                           src={img}
                           alt="Gallery"
-                          className="w-full h-full object-cover transition-all duration-500"
-                          onError={(e) => { e.target.style.display = 'none'; }}
+                          className="w-full h-auto object-cover transition-all duration-700 group-hover:brightness-110"
+                          onError={(e) => { 
+                              e.target.style.display = 'none'; 
+                              e.target.parentElement.style.display = 'none'; // 이미지가 없으면 박스 자체를 숨김
+                          }}
                         />
-                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <Icon icon="mdi:magnify-plus-outline" className="text-white text-3xl drop-shadow-md" />
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                          <div className="bg-white/20 p-3 rounded-full backdrop-blur-md border border-white/30">
+                             <Icon icon="mdi:arrow-expand-all" className="text-white text-2xl drop-shadow-md" />
+                          </div>
                         </div>
                       </motion.div>
                     ))}
+                    {(!selectedProject.gallery || selectedProject.gallery.length === 0) && (
+                        <div className="col-span-full text-center py-20 text-slate-400 font-bold">
+                            등록된 갤러리 이미지가 없습니다.
+                        </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -357,19 +387,19 @@ const Projects = () => {
       <AnimatePresence>
         {viewImage && (
           <div
-            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 cursor-zoom-out"
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 cursor-zoom-out"
             onClick={() => setViewImage(null)}
           >
             <motion.img
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               src={viewImage}
               alt="Full View"
-              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10"
+              className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg shadow-2xl"
             />
-            <button className="absolute top-6 right-6 text-white/70 hover:text-white">
-              <Icon icon="mdi:close-circle-outline" className="text-4xl" />
+            <button className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+              <Icon icon="mdi:close" className="text-3xl" />
             </button>
           </div>
         )}
