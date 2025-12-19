@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 const certifications = [
   {
     name: '정보보안기사',
-    img: '/assets/certs/sec-engineer.jpg',
+    img: '/sangwon_sec/assets/certs/sec-engineer.jpg',
     date: '2025.12.19 (최종 합격)',
     issuer: 'KISA',
     licenseId: '250A140****',
@@ -14,18 +14,18 @@ const certifications = [
   },
   {
     name: 'HSE 3급 (해킹보안전문가)',
-    img: '/assets/certs/hse.jpg',
+    img: '/sangwon_sec/assets/certs/hse.jpg',
     date: '2025.12.22 (발급 예정)',
     issuer: '한국해킹보안협회',
     licenseId: '발급 대기 중',
     desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증 (합격 확인).'
   },
-  { name: '리눅스마스터 2급', img: '/assets/certs/linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
-  { name: '네트워크관리사 2급', img: '/assets/certs/network.jpg', date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
-  { name: 'Cisco CCST Cybersecurity', img: '/assets/certs/ccst.jpg', date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초.' },
-  { name: 'Microsoft SC-900', img: '/assets/certs/sc900.jpg', date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },
-  { name: 'TOEIC Speaking IH', img: '/assets/certs/toeic.jpg', date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 환경에서의 효과적인 영어 의사소통 능력 인증 (150점).' },
-  { name: '한국사능력검정 1급', img: '/assets/certs/korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '한국사 심화 과정 인증. 인문학적 소양 및 역사적 사고력 함양.' },
+  { name: '리눅스마스터 2급', img: '/sangwon_sec/assets/certs/linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
+  { name: '네트워크관리사 2급', img: '/sangwon_sec/assets/certs/network.jpg', date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
+  { name: 'Cisco CCST Cybersecurity', img: '/sangwon_sec/assets/certs/ccst.jpg', date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초.' },
+  { name: 'Microsoft SC-900', img: '/sangwon_sec/assets/certs/sc900.jpg', date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },
+  { name: 'TOEIC Speaking IH', img: '/sangwon_sec/assets/certs/toeic.jpg', date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 환경에서의 효과적인 영어 의사소통 능력 인증 (150점).' },
+  { name: '한국사능력검정 1급', img: '/sangwon_sec/assets/certs/korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '한국사 심화 과정 인증. 인문학적 소양 및 역사적 사고력 함양.' },
 ];
 
 const techItems = [
