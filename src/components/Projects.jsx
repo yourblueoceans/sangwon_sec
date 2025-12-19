@@ -33,7 +33,7 @@ const projectData = [
     tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
     videos: [
       { title: '발표 영상', id: '6LKEwD0NfBc' },
-      { title: '시연 영상', id: '' } // 시연 영상 ID가 있다면 채워주세요
+      { title: '시연 영상', id: 'mvpLv-ug0m0' } // 전달주신 ID 적용
     ],
     period: '2025.08.18 - 2025.10.30',
     overview: '개인정보(PII) 유출 사고 방지를 위한 AWS 기반 자동 마스킹 및 암호화 웹 서비스입니다.',
@@ -165,7 +165,7 @@ const Projects = () => {
 
       <AnimatePresence>
         {selectedId && selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justifycenter px-4 bg-slate-900/60 backdrop-blur-md overflow-hidden">
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-md overflow-hidden">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
