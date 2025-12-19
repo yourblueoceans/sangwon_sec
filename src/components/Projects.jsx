@@ -12,11 +12,17 @@ const projectData = [
     title: 'LOCKUMENT',
     subtitle: 'SecureDoc Cloud: AWS PII Masking Platform',
     category: 'Cloud Security',
-    // 경로 앞에 BASE_PATH를 붙이지 않고 상대 경로만 적습니다. (아래 컴포넌트에서 합침)
     image: 'assets/projects/lockument/main.png',
+    // 전달된 실제 파일명 8종 반영
     docs: [
-      { name: '최종 완료 보고서', url: 'assets/projects/lockument/report.pdf' },
-      { name: 'DB 구축 보고서', url: 'assets/projects/lockument/db_report.pdf' },
+      { name: '01 PII 구분 및 조사', url: 'assets/projects/lockument/01 PII 구분_개인정보 유출사례 및 주요 PII 구분 조사.pdf' },
+      { name: '01-1 부록 NIST Guide', url: 'assets/projects/lockument/01-1 부록_NIST Guide.pdf' },
+      { name: '02 DB 구축 보고서', url: 'assets/projects/lockument/02_DB_구축_보고서.pdf' },
+      { name: '03 웹 GUI 구성 보고서', url: 'assets/projects/lockument/03 웹_GUI_구성_보고서.pdf' },
+      { name: '03-1 GUI 경쟁사/사례 조사', url: 'assets/projects/lockument/03-1 GUI_경쟁사 및 사례조사(수정).pdf' },
+      { name: '04 플랫폼 아키텍처 운영', url: 'assets/projects/lockument/04_LDIP_보고서_A__플랫폼아키텍처운영.pdf' },
+      { name: '04 모듈별 상세 사양', url: 'assets/projects/lockument/04_LDIP_보고서_B__모듈별_상세_사양.pdf' },
+      { name: '04 거버넌스/배포/운영', url: 'assets/projects/lockument/04_LDIP_보고서_C__거버넌스배포운영(정책키프로필DevOps).pdf' },
     ],
     gallery: [
       'assets/projects/lockument/booth.jpg',
@@ -38,7 +44,7 @@ const projectData = [
     subtitle: 'Defense in Depth: 3-Zone Network Architecture',
     category: 'Network Infrastructure',
     image: 'assets/projects/droptheport/main.png',
-    docs: [{ name: '프로젝트 보고서', url: 'assets/projects/droptheport/report.pdf' }],
+    docs: [{ name: '프로젝트 요청서', url: 'assets/projects/droptheport/requesting.pdf' }],
     gallery: ['assets/projects/droptheport/eq1.jpg', 'assets/projects/droptheport/eq2.jpg'],
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     videos: [],
