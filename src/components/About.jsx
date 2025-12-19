@@ -20,7 +20,7 @@ const certifications = [
     licenseId: '발급 대기 중',
     desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증 (합격 확인).'
   },
-  { name: '리눅스마스터 2급', img: '/assets/certs/linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-0053**', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
+  { name: '리눅스마스터 2급', img: '/assets/certs/linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
   { name: '네트워크관리사 2급', img: '/assets/certs/network.jpg', date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
   { name: 'Cisco CCST Cybersecurity', img: '/assets/certs/ccst.jpg', date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초.' },
   { name: 'Microsoft SC-900', img: '/assets/certs/sc900.jpg', date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },

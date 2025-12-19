@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 프로젝트 데이터 (public/assets/projects/ 경로 매핑)
+// 프로젝트 데이터 (/assets/projects/ 경로 매핑)
 const projectData = [
   {
     id: 'lockument',
