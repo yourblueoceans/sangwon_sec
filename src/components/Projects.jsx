@@ -29,7 +29,10 @@ const projectData = [
       `${IMG_BASE}/lockument/mobile_main.png`,
     ],
     tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
-    videos: [{ title: '발표 영상', id: '6LKEwD0NfBc' }],
+    videos: [
+      { title: '발표 영상', id: '6LKEwD0NfBc' },
+      { title: '시연 영상', id: 'YOUR_DEMO_VIDEO_ID' }, // 두 번째 영상 ID를 실제 값으로 교체하세요
+    ],
     period: '2025.08.18 - 2025.10.30',
     overview: '개인정보(PII) 유출 사고 방지를 위한 AWS 기반 자동 마스킹 및 암호화 웹 서비스입니다.',
     problem: '기업 내 개인정보가 포함된 문서가 평문으로 저장되어 발생하는 내부 유출 위협.',
@@ -189,8 +192,22 @@ const Projects = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 animate-fadeIn">
                     <div className="space-y-8">
                       {selectedProject.videos.length > 0 && (
-                        <div className="aspect-video rounded-2xl overflow-hidden bg-black shadow-lg relative">
-                          <iframe src={`https://www.youtube.com/embed/${selectedProject.videos[0].id}`} className="w-full h-full" allowFullScreen />
+                        <div className="space-y-4">
+                          {selectedProject.videos.map((vid, idx) => (
+                            <div key={idx} className="space-y-2">
+                              <p className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                <Icon icon="mdi:youtube" className="text-red-600" /> {vid.title}
+                              </p>
+                              <div className="aspect-video rounded-2xl overflow-hidden bg-black shadow-lg relative">
+                                <iframe
+                                  src={`https://www.youtube.com/embed/${vid.id}`}
+                                  className="w-full h-full"
+                                  allowFullScreen
+                                  title={vid.title}
+                                />
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       )}
                       <div className="space-y-4">
