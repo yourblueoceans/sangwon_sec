@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 경로 자동화
-const BASE_PATH = import.meta.env.BASE_URL;
-const getPath = (path) => `${BASE_PATH}${path.startsWith('/') ? path.slice(1) : path}`;
+// 절대 경로 고정 (변수/함수 사용 안 함)
+const IMG_BASE = '/sangwon_sec/assets/projects';
 
 const projectData = [
   {
@@ -12,23 +11,22 @@ const projectData = [
     title: 'LOCKUMENT',
     subtitle: 'SecureDoc Cloud: AWS PII Masking Platform',
     category: 'Cloud Security',
-    image: 'assets/projects/lockument/lockument.png',
-    // 전달된 실제 파일명 8종 반영
+    image: `${IMG_BASE}/lockument/main.png`,
     docs: [
-      { name: '01 PII 구분 및 조사', url: 'assets/projects/lockument/01 PII 구분_개인정보 유출사례 및 주요 PII 구분 조사.pdf' },
-      { name: '01-1 부록 NIST Guide', url: 'assets/projects/lockument/01-1 부록_NIST Guide.pdf' },
-      { name: '02 DB 구축 보고서', url: 'assets/projects/lockument/02_DB_구축_보고서.pdf' },
-      { name: '03 웹 GUI 구성 보고서', url: 'assets/projects/lockument/03 웹_GUI_구성_보고서.pdf' },
-      { name: '03-1 GUI 경쟁사/사례 조사', url: 'assets/projects/lockument/03-1 GUI_경쟁사 및 사례조사(수정).pdf' },
-      { name: '04 플랫폼 아키텍처 운영', url: 'assets/projects/lockument/04_LDIP_보고서_A__플랫폼아키텍처운영.pdf' },
-      { name: '04 모듈별 상세 사양', url: 'assets/projects/lockument/04_LDIP_보고서_B__모듈별_상세_사양.pdf' },
-      { name: '04 거버넌스/배포/운영', url: 'assets/projects/lockument/04_LDIP_보고서_C__거버넌스배포운영(정책키프로필DevOps).pdf' },
+      { name: '01 PII 구분 및 조사', url: `${IMG_BASE}/lockument/01 PII 구분_개인정보 유출사례 및 주요 PII 구분 조사.pdf` },
+      { name: '01-1 부록 NIST Guide', url: `${IMG_BASE}/lockument/01-1 부록_NIST Guide.pdf` },
+      { name: '02 DB 구축 보고서', url: `${IMG_BASE}/lockument/02_DB_구축_보고서.pdf` },
+      { name: '03 웹 GUI 구성 보고서', url: `${IMG_BASE}/lockument/03 웹_GUI_구성_보고서.pdf` },
+      { name: '03-1 GUI 경쟁사/사례 조사', url: `${IMG_BASE}/lockument/03-1 GUI_경쟁사 및 사례조사(수정).pdf` },
+      { name: '04 플랫폼 아키텍처 운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_A__플랫폼아키텍처운영.pdf` },
+      { name: '04 모듈별 상세 사양', url: `${IMG_BASE}/lockument/04_LDIP_보고서_B__모듈별_상세_사양.pdf` },
+      { name: '04 거버넌스/배포/운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_C__거버넌스배포운영(정책키프로필DevOps).pdf` },
     ],
     gallery: [
-      'assets/projects/lockument/booth.jpg',
-      'assets/projects/lockument/audit.png',
-      'assets/projects/lockument/main.png',
-      'assets/projects/lockument/mobile_main.png',
+      `${IMG_BASE}/lockument/booth.jpg`,
+      `${IMG_BASE}/lockument/audit.png`,
+      `${IMG_BASE}/lockument/main.png`,
+      `${IMG_BASE}/lockument/mobile_main.png`,
     ],
     tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
     videos: [{ title: '발표 영상', id: '6LKEwD0NfBc' }],
@@ -43,9 +41,13 @@ const projectData = [
     title: 'Drop the Port!',
     subtitle: 'Defense in Depth: 3-Zone Network Architecture',
     category: 'Network Infrastructure',
-    image: 'assets/projects/droptheport/main.png',
-    docs: [{ name: '프로젝트 요청서', url: 'assets/projects/droptheport/requesting.pdf' }],
-    gallery: ['assets/projects/droptheport/eq1.jpg', 'assets/projects/droptheport/eq2.jpg', 'assets/projects/droptheport/meeting (1).jpg'],
+    image: `${IMG_BASE}/droptheport/main.png`,
+    docs: [{ name: '프로젝트 요청서', url: `${IMG_BASE}/droptheport/requesting.pdf` }],
+    gallery: [
+      `${IMG_BASE}/droptheport/eq1.jpg`,
+      `${IMG_BASE}/droptheport/eq2.jpg`,
+      `${IMG_BASE}/droptheport/meeting.jpg`,
+    ],
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     videos: [],
     period: '2025.08.21 - 2025.11.03',
@@ -59,13 +61,13 @@ const projectData = [
     title: 'Web Vulnerability Assessment',
     subtitle: 'Penetration Testing & Secure Coding Report',
     category: 'Offensive Security',
-    image: 'assets/projects/webvuln/report cover.jpg',
-    docs: [{ name: '취약점 진단 보고서', url: 'assets/projects/webvuln/report.pdf' }],
+    image: `${IMG_BASE}/webvuln/main.png`,
+    docs: [{ name: '취약점 진단 보고서', url: `${IMG_BASE}/webvuln/report.pdf` }],
     gallery: [
-      'assets/projects/webvuln/report cover.jpg',
-      'assets/projects/webvuln/report sample.jpg',
-      'assets/projects/webvuln/captured (1).png',
-      'assets/projects/webvuln/captured (2).png',
+      `${IMG_BASE}/webvuln/cover.jpg`,
+      `${IMG_BASE}/webvuln/sample.jpg`,
+      `${IMG_BASE}/webvuln/capture1.png`,
+      `${IMG_BASE}/webvuln/capture2.png`,
     ],
     tags: ['OWASP Top 10', 'Burp Suite', 'Linux', 'Apache/PHP'],
     videos: [],
@@ -113,7 +115,7 @@ const Projects = () => {
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
                 <img
-                  src={getPath(project.image)}
+                  src={project.image}
                   alt={project.title}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   onError={(e) => {
@@ -238,7 +240,7 @@ const Projects = () => {
                     {selectedProject.docs?.map((doc, idx) => (
                       <a
                         key={idx}
-                        href={getPath(doc.url)}
+                        href={doc.url}
                         target="_blank"
                         rel="noreferrer"
                         className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-primary-400 hover:shadow-md transition-all group"
@@ -263,11 +265,11 @@ const Projects = () => {
                       <motion.div
                         key={idx}
                         whileHover={{ scale: 1.02 }}
-                        onClick={() => setViewImage(getPath(img))}
+                        onClick={() => setViewImage(img)}
                         className="cursor-zoom-in rounded-xl overflow-hidden border border-slate-200 shadow-sm aspect-[4/3] relative bg-slate-100 group"
                       >
                         <img
-                          src={getPath(img)}
+                          src={img}
                           alt="Gallery"
                           className="w-full h-full object-cover transition-all duration-500"
                           onError={(e) => {
@@ -291,7 +293,7 @@ const Projects = () => {
         )}
       </AnimatePresence>
 
-      {/* [Lightbox Modal] 이미지 확대 보기 */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {viewImage && (
           <div className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 cursor-zoom-out" onClick={() => setViewImage(null)}>
@@ -299,7 +301,7 @@ const Projects = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              src={viewImage}
+                    src={viewImage}
               alt="Full View"
               className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10"
             />
