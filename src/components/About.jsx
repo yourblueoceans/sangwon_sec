@@ -2,16 +2,30 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// Certifications (issuer visible by default, desc on hover)
+// Certifications (합격 반영 & 번호 마스킹)
 const certifications = [
-  { name: '정보보안기사', img: '/sangwon_sec/assets/cert-sec-engineer.jpg', date: '2025.11 (실기 응시)', issuer: 'KISA', desc: '정보보안 분야 최고 수준 국가기술자격. 시스템, 네트워크, 애플리케이션 보안 실무 능력 검증.' },
-  { name: 'HSE 3급 (해킹보안전문가)', img: '/sangwon_sec/assets/cert-hse.jpg', date: '2025.12.18', issuer: '한국해킹보안협회', desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증.' },
-  { name: '리눅스마스터 2급', img: '/sangwon_sec/assets/cert-linux.jpg', date: '2025.10', issuer: 'KAIT', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
-  { name: '네트워크관리사 2급', img: '/sangwon_sec/assets/cert-network.jpg', date: '2025.04', issuer: 'ICQA', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무 능력.' },
-  { name: 'Cisco CCST Cybersecurity', img: '/sangwon_sec/assets/cert-ccst.jpg', date: '2025.11', issuer: 'Cisco', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초 역량.' },
-  { name: 'Microsoft SC-900', img: '/sangwon_sec/assets/cert-sc900.jpg', date: '2025.12', issuer: 'Microsoft', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },
-  { name: 'TOEIC Speaking IH', img: '/sangwon_sec/assets/cert-toeic.jpg', date: '2024.09 (150점)', issuer: 'ETS', desc: '비즈니스 환경에서의 효과적인 영어 의사소통 능력 인증 (중상급).' },
-  { name: '한국사능력검정 1급', img: '/sangwon_sec/assets/cert-korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회', desc: '한국사 심화 과정 인증. 인문학적 소양 및 역사적 사고력 함양.' },
+  {
+    name: '정보보안기사',
+    img: '/assets/certs/cert-sec-engineer.jpg',
+    date: '2025.12.19 (최종 합격)',
+    issuer: 'KISA',
+    licenseId: '250A14****',
+    desc: '정보보안 분야 최고 수준 국가기술자격. 시스템, 네트워크, 애플리케이션 보안 실무 능력 검증.'
+  },
+  {
+    name: 'HSE 3급 (해킹보안전문가)',
+    img: '/assets/certs/cert-hse.jpg',
+    date: '2025.12.22 (발급 예정)',
+    issuer: '한국해킹보안협회',
+    licenseId: 'HSE-25-****',
+    desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증.'
+  },
+  { name: '리눅스마스터 2급', img: '/assets/certs/cert-linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-25-****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
+  { name: '네트워크관리사 2급', img: '/assets/certs/cert-network.jpg', date: '2025.04', issuer: 'ICQA', licenseId: 'NW-25-****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
+  { name: 'Cisco CCST Cybersecurity', img: '/assets/certs/cert-ccst.jpg', date: '2025.11', issuer: 'Cisco', licenseId: 'CSCO-****', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초.' },
+  { name: 'Microsoft SC-900', img: '/assets/certs/cert-sc900.jpg', date: '2025.12', issuer: 'Microsoft', licenseId: 'MS-****', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },
+  { name: 'TOEIC Speaking IH', img: '/assets/certs/cert-toeic.jpg', date: '2024.09', issuer: 'ETS', licenseId: 'Score: 150', desc: '비즈니스 환경에서의 효과적인 영어 의사소통 능력 인증.' },
+  { name: '한국사능력검정 1급', img: '/assets/certs/cert-korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회', licenseId: '17-****', desc: '인문학적 소양 및 역사적 사고력 함양.' },
 ];
 
 const techItems = [
@@ -34,8 +48,8 @@ const experience = [
   {
     role: '교육생 (클라우드 보안 엔지니어 과정)',
     company: '한국폴리텍대학 대전캠퍼스',
-    period: '2025.03 - 현재',
-    desc: '1,200시간. AWS/Linux 기반 보안 인프라 구축. 캡스톤 프로젝트 팀장으로 “LOCKUMENT” 개발 및 금상 수상.'
+    period: '2025.03 - 2026.02 (예정)',
+    desc: '총 1,200시간. AWS/Linux 기반 보안 인프라 구축. 캡스톤 프로젝트 팀장으로 “LOCKUMENT” 개발 및 금상 수상.'
   },
   {
     role: '개인사업자 (해외구매대행)',
@@ -80,6 +94,10 @@ const About = () => {
 
   return (
     <section id="about" className="py-32 relative bg-bg-main overflow-hidden">
+      {/* Background blobs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-100/30 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full blur-[100px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="mb-24 text-center md:text-left">
           <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-snug break-keep section-title-underline inline-block">
@@ -158,9 +176,9 @@ const About = () => {
                 key={idx}
                 whileHover={{ y: -5 }}
                 onClick={() => setSelectedCert(cert)}
-                className="glass-panel cursor-pointer bg-white/80 p-5 rounded-[2rem] hover:border-primary-400 transition-all flex flex-col items-center text-center group relative overflow-hidden h-60 justify-between shadow-sm hover:shadow-lg"
+                className="glass-panel cursor-pointer bg-white/80 p-5 rounded-[2rem] hover:border-primary-400 transition-all flex flex-col items-center text-center group relative overflow-hidden h-72 justify-between shadow-sm hover:shadow-lg"
               >
-                <div className="flex-1 flex items-center justify-center w-full relative z-10 transition-opacity duration-300 group-hover:opacity-10">
+                <div className="flex-1 flex flex-col items-center justify-center w-full relative z-10 transition-opacity duration-300 group-hover:opacity-10">
                   <img
                     src={cert.img}
                     alt={cert.name}
@@ -173,10 +191,15 @@ const About = () => {
                   <div className="hidden flex-col items-center justify-center text-slate-300">
                     <Icon icon="mdi:file-certificate-outline" className="text-5xl mb-2" />
                   </div>
-                </div>
-                <div className="relative z-10 w-full mt-2">
-                  <p className="text-sm font-black text-slate-900 truncate w-full">{cert.name}</p>
-                  <p className="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">{cert.date}</p>
+                  <p className="text-sm font-black text-slate-900 truncate w-full mt-3">{cert.name}</p>
+                  <p className="text-xs font-bold text-primary-600 uppercase tracking-wider mb-2">{cert.issuer}</p>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2">{cert.date}</p>
+                  {cert.licenseId && (
+                    <div className="bg-slate-100 text-slate-500 text-[10px] font-mono px-2 py-1 rounded-md border border-slate-200 flex items-center gap-1">
+                      <Icon icon="mdi:check-decagram" className="text-teal-500" />
+                      {cert.licenseId}
+                    </div>
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-[#0F172A]/95 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-20">
                   <p className="text-white font-bold text-sm mb-2 break-keep">{cert.name}</p>

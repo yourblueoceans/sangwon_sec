@@ -14,11 +14,41 @@
 html { scroll-behavior: smooth; }
 
 body {
-  @apply bg-[#F8FAFC] text-slate-700 font-sans antialiased selection:bg-teal-100 selection:text-teal-900;
+  @apply bg-[#F8FAFC] text-slate-700 font-sans antialiased selection:bg-teal-500 selection:text-white;
   font-family: "Pretendard Variable", Pretendard, sans-serif;
   overflow-x: hidden;
   cursor: none;
 }
+
+/* 2025 Trendy Cursor (Difference Mode) */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.custom-cursor.hovered {
+  width: 50px;
+  height: 50px;
+  background-color: #2DD4BF;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+/* Typography Utilities */
+.title-loose { line-height: 1.6 !important; }
+.text-balance { text-wrap: balance; word-break: keep-all; }
+.break-keep { word-break: keep-all; word-wrap: break-word; }
+.text-glow { text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); }
 
 /* Smoke Text Effect */
 .smoke-container { filter: blur(1px); }
@@ -48,6 +78,7 @@ body {
   100% { opacity: 0.8; filter: blur(8px); transform: scale(1.02); }
 }
 
+/* Section underline */
 .section-title-underline { position: relative; display: inline-block; }
 .section-title-underline::after {
   content: '';
@@ -58,10 +89,6 @@ body {
   height: 4px;
   background-color: #0D9488;
 }
-
-.text-balance { text-wrap: balance; word-break: keep-all; }
-.break-keep { word-break: keep-all; word-wrap: break-word; }
-.text-glow { text-shadow: 0 0 20px rgba(45, 212, 191, 0.6); }
 
 /* Cyber Grid Animation */
 .cyber-grid {
@@ -117,7 +144,7 @@ body::before {
   mix-blend-mode: multiply;
 }
 
-/* Custom Cursor */
+/* Legacy Custom Cursor (unused with new cursor but kept for fallback) */
 .cursor-dot,
 .cursor-dot-outline {
   pointer-events: none;

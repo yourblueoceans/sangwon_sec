@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Intro from './components/Intro';
 import Profile from './components/Hero';
@@ -8,44 +8,60 @@ import Projects from './components/Projects';
 import { Icon } from '@iconify/react';
 
 const App = () => {
-  const cursorDot = useRef(null);
-  const cursorOutline = useRef(null);
+  const cursorRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      const posX = e.clientX;
-      const posY = e.clientY;
-
-      if (cursorDot.current) {
-        cursorDot.current.style.left = `${posX}px`;
-        cursorDot.current.style.top = `${posY}px`;
-      }
-
-      if (cursorOutline.current) {
-        cursorOutline.current.animate(
-          { left: `${posX}px`, top: `${posY}px` },
-          { duration: 500, fill: 'forwards' }
-        );
+    const moveCursor = (e) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    const handleMouseOver = (e) => {
+      if (
+        e.target.tagName === 'A' ||
+        e.target.tagName === 'BUTTON' ||
+        e.target.closest('a') ||
+        e.target.closest('button')
+      ) {
+        setIsHovered(true);
+      } else {
+        setIsHovered(false);
+      }
+    };
+
+    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mouseover', handleMouseOver);
+
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mouseover', handleMouseOver);
+    };
   }, []);
 
   return (
-    <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-100 selection:text-primary-900">
+    <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative">
       {/* Custom Cursor */}
-      <div ref={cursorDot} className="cursor-dot"></div>
-      <div ref={cursorOutline} className="cursor-dot-outline"></div>
+      <div ref={cursorRef} className={`custom-cursor ${isHovered ? 'hovered' : ''}`}></div>
 
       <Navbar />
       <main className="relative z-10">
-        <Intro />
-        <Profile />
-        <About />
-        <Education />
-        <Projects />
+        <div id="root">
+          <Intro />
+        </div>
+        <div id="profile">
+          <Profile />
+        </div>
+        <div id="about">
+          <About />
+        </div>
+        <div id="education">
+          <Education />
+        </div>
+        <div id="projects">
+          <Projects />
+        </div>
       </main>
       
       <footer className="relative bg-slate-900 text-white py-32 overflow-hidden text-center border-t-[6px] border-primary-600">
