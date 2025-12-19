@@ -2,6 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
+// 자동 경로 변수
+const BASE_PATH = import.meta.env.BASE_URL;
+const getPath = (path) => `${BASE_PATH}${path.startsWith('/') ? path.slice(1) : path}`;
+
 const Hero = () => {
   return (
     <section id="profile" className="relative min-h-screen w-full flex items-center justify-center py-24 bg-bg-main overflow-hidden">
@@ -72,7 +76,7 @@ const Hero = () => {
               프로젝트 보기 <Icon icon="mdi:arrow-right" className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="/sangwon_sec/assets/resume.pdf"
+              href={getPath('assets/resume.pdf')}
               target="_blank"
               className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold text-base rounded-2xl hover:border-primary-500 hover:text-primary-700 transition-all shadow-sm"
             >
@@ -89,20 +93,20 @@ const Hero = () => {
           viewport={{ once: true }}
           className="order-1 lg:order-2 flex flex-col items-center"
         >
-          <div className="relative w/full max-w-[420px] aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white bg-slate-100 group hover:scale-[1.02] transition-transform duration-500 mb-8 glass-panel">
+          <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white bg-slate-100 group hover:scale-[1.02] transition-transform duration-500 mb-8 glass-panel">
             <video
               autoPlay
               loop
               muted
               playsInline
               className="w-full h-full object-cover"
-              poster="/sangwon_sec/assets/profile/hero-profile.png"
+              poster={getPath('assets/profile/hero-profile.png')}
             >
-              <source src="/sangwon_sec/assets/profile/hero-profile.mp4" type="video/mp4" />
+              <source src={getPath('assets/profile/hero-profile.mp4')} type="video/mp4" />
             </video>
             {/* 만약 영상이 없다면 이미지가 보임 */}
             <img
-              src="/sangwon_sec/assets/profile/hero-profile.png"
+              src={getPath('assets/profile/hero-profile.png')}
               alt="Sangwon Suh"
               className="absolute inset-0 w-full h-full object-cover -z-10"
               onError={(e) => e.target.style.display = 'none'}
