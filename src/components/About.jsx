@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 하드코딩 자격증 경로 (코드는 .jpg 기준)
-const CERT_BASE = '/sangwon_sec/assets/certs';
+// 최종 경로: BASE_PATH + assets/certs
+const BASE_PATH = import.meta.env.BASE_URL;
+const CERT_BASE = `${BASE_PATH}assets/certs`;
 const certifications = [
   { name: '정보보안기사', img: `${CERT_BASE}/cert-sec-engineer.jpg`, date: '2025.12.19 (최종 합격)', issuer: 'KISA', licenseId: '250A140****', desc: '정보보안 분야 최고 수준 국가기술자격.' },
   { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/cert-hse.jpg`, date: '2025.12.22 (발급 예정)', issuer: '한국해킹보안협회', licenseId: '발급 대기 중', desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증.' },
@@ -29,7 +30,7 @@ const techItems = [
   { icon: 'logos:git-icon', name: 'Git', color: '#F05032' },
   { icon: 'logos:mysql', name: 'MySQL', color: '#4479A1' },
 ];
-const techStack = [...techItems, ...techItems, ...techItems, ...techItems];
+const techStack = [...techItems, ...techItems, ...techItems];
 
 const experience = [
   {
