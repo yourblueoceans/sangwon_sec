@@ -4,7 +4,11 @@ import { Icon } from '@iconify/react';
 
 // 자동 경로 변수
 const BASE_PATH = import.meta.env.BASE_URL;
-const getPath = (path) => `${BASE_PATH}${path.startsWith('/') ? path.slice(1) : path}`;
+const getPath = (path) => {
+  if (!path) return '';
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${BASE_PATH}${cleanPath}`;
+};
 
 // [자격증 데이터]
 const certifications = [
@@ -34,17 +38,17 @@ const certifications = [
 
 // [Tech Arsenal: 컬러 복구]
 const techItems = [
-  { icon: 'logos:linux-tux', name: 'Linux', color: '' },
-  { icon: 'logos:docker-icon', name: 'Docker', color: '' },
-  { icon: 'logos:aws', name: 'AWS', color: '' },
-  { icon: 'logos:python', name: 'Python', color: '' },
-  { icon: 'logos:react', name: 'React', color: '' },
-  { icon: 'logos:nginx', name: 'Nginx', color: '' },
+  { icon: 'logos:linux-tux', name: 'Linux', color: '#FCC624' },
+  { icon: 'logos:docker-icon', name: 'Docker', color: '#2496ED' },
+  { icon: 'logos:aws', name: 'AWS', color: '#FF9900' },
+  { icon: 'logos:python', name: 'Python', color: '#3776AB' },
+  { icon: 'logos:react', name: 'React', color: '#61DAFB' },
+  { icon: 'logos:nginx', name: 'Nginx', color: '#009639' },
   { icon: 'simple-icons:cisco', name: 'Cisco', color: '#1BA0D7' },
   { icon: 'simple-icons:wireshark', name: 'Wireshark', color: '#1679A7' },
-  { icon: 'devicon:flask', name: 'Flask', color: '' },
-  { icon: 'logos:git-icon', name: 'Git', color: '' },
-  { icon: 'logos:mysql', name: 'MySQL', color: '' },
+  { icon: 'devicon:flask', name: 'Flask', color: '#000000' },
+  { icon: 'logos:git-icon', name: 'Git', color: '#F05032' },
+  { icon: 'logos:mysql', name: 'MySQL', color: '#4479A1' },
 ];
 const techStack = [...techItems, ...techItems, ...techItems, ...techItems];
 
@@ -168,10 +172,10 @@ const About = () => {
                     <div className="animate-marquee whitespace-nowrap flex gap-20 px-4" style={{ animationDuration: '80s' }}>
                         {techStack.map((tech, index) => (
                             <div key={index} className="flex flex-col items-center gap-4 min-w-[100px] transition-all duration-300 group cursor-pointer">
-                                <Icon
-                                    icon={tech.icon}
-                                    className="text-6xl filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110 drop-shadow-md"
-                                    color={tech.color}
+                                <Icon 
+                                    icon={tech.icon} 
+                                    className="text-6xl transition-all duration-300 transform group-hover:scale-110 drop-shadow-md filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100"
+                                    style={{ color: tech.color }}
                                 />
                                 <span className="text-xs font-bold text-slate-400 group-hover:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
                             </div>

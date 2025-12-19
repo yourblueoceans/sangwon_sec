@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// [중요] 배포 환경과 로컬 환경을 자동으로 구분하는 경로 변수
+// 경로 자동화
 const BASE_PATH = import.meta.env.BASE_URL;
 const getPath = (path) => `${BASE_PATH}${path.startsWith('/') ? path.slice(1) : path}`;
 
@@ -12,7 +12,7 @@ const projectData = [
     title: 'LOCKUMENT',
     subtitle: 'SecureDoc Cloud: AWS PII Masking Platform',
     category: 'Cloud Security',
-    image: 'assets/projects/lockument/main.png',
+    image: 'assets/projects/lockument/lockument.png',
     // 전달된 실제 파일명 8종 반영
     docs: [
       { name: '01 PII 구분 및 조사', url: 'assets/projects/lockument/01 PII 구분_개인정보 유출사례 및 주요 PII 구분 조사.pdf' },
@@ -45,7 +45,7 @@ const projectData = [
     category: 'Network Infrastructure',
     image: 'assets/projects/droptheport/main.png',
     docs: [{ name: '프로젝트 요청서', url: 'assets/projects/droptheport/requesting.pdf' }],
-    gallery: ['assets/projects/droptheport/eq1.jpg', 'assets/projects/droptheport/eq2.jpg'],
+    gallery: ['assets/projects/droptheport/eq1.jpg', 'assets/projects/droptheport/eq2.jpg', 'assets/projects/droptheport/meeting (1).jpg'],
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     videos: [],
     period: '2025.08.21 - 2025.11.03',
@@ -59,9 +59,14 @@ const projectData = [
     title: 'Web Vulnerability Assessment',
     subtitle: 'Penetration Testing & Secure Coding Report',
     category: 'Offensive Security',
-    image: 'assets/projects/webvuln/main.jpg',
+    image: 'assets/projects/webvuln/report cover.jpg',
     docs: [{ name: '취약점 진단 보고서', url: 'assets/projects/webvuln/report.pdf' }],
-    gallery: ['assets/projects/webvuln/captured1.png', 'assets/projects/webvuln/captured2.png'],
+    gallery: [
+      'assets/projects/webvuln/report cover.jpg',
+      'assets/projects/webvuln/report sample.jpg',
+      'assets/projects/webvuln/captured (1).png',
+      'assets/projects/webvuln/captured (2).png',
+    ],
     tags: ['OWASP Top 10', 'Burp Suite', 'Linux', 'Apache/PHP'],
     videos: [],
     period: '2025.11.28 (보고서 기준)',
