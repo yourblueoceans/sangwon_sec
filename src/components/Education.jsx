@@ -44,8 +44,8 @@ const Education = () => {
             Intensive <span className="text-primary-600">Education</span>
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto break-keep leading-relaxed">
-            1,200시간의 고강도 훈련을 통해 실무에 즉시 투입 가능한<br/> 
-            <strong>핵심 인프라 기술</strong>을 체계적으로 학습했습니다.
+            1,200시간의 고강도 훈련을 통해 이론과 실습을 겸비하여,<br/> 
+            <strong>실무 환경에 빠르게 녹아들 수 있는 준비된 엔지니어</strong>로 성장했습니다.
           </p>
         </div>
 

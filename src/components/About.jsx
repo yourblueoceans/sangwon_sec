@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 하드코딩 자격증 경로
+// 하드코딩 자격증 경로 (코드는 .jpg 기준)
 const CERT_BASE = '/sangwon_sec/assets/certs';
 const certifications = [
-  { name: '정보보안기사', img: `${CERT_BASE}/sec-engineer.jpg`, date: '2025.12.19 (최종 합격)', issuer: 'KISA', licenseId: '250A140****', desc: '정보보안 분야 최고 수준 국가기술자격. 시스템, 네트워크, 애플리케이션 보안 실무 능력 검증.' },
-  { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/hse.jpg`, date: '2025.12.22 (발급 예정)', issuer: '한국해킹보안협회', licenseId: '발급 대기 중', desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증 (합격 확인).' },
-  { name: '리눅스마스터 2급', img: `${CERT_BASE}/linux.jpg`, date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
-  { name: '네트워크관리사 2급', img: `${CERT_BASE}/network.jpg`, date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
-  { name: 'Cisco CCST Cybersecurity', img: `${CERT_BASE}/ccst.jpg`, date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초 역량.' },
-  { name: 'Microsoft SC-900', img: `${CERT_BASE}/sc900.jpg`, date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },
-  { name: 'TOEIC Speaking IH', img: `${CERT_BASE}/toeic.jpg`, date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 환경에서의 효과적인 영어 의사소통 능력 인증 (150점).' },
-  { name: '한국사능력검정 1급', img: `${CERT_BASE}/korean-history.jpg`, date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '한국사 심화 과정 인증. 인문학적 소양 및 역사적 사고력 함양.' },
+  { name: '정보보안기사', img: `${CERT_BASE}/cert-sec-engineer.jpg`, date: '2025.12.19 (최종 합격)', issuer: 'KISA', licenseId: '250A140****', desc: '정보보안 분야 최고 수준 국가기술자격.' },
+  { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/cert-hse.jpg`, date: '2025.12.22 (발급 예정)', issuer: '한국해킹보안협회', licenseId: '발급 대기 중', desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증.' },
+  { name: '리눅스마스터 2급', img: `${CERT_BASE}/cert-linux.jpg`, date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 능력 입증.' },
+  { name: '네트워크관리사 2급', img: `${CERT_BASE}/cert-network.jpg`, date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 실무.' },
+  { name: 'Cisco CCST Cybersecurity', img: `${CERT_BASE}/cert-ccst.jpg`, date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해 및 엔드포인트 보안.' },
+  { name: 'Microsoft SC-900', img: `${CERT_BASE}/cert-sc900.jpg`, date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드 보안, 컴플라이언스 기본 사항.' },
+  { name: 'TOEIC Speaking IH', img: `${CERT_BASE}/cert-toeic.jpg`, date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 영어 의사소통 능력 인증 (150점).' },
+  { name: '한국사능력검정 1급', img: `${CERT_BASE}/cert-korean-history.jpg`, date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '인문학적 소양 및 역사적 사고력 함양.' },
 ];
 
-// [Tech Arsenal: 컬러 복구]
+// [Tech Arsenal: 컬러 복구] 전체 hover 시 일괄 컬러 노출
 const techItems = [
   { icon: 'logos:linux-tux', name: 'Linux', color: '#FCC624' },
   { icon: 'logos:docker-icon', name: 'Docker', color: '#2496ED' },
@@ -140,23 +140,23 @@ const About = () => {
             </span>
         </div>
 
-        {/* 2. Technical Arsenal (컬러 복구) */}
+        {/* 2. Technical Arsenal (전체 컬러 변환) */}
         <div className="mb-24 w-full">
             <h3 className="text-3xl font-extrabold text-slate-900 mb-12 text-center flex items-center justify-center gap-4 font-heading">
                     <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-4xl" />
                     Technical Arsenal
             </h3>
             <div className="glass-panel rounded-[3rem] p-8 md:p-12 bg-white/70 shadow-xl border border-white/50 w-full overflow-hidden">
-                <div className="relative flex overflow-x-hidden py-4">
+                <div className="relative flex overflow-x-hidden py-4 group/track">
                     <div className="animate-marquee whitespace-nowrap flex gap-20 px-4" style={{ animationDuration: '80s' }}>
                         {techStack.map((tech, index) => (
-                            <div key={index} className="flex flex-col items-center gap-4 min-w-[100px] transition-all duration-300 group cursor-pointer">
+                            <div key={index} className="flex flex-col items-center gap-4 min-w-[100px] transition-all duration-300">
                                 <Icon 
                                     icon={tech.icon} 
-                                    className="text-6xl transition-all duration-300 transform group-hover:scale-110 drop-shadow-md filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100"
+                                    className="text-6xl transition-all duration-500 transform drop-shadow-md filter grayscale opacity-60 group-hover/track:grayscale-0 group-hover/track:opacity-100 group-hover/track:scale-110" 
                                     style={{ color: tech.color }}
                                 />
-                                <span className="text-xs font-bold text-slate-400 group-hover:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
+                                <span className="text-xs font-bold text-slate-400 group-hover/track:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
                             </div>
                         ))}
                     </div>
