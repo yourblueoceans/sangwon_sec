@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 절대 경로 고정 (변수/함수 사용 안 함)
+// [최종 경로] public/assets/projects 폴더 기준
 const IMG_BASE = '/sangwon_sec/assets/projects';
 
 const projectData = [
@@ -13,14 +13,15 @@ const projectData = [
     category: 'Cloud Security',
     image: `${IMG_BASE}/lockument/main.png`,
     docs: [
-      { name: '01 PII 구분 및 조사', url: `${IMG_BASE}/lockument/01 PII 구분_개인정보 유출사례 및 주요 PII 구분 조사.pdf` },
-      { name: '01-1 부록 NIST Guide', url: `${IMG_BASE}/lockument/01-1 부록_NIST Guide.pdf` },
-      { name: '02 DB 구축 보고서', url: `${IMG_BASE}/lockument/02_DB_구축_보고서.pdf` },
-      { name: '03 웹 GUI 구성 보고서', url: `${IMG_BASE}/lockument/03 웹_GUI_구성_보고서.pdf` },
-      { name: '03-1 GUI 경쟁사/사례 조사', url: `${IMG_BASE}/lockument/03-1 GUI_경쟁사 및 사례조사(수정).pdf` },
-      { name: '04 플랫폼 아키텍처 운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_A__플랫폼아키텍처운영.pdf` },
-      { name: '04 모듈별 상세 사양', url: `${IMG_BASE}/lockument/04_LDIP_보고서_B__모듈별_상세_사양.pdf` },
-      { name: '04 거버넌스/배포/운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_C__거버넌스배포운영(정책키프로필DevOps).pdf` },
+      { name: '발표 자료 (PPTX)', url: `${IMG_BASE}/lockument/lockument.pptx`, type: 'pptx' },
+      { name: '01 PII 구분 및 조사', url: `${IMG_BASE}/lockument/01 PII 구분_개인정보 유출사례 및 주요 PII 구분 조사.pdf`, type: 'pdf' },
+      { name: '01-1 부록 NIST Guide', url: `${IMG_BASE}/lockument/01-1 부록_NIST Guide.pdf`, type: 'pdf' },
+      { name: '02 DB 구축 보고서', url: `${IMG_BASE}/lockument/02_DB_구축_보고서.pdf`, type: 'pdf' },
+      { name: '03 웹 GUI 구성 보고서', url: `${IMG_BASE}/lockument/03 웹_GUI_구성_보고서.pdf`, type: 'pdf' },
+      { name: '03-1 GUI 경쟁사/사례 조사', url: `${IMG_BASE}/lockument/03-1 GUI_경쟁사 및 사례조사(수정).pdf`, type: 'pdf' },
+      { name: '04 플랫폼 아키텍처 운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_A__플랫폼아키텍처운영.pdf`, type: 'pdf' },
+      { name: '04 모듈별 상세 사양', url: `${IMG_BASE}/lockument/04_LDIP_보고서_B__모듈별_상세_사양.pdf`, type: 'pdf' },
+      { name: '04 거버넌스/배포/운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_C__거버넌스배포운영(정책키프로필DevOps).pdf`, type: 'pdf' }
     ],
     gallery: [
       `${IMG_BASE}/lockument/booth.jpg`,
@@ -31,7 +32,7 @@ const projectData = [
     tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
     videos: [
       { title: '발표 영상', id: '6LKEwD0NfBc' },
-      { title: '시연 영상', id: 'YOUR_DEMO_VIDEO_ID' }, // 두 번째 영상 ID를 실제 값으로 교체하세요
+      { title: '시연 영상', id: 'VIDEO_ID_HERE' } // 실제 ID 입력 필요
     ],
     period: '2025.08.18 - 2025.10.30',
     overview: '개인정보(PII) 유출 사고 방지를 위한 AWS 기반 자동 마스킹 및 암호화 웹 서비스입니다.',
@@ -45,11 +46,15 @@ const projectData = [
     subtitle: 'Defense in Depth: 3-Zone Network Architecture',
     category: 'Network Infrastructure',
     image: `${IMG_BASE}/droptheport/main.png`,
-    docs: [{ name: '프로젝트 요청서', url: `${IMG_BASE}/droptheport/requesting.pdf` }],
+    docs: [
+      { name: '발표 자료 (PPTX)', url: `${IMG_BASE}/droptheport/droptheport.pptx`, type: 'pptx' },
+      { name: '프로젝트 보고서', url: `${IMG_BASE}/droptheport/report.pdf`, type: 'pdf' },
+      { name: '프로젝트 요청서', url: `${IMG_BASE}/droptheport/requesting.pdf`, type: 'pdf' }
+    ],
     gallery: [
       `${IMG_BASE}/droptheport/eq1.jpg`,
       `${IMG_BASE}/droptheport/eq2.jpg`,
-      `${IMG_BASE}/droptheport/meeting.jpg`,
+      `${IMG_BASE}/droptheport/meeting.jpg`, 
     ],
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     videos: [],
@@ -64,13 +69,15 @@ const projectData = [
     title: 'Web Vulnerability Assessment',
     subtitle: 'Penetration Testing & Secure Coding Report',
     category: 'Offensive Security',
-    image: `${IMG_BASE}/webvuln/main.png`,
-    docs: [{ name: '취약점 진단 보고서', url: `${IMG_BASE}/webvuln/report.pdf` }],
+    image: `${IMG_BASE}/webvuln/main.jpg`,
+    docs: [
+      { name: '취약점 진단 보고서', url: `${IMG_BASE}/webvuln/report.pdf`, type: 'pdf' }
+    ],
     gallery: [
-      `${IMG_BASE}/webvuln/cover.jpg`,
-      `${IMG_BASE}/webvuln/sample.jpg`,
-      `${IMG_BASE}/webvuln/capture1.png`,
-      `${IMG_BASE}/webvuln/capture2.png`,
+      `${IMG_BASE}/webvuln/report cover.jpg`,
+      `${IMG_BASE}/webvuln/report sample.jpg`,
+      `${IMG_BASE}/webvuln/captured1.png`, 
+      `${IMG_BASE}/webvuln/captured2.png`,
     ],
     tags: ['OWASP Top 10', 'Burp Suite', 'Linux', 'Apache/PHP'],
     videos: [],
@@ -85,7 +92,7 @@ const projectData = [
 const Projects = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
-  const [viewImage, setViewImage] = useState(null); // Lightbox용 상태
+  const [viewImage, setViewImage] = useState(null);
 
   const selectedProject = projectData.find((p) => p.id === selectedId);
 
@@ -97,7 +104,6 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 md:py-32 bg-white relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header Section */}
         <div className="mb-24 text-center md:text-left">
           <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 font-heading section-title-underline inline-block leading-snug">
             Selected <span className="text-primary-600">Projects</span>
@@ -107,7 +113,6 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Project Grid */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
           {projectData.map((project) => (
             <motion.div
@@ -121,29 +126,34 @@ const Projects = () => {
                   src={project.image}
                   alt={project.title}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                  }}
+                  onError={(e) => { e.target.style.display = 'none'; }}
                 />
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 -z-10">
+                    <Icon icon="mdi:image-off-outline" className="text-3xl text-slate-300 mb-2" />
+                    <span className="text-xs text-slate-400 font-bold uppercase">Image Not Found</span>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
                 <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-xs font-extrabold text-primary-700 shadow-sm uppercase tracking-wider border border-white/50">
                   {project.category}
                 </div>
               </div>
 
               <div className="p-8">
-                <h3 className="text-2xl font-black text-slate-900 mb-3 leading-tight font-heading break-keep">{project.title}</h3>
-                <p className="text-base text-slate-600 mb-6 font-medium line-clamp-2 leading-relaxed break-keep">{project.subtitle}</p>
+                <h3 className="text-2xl font-black text-slate-900 mb-3 leading-tight font-heading break-keep">
+                  {project.title}
+                </h3>
+                <p className="text-base text-slate-600 mb-6 font-medium line-clamp-2 leading-relaxed break-keep">
+                  {project.subtitle}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="px-3 py-1.5 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg border border-slate-200">
+                    <span
+                      key={tag}
+                      className="px-3 py-1.5 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg border border-slate-200"
+                    >
                       {tag}
                     </span>
                   ))}
-                  {project.tags.length > 3 && (
-                    <span className="px-3 py-1.5 text-xs font-bold text-slate-400 bg-slate-50 rounded-lg">+{project.tags.length - 3}</span>
-                  )}
                 </div>
               </div>
             </motion.div>
@@ -151,11 +161,16 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedId && selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-md overflow-hidden">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedId(null)} className="absolute inset-0" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedId(null)}
+              className="absolute inset-0"
+            />
             <motion.div
               layoutId={selectedId}
               className="relative w-full max-w-6xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col my-auto border border-white/40 max-h-[85vh]"
@@ -163,8 +178,12 @@ const Projects = () => {
               {/* Modal Header */}
               <div className="bg-white border-b border-slate-100 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sticky top-0 z-10 shrink-0">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-1">{selectedProject.title}</h2>
-                  <p className="text-primary-600 font-bold text-sm md:text-base">{selectedProject.subtitle}</p>
+                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-1">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="text-primary-600 font-bold text-sm md:text-base">
+                    {selectedProject.subtitle}
+                  </p>
                 </div>
 
                 <div className="flex bg-slate-100 p-1.5 rounded-xl border border-slate-200 self-start md:self-center">
@@ -173,7 +192,9 @@ const Projects = () => {
                       key={tab}
                       onClick={() => setActiveTab(tab)}
                       className={`px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all capitalize ${
-                        activeTab === tab ? 'bg-white text-slate-900 shadow-sm border border-slate-100' : 'text-slate-500 hover:text-slate-900'
+                        activeTab === tab
+                          ? 'bg-white text-slate-900 shadow-sm border border-slate-100'
+                          : 'text-slate-500 hover:text-slate-900'
                       }`}
                     >
                       {tab === 'overview' ? 'Overview' : tab === 'docs' ? 'Documents' : 'Gallery'}
@@ -181,71 +202,87 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <button onClick={() => setSelectedId(null)} className="absolute top-6 right-6 p-2 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                <button
+                  onClick={() => setSelectedId(null)}
+                  className="absolute top-6 right-6 p-2 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+                >
                   <Icon icon="mdi:close" className="text-2xl" />
                 </button>
               </div>
 
-              {/* Modal Content (Scrollable) */}
+              {/* Modal Body */}
               <div className="p-6 md:p-10 overflow-y-auto flex-grow bg-[#FAFAFA]">
                 {activeTab === 'overview' && (
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 animate-fadeIn">
+                    
+                    {/* [Left Column] Media Section */}
                     <div className="space-y-8">
-                      {selectedProject.videos.length > 0 && (
-                        <div className="space-y-4">
-                          {selectedProject.videos.map((vid, idx) => (
-                            <div key={idx} className="space-y-2">
-                              <p className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                <Icon icon="mdi:youtube" className="text-red-600" /> {vid.title}
-                              </p>
-                              <div className="aspect-video rounded-2xl overflow-hidden bg-black shadow-lg relative">
-                                <iframe
-                                  src={`https://www.youtube.com/embed/${vid.id}`}
-                                  className="w-full h-full"
-                                  allowFullScreen
-                                  title={vid.title}
-                                />
-                              </div>
-                            </div>
-                          ))}
+                      {selectedProject.videos.length > 0 ? (
+                        <div className="space-y-6">
+                            {selectedProject.videos.map((vid, idx) => (
+                                <div key={idx} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                                    <p className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-3">
+                                        <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                                        {vid.title}
+                                    </p>
+                                    <div className="aspect-video rounded-xl overflow-hidden bg-black relative shadow-inner">
+                                        <iframe
+                                            src={`https://www.youtube.com/embed/${vid.id}`}
+                                            className="w-full h-full"
+                                            allowFullScreen
+                                            title={vid.title}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                      ) : (
+                        // 영상이 없으면 대표 이미지 표시
+                        <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+                            <img src={selectedProject.image} alt="Main" className="w-full h-auto object-cover" />
                         </div>
                       )}
-                      <div className="space-y-4">
-                        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                          <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2 text-sm uppercase tracking-wider">
-                            <Icon icon="mdi:alert-circle-outline" className="text-red-500 text-lg" /> Problem
-                          </h4>
-                          <p className="text-slate-600 text-sm leading-relaxed">{selectedProject.problem}</p>
-                        </div>
-                        <div className="bg-teal-50/50 p-6 rounded-2xl border border-teal-100 shadow-sm">
-                          <h4 className="font-bold text-teal-800 mb-2 flex items-center gap-2 text-sm uppercase tracking-wider">
-                            <Icon icon="mdi:check-circle-outline" className="text-teal-600 text-lg" /> Solution
-                          </h4>
-                          <p className="text-teal-700 text-sm leading-relaxed">{selectedProject.solution}</p>
-                        </div>
-                      </div>
                     </div>
 
+                    {/* [Right Column] Text & Specs Section */}
                     <div className="space-y-8">
-                      <div>
-                        <h3 className="text-lg font-extrabold text-slate-900 mb-4">Key Results</h3>
-                        <ul className="space-y-3">
-                          {selectedProject.results.map((res, i) => (
-                            <li key={i} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-primary-200 transition-colors">
-                              <Icon icon="mdi:trophy-variant-outline" className="text-yellow-500 text-xl shrink-0" />
-                              <span className="font-bold text-slate-700 text-sm">{res}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                        <div>
+                            <h4 className="font-bold text-slate-900 mb-2 flex items-center gap-2 text-sm uppercase tracking-wider">
+                                <Icon icon="mdi:alert-circle-outline" className="text-red-500 text-lg" /> Problem
+                            </h4>
+                            <p className="text-slate-600 text-sm leading-relaxed">{selectedProject.problem}</p>
+                        </div>
+                        <div className="w-full h-px bg-slate-100"></div>
+                        <div>
+                            <h4 className="font-bold text-teal-700 mb-2 flex items-center gap-2 text-sm uppercase tracking-wider">
+                                <Icon icon="mdi:check-circle-outline" className="text-teal-600 text-lg" /> Solution
+                            </h4>
+                            <p className="text-teal-800 text-sm leading-relaxed">{selectedProject.solution}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-extrabold text-slate-900 mb-4">Tech Stack</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedProject.tags.map((t) => (
-                            <span key={t} className="px-4 py-2 bg-white rounded-lg text-sm font-bold text-slate-600 border border-slate-200 shadow-sm">
-                              {t}
-                            </span>
-                          ))}
+
+                      <div className="grid grid-cols-1 gap-6">
+                        <div>
+                            <h3 className="text-lg font-extrabold text-slate-900 mb-4">Key Results</h3>
+                            <ul className="space-y-3">
+                                {selectedProject.results.map((res, i) => (
+                                    <li key={i} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                        <Icon icon="mdi:trophy-variant-outline" className="text-yellow-500 text-xl shrink-0" />
+                                        <span className="font-bold text-slate-700 text-sm">{res}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-extrabold text-slate-900 mb-4">Tech Stack</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {selectedProject.tags.map((t) => (
+                                    <span key={t} className="px-4 py-2 bg-white rounded-lg text-sm font-bold text-slate-600 border border-slate-200 shadow-sm">
+                                        {t}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -260,22 +297,30 @@ const Projects = () => {
                         href={doc.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-primary-400 hover:shadow-md transition-all group"
+                        className={`flex items-center gap-4 p-5 rounded-2xl bg-white border hover:shadow-md transition-all group ${
+                            doc.type === 'pptx' ? 'border-orange-100 hover:border-orange-300' : 'border-slate-200 hover:border-primary-400'
+                        }`}
                       >
-                        <div className="p-3 bg-red-50 text-red-500 rounded-xl group-hover:bg-red-500 group-hover:text-white transition-colors">
-                          <Icon icon="mdi:file-pdf-box" className="text-2xl" />
+                        <div className={`p-3 rounded-xl transition-colors ${
+                            doc.type === 'pptx' ? 'bg-orange-50 text-orange-500 group-hover:bg-orange-500 group-hover:text-white' : 'bg-red-50 text-red-500 group-hover:bg-red-500 group-hover:text-white'
+                        }`}>
+                          <Icon icon={doc.type === 'pptx' ? "mdi:microsoft-powerpoint" : "mdi:file-pdf-box"} className="text-2xl" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-bold text-slate-800 text-sm mb-0.5 truncate group-hover:text-primary-700">{doc.name}</p>
-                          <p className="text-xs text-slate-400">PDF Document</p>
+                          <p className="font-bold text-slate-800 text-sm mb-0.5 truncate group-hover:text-primary-700">
+                            {doc.name}
+                          </p>
+                          <p className="text-xs text-slate-400 uppercase">{doc.type} Document</p>
                         </div>
-                        <Icon icon="mdi:download" className="text-slate-300 group-hover:text-primary-500" />
+                        <Icon
+                          icon="mdi:download"
+                          className="text-slate-300 group-hover:text-primary-500"
+                        />
                       </a>
                     ))}
                   </div>
                 )}
 
-                {/* [갤러리 UI 개선] Grid + Lightbox */}
                 {activeTab === 'gallery' && (
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 animate-fadeIn">
                     {selectedProject.gallery?.map((img, idx) => (
@@ -289,19 +334,13 @@ const Projects = () => {
                           src={img}
                           alt="Gallery"
                           className="w-full h-full object-cover transition-all duration-500"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                          }}
+                          onError={(e) => { e.target.style.display = 'none'; }}
                         />
-                        {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                           <Icon icon="mdi:magnify-plus-outline" className="text-white text-3xl drop-shadow-md" />
                         </div>
                       </motion.div>
                     ))}
-                    {(!selectedProject.gallery || selectedProject.gallery.length === 0) && (
-                      <p className="col-span-full text-center text-slate-400 py-20">등록된 이미지가 없습니다.</p>
-                    )}
                   </div>
                 )}
               </div>
@@ -313,12 +352,15 @@ const Projects = () => {
       {/* Lightbox Modal */}
       <AnimatePresence>
         {viewImage && (
-          <div className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 cursor-zoom-out" onClick={() => setViewImage(null)}>
+          <div
+            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 cursor-zoom-out"
+            onClick={() => setViewImage(null)}
+          >
             <motion.img
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-                    src={viewImage}
+              src={viewImage}
               alt="Full View"
               className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10"
             />
