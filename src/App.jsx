@@ -1,87 +1,134 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Intro from './components/Intro';
-import Hero from './components/Hero';
-import About from './components/About';
+import Hero from './components/Hero'; // Profile
+import About from './components/About'; // History & Certs
 import Education from './components/Education';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import { Icon } from '@iconify/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// 복사 가능한 연락처 카드 컴포넌트
-const ContactCard = ({ icon, label, value, colorClass }) => {
+// 업그레이드된 Contact Card
+const ContactCard = ({ icon, label, value, type }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(value);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
     <motion.button
       onClick={handleCopy}
-      whileHover={{ y: -5, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className="relative flex flex-col items-center justify-center p-8 bg-white/5 border border-white/10 rounded-[2rem] w-full max-w-sm backdrop-blur-sm hover:bg-white/10 hover:border-primary-500/50 transition-all group overflow-hidden"
+      whileHover={{ y: -8, scale: 1.02 }}
+      whileTap={{ scale: 0.96 }}
+      className="group relative flex flex-col items-center justify-center w-full max-w-lg p-1 cursor-none"
     >
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${colorClass} transition-opacity duration-500`} />
+      <div className={`absolute inset-0 bg-gradient-to-r ${type === 'email' ? 'from-teal-500 via-cyan-400 to-teal-500' : 'from-blue-500 via-indigo-400 to-blue-500'} rounded-3xl opacity-20 blur-xl group-hover:opacity-60 transition-opacity duration-500 animate-pulse`} />
 
-      <div className={`mb-6 p-5 rounded-full bg-slate-800 border border-white/10 shadow-lg group-hover:scale-110 transition-transform duration-300 ${copied ? 'text-green-400' : 'text-slate-300'}`}>
-        <Icon icon={copied ? 'mdi:check-bold' : icon} className="text-3xl md:text-4xl" />
-      </div>
+      <div className="relative w-full h-full bg-[#0F172A]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-10 flex flex-col items-center overflow-hidden">
+        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shine" />
 
-      <div className="text-center z-10">
-        <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-2">{label}</p>
-        <p className="text-lg md:text-2xl font-black text-slate-200 group-hover:text-white transition-colors break-all">
-          {value}
-        </p>
-      </div>
-
-      <AnimatePresence>
-        {copied && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute bottom-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg"
-          >
-            Copied to Clipboard!
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {!copied && (
-        <div className="absolute bottom-4 opacity-0 group-hover:opacity-100 transition-opacity text-slate-500 text-xs font-medium flex items-center gap-1">
-          <Icon icon="mdi:content-copy" /> Click to Copy
+        <div className={`mb-6 p-6 rounded-full bg-white/5 border border-white/10 shadow-2xl relative transition-all duration-500 group-hover:bg-white/10 ${copied ? 'scale-110 border-green-500/50' : ''}`}>
+          <AnimatePresence mode="wait">
+            {copied ? (
+              <motion.div
+                key="check"
+                initial={{ scale: 0, rotate: -45 }}
+                animate={{ scale: 1, rotate: 0 }}
+                exit={{ scale: 0 }}
+              >
+                <Icon icon="mdi:check-bold" className="text-4xl text-green-400" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="icon"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+              >
+                <Icon icon={icon} className={`text-4xl ${type === 'email' ? 'text-teal-400' : 'text-blue-400'}`} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      )}
+
+        <div className="text-center z-10 w-full">
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.3em] mb-3">{label}</p>
+          <p className="text-lg sm:text-xl md:text-3xl font-black text-slate-200 group-hover:text-white transition-colors whitespace-nowrap font-heading tracking-tight">
+            {value}
+          </p>
+        </div>
+
+        <motion.div
+          className="mt-6 flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/5 text-xs font-medium text-slate-400 group-hover:text-white group-hover:bg-white/10 transition-colors"
+        >
+          <Icon icon={copied ? 'mdi:check-circle-outline' : 'mdi:content-copy'} />
+          <span>{copied ? '복사 완료!' : '클릭하여 복사하기'}</span>
+        </motion.div>
+      </div>
     </motion.button>
   );
 };
 
 const App = () => {
-  const cursorRef = useRef(null);
+  const cursorDotRef = useRef(null);
+  const cursorOutlineRef = useRef(null);
 
   useEffect(() => {
     const moveCursor = (e) => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      const { clientX: x, clientY: y } = e;
+
+      if (cursorDotRef.current) {
+        cursorDotRef.current.style.left = `${x}px`;
+        cursorDotRef.current.style.top = `${y}px`;
+      }
+
+      if (cursorOutlineRef.current) {
+        cursorOutlineRef.current.animate(
+          {
+            left: `${x}px`,
+            top: `${y}px`,
+          },
+          { duration: 500, fill: 'forwards' }
+        );
       }
     };
+
+    const handleMouseOver = (e) => {
+      const isClickable =
+        e.target.closest('a') ||
+        e.target.closest('button') ||
+        e.target.closest('input') ||
+        e.target.closest('.cursor-pointer');
+
+      if (isClickable) {
+        document.body.classList.add('hovering');
+      } else {
+        document.body.classList.remove('hovering');
+      }
+    };
+
     window.addEventListener('mousemove', moveCursor);
-    return () => window.removeEventListener('mousemove', moveCursor);
+    window.addEventListener('mouseover', handleMouseOver);
+
+    return () => {
+      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mouseover', handleMouseOver);
+      document.body.classList.remove('hovering');
+    };
   }, []);
 
   return (
-    <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-500 selection:text-white">
-      <div
-        ref={cursorRef}
-        className="fixed top-0 left-0 w-6 h-6 bg-white mix-blend-difference rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out hidden md:block"
-      />
+    <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-500 selection:text-white cursor-none">
+      {/* Dual Custom Cursor */}
+      <div ref={cursorDotRef} className="cursor-dot hidden md:block" />
+      <div ref={cursorOutlineRef} className="cursor-outline hidden md:block" />
 
       <Navbar />
+
       <main>
         <Intro />
         <Hero />
@@ -90,36 +137,30 @@ const App = () => {
         <Projects />
 
         {/* Contact Section */}
-        <section id="contact" className="py-32 bg-[#0B1120] relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-primary-900/20 rounded-full blur-[120px] pointer-events-none" />
+        <section
+          id="contact"
+          className="py-32 bg-[#050912] relative overflow-hidden flex flex-col items-center justify-center min-h-[80vh]"
+        >
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[600px] bg-primary-900/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5" />
 
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
-              <span className="text-primary-400 font-mono text-sm tracking-[0.3em] uppercase block mb-4 animate-pulse">
-                Ready to work together?
+          <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+            <div className="text-center mb-24">
+              <span className="inline-block py-1 px-3 rounded-full bg-primary-900/30 border border-primary-500/30 text-primary-400 font-mono text-xs tracking-[0.2em] uppercase mb-6 animate-fadeIn">
+                Open for Opportunities
               </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white font-heading leading-tight">
-                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-teal-200">Connect</span>
+              <h2 className="text-5xl md:text-7xl font-black text-white font-heading leading-tight tracking-tight mb-8">
+                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Connect.</span>
               </h2>
-              <p className="text-slate-400 mt-8 text-xl font-medium max-w-2xl mx-auto break-keep leading-relaxed">
-                지금은 단단한 기초를 다지는 단계지만,<br className="hidden md:block" />
-                함께 성장하며 내일의 가치를 만들어갈 준비가 되어있습니다.
+              <p className="text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto break-keep leading-relaxed">
+                보안 위협으로부터 비즈니스를 지키는 여정,<br className="hidden md:block" />
+                서상원이 든든한 파트너가 되어드리겠습니다.
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-              <ContactCard
-                icon="mdi:phone-outline"
-                label="Phone Number"
-                value="010-9465-0226"
-                colorClass="from-blue-500/20 to-transparent"
-              />
-              <ContactCard
-                icon="mdi:email-outline"
-                label="Email Address"
-                value="yourblueoceans@gmail.com"
-                colorClass="from-teal-500/20 to-transparent"
-              />
+            <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 w-full">
+              <ContactCard icon="mdi:phone-in-talk" label="Phone Number" value="010-9465-0226" type="phone" />
+              <ContactCard icon="mdi:email-check" label="Email Address" value="yourblueoceans@gmail.com" type="email" />
             </div>
           </div>
         </section>
