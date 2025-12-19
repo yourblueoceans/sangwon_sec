@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 
 const IMG_BASE = '/sangwon_sec/assets/projects';
 
-// [스마트 함수] 숫자만 입력하면 이미지 경로 배열을 자동 생성 (확장자 기본 png)
+// [스마트 함수] Lockument 처럼 규칙적인 경우만 사용
 const generateGallery = (projectId, count, ext = 'png') => {
   return Array.from({ length: count }, (_, i) => `${IMG_BASE}/${projectId}/${i + 1}.${ext}`);
 };
@@ -27,8 +27,8 @@ const projectData = [
       { name: '04 모듈별 상세 사양', url: `${IMG_BASE}/lockument/04_LDIP_보고서_B__모듈별_상세_사양.pdf`, type: 'pdf' },
       { name: '04 거버넌스/배포/운영', url: `${IMG_BASE}/lockument/04_LDIP_보고서_C__거버넌스배포운영(정책키프로필DevOps).pdf`, type: 'pdf' }
     ],
-    // [중요] 실제 폴더에 있는 사진 개수만큼 숫자를 적으세요 (예: 15장)
-    gallery: generateGallery('lockument', 15, 'png'), 
+    // [LOCKUMENT] 기존 규칙 유지 (1.png ~ 15.png)
+    gallery: generateGallery('lockument', 15, 'png'),
     tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
     videos: [
       { title: '발표 영상', id: '6LKEwD0NfBc' },
@@ -51,8 +51,25 @@ const projectData = [
       { name: '프로젝트 보고서', url: `${IMG_BASE}/droptheport/report.pdf`, type: 'pdf' },
       { name: '프로젝트 요청서', url: `${IMG_BASE}/droptheport/requesting.pdf`, type: 'pdf' }
     ],
-    // [중요] 사진 개수 수정 (예: 10장)
-    gallery: generateGallery('droptheport', 10, 'png'),
+    // Drop the Port: 혼합 확장자 수동 지정
+    gallery: [
+      `${IMG_BASE}/droptheport/L3internal.webp`,
+      `${IMG_BASE}/droptheport/rsyslog.webp`,
+      `${IMG_BASE}/droptheport/VLAN.webp`,
+      `${IMG_BASE}/droptheport/L2.webp`,
+      `${IMG_BASE}/droptheport/1.png`,
+      `${IMG_BASE}/droptheport/2.png`,
+      `${IMG_BASE}/droptheport/3.png`,
+      `${IMG_BASE}/droptheport/4.jpg`,
+      `${IMG_BASE}/droptheport/5.jpg`,
+      `${IMG_BASE}/droptheport/7.jpg`,
+      `${IMG_BASE}/droptheport/8.jpg`,
+      `${IMG_BASE}/droptheport/9.jpg`,
+      `${IMG_BASE}/droptheport/10.jpg`,
+      `${IMG_BASE}/droptheport/11.jpg`,
+      `${IMG_BASE}/droptheport/12.jpg`,
+      `${IMG_BASE}/droptheport/13.jpg`,
+    ],
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     videos: [],
     period: '2025.08.21 - 2025.11.03',
@@ -66,13 +83,19 @@ const projectData = [
     title: 'Web Vulnerability Assessment',
     subtitle: 'Penetration Testing & Secure Coding Report',
     category: 'Offensive Security',
-    // [중요] 여기도 main.png 로 통일
-    image: `${IMG_BASE}/webvuln/main.png`, 
+    // 썸네일: 0.jpg 사용 (필요 시 main.png로 교체)
+    image: `${IMG_BASE}/webvuln/0.jpg`,
     docs: [
       { name: '취약점 진단 보고서', url: `${IMG_BASE}/webvuln/report.pdf`, type: 'pdf' }
     ],
-    // [중요] 사진 개수 수정 (예: 10장)
-    gallery: generateGallery('webvuln', 10, 'png'),
+    // WebVuln: 0,1은 jpg / 2~4는 png (필요 시 추가)
+    gallery: [
+      `${IMG_BASE}/webvuln/0.jpg`,
+      `${IMG_BASE}/webvuln/1.jpg`,
+      `${IMG_BASE}/webvuln/2.png`,
+      `${IMG_BASE}/webvuln/3.png`,
+      `${IMG_BASE}/webvuln/4.png`,
+    ],
     tags: ['OWASP Top 10', 'Burp Suite', 'Linux', 'Apache/PHP'],
     videos: [],
     period: '2025.11.28 (보고서 기준)',
@@ -107,7 +130,6 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Project Cards Grid */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
           {projectData.map((project) => (
             <motion.div
@@ -125,7 +147,7 @@ const Projects = () => {
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 -z-10">
                     <Icon icon="mdi:image-off-outline" className="text-3xl text-slate-300 mb-2" />
-                    <span className="text-xs text-slate-400 font-bold uppercase">No Thumbnail</span>
+                    <span className="text-xs text-slate-400 font-bold uppercase">Check Filename</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                 <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-xs font-extrabold text-primary-700 shadow-sm uppercase tracking-wider border border-white/50">
@@ -156,7 +178,6 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Detail Modal (UI/UX Upgrade) */}
       <AnimatePresence>
         {selectedId && selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-xl overflow-hidden p-4 md:p-8">
@@ -171,7 +192,6 @@ const Projects = () => {
               layoutId={selectedId}
               className="relative w-full max-w-6xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col my-auto border border-white/40 max-h-[90vh]"
             >
-              {/* Modal Header */}
               <div className="bg-white/90 backdrop-blur-md border-b border-slate-100 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sticky top-0 z-10 shrink-0">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-1">
@@ -206,110 +226,104 @@ const Projects = () => {
                 </button>
               </div>
 
-              {/* Modal Content */}
               <div className="p-6 md:p-10 overflow-y-auto flex-grow bg-[#FAFAFA]">
                 {activeTab === 'overview' && (
                   <div className="flex flex-col gap-10 animate-fadeIn">
-                    
-                    {/* 1. Summary Cards (Problem & Solution) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-white p-8 rounded-3xl border border-red-100 shadow-sm relative overflow-hidden">
-                          <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-[4rem] -mr-4 -mt-4 z-0" />
-                          <h4 className="font-black text-slate-900 mb-4 flex items-center gap-2 text-lg relative z-10">
-                            <Icon icon="mdi:alert-decagram" className="text-red-500 text-2xl" /> Problem
-                          </h4>
-                          <p className="text-slate-600 text-base leading-relaxed relative z-10 font-medium break-keep">
-                            {selectedProject.problem}
-                          </p>
-                        </div>
-                        <div className="bg-white p-8 rounded-3xl border border-teal-100 shadow-sm relative overflow-hidden">
-                          <div className="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-[4rem] -mr-4 -mt-4 z-0" />
-                          <h4 className="font-black text-teal-800 mb-4 flex items-center gap-2 text-lg relative z-10">
-                            <Icon icon="mdi:checkbox-marked-circle" className="text-teal-500 text-2xl" /> Solution
-                          </h4>
-                          <p className="text-teal-900 text-base leading-relaxed relative z-10 font-medium break-keep">
-                            {selectedProject.solution}
-                          </p>
-                        </div>
+                      <div className="bg-white p-8 rounded-3xl border border-red-100 shadow-sm relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-[4rem] -mr-4 -mt-4 z-0" />
+                        <h4 className="font-black text-slate-900 mb-4 flex items-center gap-2 text-lg relative z-10">
+                          <Icon icon="mdi:alert-decagram" className="text-red-500 text-2xl" /> Problem
+                        </h4>
+                        <p className="text-slate-600 text-base leading-relaxed relative z-10 font-medium break-keep">
+                          {selectedProject.problem}
+                        </p>
+                      </div>
+                      <div className="bg-white p-8 rounded-3xl border border-teal-100 shadow-sm relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-[4rem] -mr-4 -mt-4 z-0" />
+                        <h4 className="font-black text-teal-800 mb-4 flex items-center gap-2 text-lg relative z-10">
+                          <Icon icon="mdi:checkbox-marked-circle" className="text-teal-500 text-2xl" /> Solution
+                        </h4>
+                        <p className="text-teal-900 text-base leading-relaxed relative z-10 font-medium break-keep">
+                          {selectedProject.solution}
+                        </p>
+                      </div>
                     </div>
 
                     <hr className="border-slate-200/60" />
 
-                    {/* 2. Media & Details */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        {/* Media */}
-                        <div className="space-y-6">
-                            <h3 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
-                                <Icon icon="mdi:youtube-tv" className="text-red-600 text-2xl"/> Demo & Presentation
-                            </h3>
-                            {selectedProject.videos.length > 0 ? (
-                                <div className="space-y-6">
-                                    {selectedProject.videos.map((vid, idx) => (
-                                        vid.id && (
-                                            <div key={idx} className="bg-white p-2 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                                                <div className="px-4 py-3 text-sm font-bold text-slate-700 flex items-center justify-between">
-                                                    <span>{vid.title}</span>
-                                                    <span className="flex h-2 w-2 relative">
-                                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                                                    </span>
-                                                </div>
-                                                <div className="aspect-video rounded-2xl overflow-hidden bg-slate-900 relative">
-                                                    <iframe
-                                                        src={`https://www.youtube.com/embed/${vid.id}`}
-                                                        className="w-full h-full"
-                                                        allowFullScreen
-                                                        title={vid.title}
-                                                    />
-                                                </div>
-                                            </div>
-                                        )
-                                    ))}
+                      <div className="space-y-6">
+                        <h3 className="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                          <Icon icon="mdi:youtube-tv" className="text-red-600 text-2xl" /> Demo & Presentation
+                        </h3>
+                        {selectedProject.videos.length > 0 ? (
+                          <div className="space-y-6">
+                            {selectedProject.videos.map((vid, idx) => (
+                              vid.id && (
+                                <div key={idx} className="bg-white p-2 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                                  <div className="px-4 py-3 text-sm font-bold text-slate-700 flex items-center justify-between">
+                                    <span>{vid.title}</span>
+                                    <span className="flex h-2 w-2 relative">
+                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                    </span>
+                                  </div>
+                                  <div className="aspect-video rounded-2xl overflow-hidden bg-slate-900 relative">
+                                    <iframe
+                                      src={`https://www.youtube.com/embed/${vid.id}`}
+                                      className="w-full h-full"
+                                      allowFullScreen
+                                      title={vid.title}
+                                    />
+                                  </div>
                                 </div>
-                            ) : (
-                                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
-                                    <img src={selectedProject.image} alt="Main" className="w-full h-auto object-cover" />
-                                </div>
-                            )}
-                        </div>
+                              )
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+                            <img src={selectedProject.image} alt="Main" className="w-full h-auto object-cover" />
+                          </div>
+                        )}
+                      </div>
 
-                        {/* Specs */}
-                        <div className="space-y-8">
-                            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-                                <h3 className="text-lg font-extrabold text-slate-900 mb-6 flex items-center gap-2">
-                                    <Icon icon="mdi:trophy-award" className="text-yellow-500 text-2xl"/> Key Results
-                                </h3>
-                                <ul className="space-y-4">
-                                    {selectedProject.results.map((res, i) => (
-                                        <li
-                                            key={i}
-                                            className="flex items-start gap-4 p-3 hover:bg-slate-50 rounded-xl transition-colors"
-                                        >
-                                            <div className="p-1 bg-primary-100 text-primary-600 rounded-full mt-0.5">
-                                                <Icon icon="mdi:check" className="text-sm" />
-                                            </div>
-                                            <span className="font-bold text-slate-700 text-sm leading-relaxed">{res}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-2 px-2">
-                                    <Icon icon="mdi:code-braces" className="text-slate-400 text-2xl"/> Tech Stack
-                                </h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {selectedProject.tags.map((t) => (
-                                        <span
-                                            key={t}
-                                            className="px-4 py-2 bg-white rounded-xl text-sm font-bold text-slate-600 border border-slate-200 shadow-sm hover:border-primary-300 hover:text-primary-600 transition-all cursor-default"
-                                        >
-                                            {t}
-                                        </span>
-                                    ))}
+                      <div className="space-y-8">
+                        <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                          <h3 className="text-lg font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+                            <Icon icon="mdi:trophy-award" className="text-yellow-500 text-2xl" /> Key Results
+                          </h3>
+                          <ul className="space-y-4">
+                            {selectedProject.results.map((res, i) => (
+                              <li
+                                key={i}
+                                className="flex items-start gap-4 p-3 hover:bg-slate-50 rounded-xl transition-colors"
+                              >
+                                <div className="p-1 bg-primary-100 text-primary-600 rounded-full mt-0.5">
+                                  <Icon icon="mdi:check" className="text-sm" />
                                 </div>
-                            </div>
+                                <span className="font-bold text-slate-700 text-sm leading-relaxed">{res}</span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
+                        
+                        <div>
+                          <h3 className="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-2 px-2">
+                            <Icon icon="mdi:code-braces" className="text-slate-400 text-2xl" /> Tech Stack
+                          </h3>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedProject.tags.map((t) => (
+                              <span
+                                key={t}
+                                className="px-4 py-2 bg-white rounded-xl text-sm font-bold text-slate-600 border border-slate-200 shadow-sm hover:border-primary-300 hover:text-primary-600 transition-all cursor-default"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -344,7 +358,7 @@ const Projects = () => {
                   </div>
                 )}
 
-                {/* [Gallery UI Improved: Masonry-like Grid] */}
+                {/* Gallery: Masonry-like */}
                 {activeTab === 'gallery' && (
                   <div className="columns-1 md:columns-2 gap-6 space-y-6 animate-fadeIn p-2">
                     {selectedProject.gallery?.map((img, idx) => (
@@ -360,7 +374,7 @@ const Projects = () => {
                           className="w-full h-auto object-cover transition-all duration-700 group-hover:brightness-110"
                           onError={(e) => { 
                               e.target.style.display = 'none'; 
-                              e.target.parentElement.style.display = 'none'; // 이미지가 없으면 박스 자체를 숨김
+                              e.target.parentElement.style.display = 'none';
                           }}
                         />
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
@@ -383,7 +397,6 @@ const Projects = () => {
         )}
       </AnimatePresence>
 
-      {/* Lightbox Modal */}
       <AnimatePresence>
         {viewImage && (
           <div
