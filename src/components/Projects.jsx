@@ -13,7 +13,7 @@ const projectData = [
     subtitle: 'SecureDoc Cloud: AWS PII Masking Platform',
     category: 'Cloud Security',
     // 경로 앞에 BASE_PATH를 붙이지 않고 상대 경로만 적습니다. (아래 컴포넌트에서 합침)
-    image: 'assets/projects/lockument/lockument.png',
+    image: 'assets/projects/lockument/main.png',
     docs: [
       { name: '최종 완료 보고서', url: 'assets/projects/lockument/report.pdf' },
       { name: 'DB 구축 보고서', url: 'assets/projects/lockument/db_report.pdf' },

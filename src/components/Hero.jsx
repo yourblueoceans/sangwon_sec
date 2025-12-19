@@ -35,7 +35,8 @@ const Hero = () => {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-[1.6] break-keep font-heading">
+            {/* 가독성 개선: leading-relaxed 적용, 여백 추가 */}
+            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-relaxed break-keep font-heading mb-6">
               다양한 현장의 경험을<br />
               <span className="relative inline-block">
                 <span className="absolute inset-x-0 bottom-2 h-4 bg-primary-200/50 -z-10"></span>

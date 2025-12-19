@@ -6,11 +6,11 @@ import { Icon } from '@iconify/react';
 const BASE_PATH = import.meta.env.BASE_URL;
 const getPath = (path) => `${BASE_PATH}${path.startsWith('/') ? path.slice(1) : path}`;
 
-// [자격증 데이터: cert- 접두사 통일]
+// [자격증 데이터]
 const certifications = [
   { 
     name: '정보보안기사', 
-    img: 'assets/certs/cert-sec-engineer.jpg', 
+    img: 'assets/certs/sec-engineer.jpg', 
     date: '2025.12.19 (최종 합격)', 
     issuer: 'KISA', 
     licenseId: '250A140****', 
@@ -18,32 +18,33 @@ const certifications = [
   },
   { 
     name: 'HSE 3급 (해킹보안전문가)', 
-    img: 'assets/certs/cert-hse.jpg', 
+    img: 'assets/certs/hse.jpg', 
     date: '2025.12.22 (발급 예정)', 
     issuer: '한국해킹보안협회', 
     licenseId: '발급 대기 중', 
     desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증 (합격 확인).' 
   },
-  { name: '리눅스마스터 2급', img: 'assets/certs/cert-linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
-  { name: '네트워크관리사 2급', img: 'assets/certs/cert-network.jpg', date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
-  { name: 'Cisco CCST Cybersecurity', img: 'assets/certs/cert-ccst.jpg', date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초 역량.' },
-  { name: 'Microsoft SC-900', img: 'assets/certs/cert-sc900.jpg', date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },
-  { name: 'TOEIC Speaking IH', img: 'assets/certs/cert-toeic.jpg', date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 환경에서의 효과적인 영어 의사소통 능력 인증 (150점).' },
-  { name: '한국사능력검정 1급', img: 'assets/certs/cert-korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '한국사 심화 과정 인증. 인문학적 소양 및 역사적 사고력 함양.' },
+  { name: '리눅스마스터 2급', img: 'assets/certs/linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
+  { name: '네트워크관리사 2급', img: 'assets/certs/network.jpg', date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
+  { name: 'Cisco CCST Cybersecurity', img: 'assets/certs/ccst.jpg', date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해 및 네트워크 엔드포인트 보안 기초 역량.' },
+  { name: 'Microsoft SC-900', img: 'assets/certs/sc900.jpg', date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드(Azure) 보안, 컴플라이언스 및 ID 기본 사항 이해.' },
+  { name: 'TOEIC Speaking IH', img: 'assets/certs/toeic.jpg', date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 환경에서의 효과적인 영어 의사소통 능력 인증 (150점).' },
+  { name: '한국사능력검정 1급', img: 'assets/certs/korean-history.jpg', date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '한국사 심화 과정 인증. 인문학적 소양 및 역사적 사고력 함양.' },
 ];
 
+// [Tech Arsenal: 컬러 복구]
 const techItems = [
-  { icon: 'logos:linux-tux', name: 'Linux' },
-  { icon: 'logos:docker-icon', name: 'Docker' },
-  { icon: 'logos:aws', name: 'AWS' },
-  { icon: 'logos:python', name: 'Python' },
-  { icon: 'logos:react', name: 'React' },
-  { icon: 'logos:nginx', name: 'Nginx' },
+  { icon: 'logos:linux-tux', name: 'Linux', color: '' },
+  { icon: 'logos:docker-icon', name: 'Docker', color: '' },
+  { icon: 'logos:aws', name: 'AWS', color: '' },
+  { icon: 'logos:python', name: 'Python', color: '' },
+  { icon: 'logos:react', name: 'React', color: '' },
+  { icon: 'logos:nginx', name: 'Nginx', color: '' },
   { icon: 'simple-icons:cisco', name: 'Cisco', color: '#1BA0D7' },
   { icon: 'simple-icons:wireshark', name: 'Wireshark', color: '#1679A7' },
-  { icon: 'devicon:flask', name: 'Flask' },
-  { icon: 'logos:git-icon', name: 'Git' },
-  { icon: 'logos:mysql', name: 'MySQL' },
+  { icon: 'devicon:flask', name: 'Flask', color: '' },
+  { icon: 'logos:git-icon', name: 'Git', color: '' },
+  { icon: 'logos:mysql', name: 'MySQL', color: '' },
 ];
 const techStack = [...techItems, ...techItems, ...techItems, ...techItems];
 
@@ -110,7 +111,7 @@ const About = () => {
           </h2>
         </div>
         
-        {/* 1. History */}
+        {/* 1. History (가독성 개선: break-keep 적용) */}
         <div className="relative mb-32">
             <div className="hidden md:block timeline-line"></div>
             <div className="space-y-12 md:space-y-0">
@@ -156,7 +157,7 @@ const About = () => {
             </span>
         </div>
 
-        {/* 2. Technical Arsenal */}
+        {/* 2. Technical Arsenal (컬러 복구) */}
         <div className="mb-24 w-full">
             <h3 className="text-3xl font-extrabold text-slate-900 mb-12 text-center flex items-center justify-center gap-4 font-heading">
                     <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-4xl" />
@@ -166,11 +167,11 @@ const About = () => {
                 <div className="relative flex overflow-x-hidden py-4">
                     <div className="animate-marquee whitespace-nowrap flex gap-20 px-4" style={{ animationDuration: '80s' }}>
                         {techStack.map((tech, index) => (
-                            <div key={index} className="flex flex-col items-center gap-4 min-w-[100px] transition-all duration-300 group">
-                                <Icon 
-                                    icon={tech.icon} 
-                                    className="text-6xl filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110 drop-shadow-md" 
-                                    color={tech.color} 
+                            <div key={index} className="flex flex-col items-center gap-4 min-w-[100px] transition-all duration-300 group cursor-pointer">
+                                <Icon
+                                    icon={tech.icon}
+                                    className="text-6xl filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110 drop-shadow-md"
+                                    color={tech.color}
                                 />
                                 <span className="text-xs font-bold text-slate-400 group-hover:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
                             </div>
@@ -180,7 +181,7 @@ const About = () => {
             </div>
         </div>
 
-        {/* 3. Certifications */}
+        {/* 3. Certifications (글자 크기 확대) */}
         <div>
             <h3 className="text-3xl font-extrabold text-slate-900 mb-10 text-center flex items-center justify-center gap-4 font-heading">
                 <Icon icon="mdi:license" className="text-primary-600 text-4xl" /> Certifications
@@ -205,7 +206,7 @@ const About = () => {
                                 <span className="text-[10px] mt-2">이미지 준비중</span>
                             </div>
                             
-                            <p className="text-sm font-black text-slate-900 truncate w-full mb-1">{cert.name}</p>
+                            <p className="text-lg font-black text-slate-900 truncate w-full mb-1">{cert.name}</p>
                             <p className="text-xs font-bold text-primary-600 uppercase tracking-wider mb-2">{cert.issuer}</p>
                             
                             {cert.licenseId && (
@@ -217,8 +218,8 @@ const About = () => {
                         </div>
 
                         <div className="absolute inset-0 bg-[#0F172A]/95 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-20">
-                            <p className="text-white font-bold text-base mb-2 break-keep">{cert.name}</p>
-                            <p className="text-teal-400 text-xs font-bold uppercase mb-4 tracking-wider">{cert.issuer}</p>
+                            <p className="text-white font-bold text-lg mb-2 break-keep">{cert.name}</p>
+                            <p className="text-teal-400 text-sm font-bold uppercase mb-4 tracking-wider">{cert.issuer}</p>
                             <div className="w-8 h-0.5 bg-teal-500/50 mb-4"></div>
                             <p className="text-slate-300 text-sm leading-relaxed break-keep font-medium line-clamp-5">
                                 {cert.desc}
