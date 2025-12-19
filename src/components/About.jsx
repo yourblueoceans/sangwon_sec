@@ -17,8 +17,8 @@ const certifications = [
     img: '/assets/certs/cert-hse.jpg',
     date: '2025.12.22 (발급 예정)',
     issuer: '한국해킹보안협회',
-    licenseId: 'HSE-25-****',
-    desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증.'
+    licenseId: '자격번호 발급 대기',
+    desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증 (합격 확인).'
   },
   { name: '리눅스마스터 2급', img: '/assets/certs/cert-linux.jpg', date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-25-****', desc: 'Linux 시스템 설치, 운영, 관리 및 트러블슈팅 능력 입증.' },
   { name: '네트워크관리사 2급', img: '/assets/certs/cert-network.jpg', date: '2025.04', issuer: 'ICQA', licenseId: 'NW-25-****', desc: '네트워크 전송매체, 토폴로지 기술 및 엔지니어링 기초 실무.' },
@@ -99,10 +99,13 @@ const About = () => {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-100/30 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="mb-24 text-center md:text-left">
-          <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-snug break-keep section-title-underline inline-block">
-            성장을 향한 <span className="text-primary-600">증명</span>
+        <div className="mb-24 text-center">
+          <h2 className="text-4xl lg:text-6xl font-black tracking-tight text-slate-900 mb-6 font-heading leading-tight break-keep section-title-underline inline-block">
+            성장을 향한 <span className="text-primary-600">여정</span>
           </h2>
+          <p className="text-slate-600 text-lg md:text-xl mt-4 font-medium break-keep">
+            다양한 비즈니스 현장에서 쌓은 경험은, <br className="md:hidden"/>보안 엔지니어로서의 단단한 기반이 되었습니다.
+          </p>
         </div>
 
         {/* History: S-Shape Timeline */}
@@ -138,6 +141,14 @@ const About = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Divider */}
+        <div className="relative flex items-center justify-center py-16 md:py-24">
+          <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-full max-w-3xl absolute"></div>
+          <span className="relative z-10 bg-[#F8FAFC] px-6 text-slate-400 font-mono text-sm uppercase tracking-widest">
+            Technical Expertise & Credentials
+          </span>
         </div>
 
         {/* Technical Arsenal */}

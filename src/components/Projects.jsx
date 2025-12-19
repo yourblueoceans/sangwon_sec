@@ -2,19 +2,26 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
-// 프로젝트 데이터 (경로: public/assets/projects/...)
+// 프로젝트 데이터 (public/assets/projects/ 경로 매핑)
 const projectData = [
   {
     id: 'lockument',
     title: 'LOCKUMENT',
     subtitle: 'SecureDoc Cloud: AWS PII Masking Platform',
     category: 'Cloud Security',
-    image: '/assets/projects/lockument/main.png',
+    image: '/assets/projects/lockument/lockument.png',
     docs: [
-      { name: '최종 완료 보고서', url: '/assets/projects/lockument/report.pdf' },
-      { name: 'DB 구축 보고서', url: '/assets/projects/lockument/db_report.pdf' },
+      { name: '01 PII 구분 및 조사', url: '/assets/projects/lockument/01 PII 구분_개인정보 유출사례 및 주요 PII 구분 조사.pdf' },
+      { name: '02 DB 구축 보고서', url: '/assets/projects/lockument/02_DB_구축_보고서.pdf' },
+      { name: '03 웹 GUI 구성 보고서', url: '/assets/projects/lockument/03 웹_GUI_구성_보고서.pdf' },
+      { name: '04 플랫폼 아키텍처 운영', url: '/assets/projects/lockument/04_LDIP_보고서_A_플랫폼아키텍처운영.pdf' },
     ],
-    gallery: ['/assets/projects/lockument/gallery1.png', '/assets/projects/lockument/gallery2.png'],
+    gallery: [
+      '/assets/projects/lockument/booth.jpg',
+      '/assets/projects/lockument/audit.png',
+      '/assets/projects/lockument/main.png',
+      '/assets/projects/lockument/mobile_main.png',
+    ],
     tags: ['AWS KMS', 'Python Flask', 'Docker', 'React', 'OCR'],
     videos: [{ title: '발표 영상', id: '6LKEwD0NfBc' }],
     period: '2025.08.18 - 2025.10.30',
@@ -28,9 +35,14 @@ const projectData = [
     title: 'Drop the Port!',
     subtitle: 'Defense in Depth: 3-Zone Network Architecture',
     category: 'Network Infrastructure',
-    image: '/assets/projects/droptheport/main.png',
-    docs: [{ name: '프로젝트 보고서', url: '/assets/projects/droptheport/report.pdf' }],
-    gallery: ['/assets/projects/droptheport/eq1.jpg', '/assets/projects/droptheport/eq2.jpg'],
+    image: '/assets/projects/droptheport/LOGO.png',
+    docs: [{ name: '프로젝트 요청서', url: '/assets/projects/droptheport/requesting.pdf' }],
+    gallery: [
+      '/assets/projects/droptheport/main.jpg',
+      '/assets/projects/droptheport/eq1.jpg',
+      '/assets/projects/droptheport/eq2.jpg',
+      '/assets/projects/droptheport/meeting (1).jpg',
+    ],
     tags: ['Cisco L3/L2', 'Firewall', 'ELK Stack', 'VPN'],
     videos: [],
     period: '2025.08.21 - 2025.11.03',
@@ -44,15 +56,20 @@ const projectData = [
     title: 'Web Vulnerability Assessment',
     subtitle: 'Penetration Testing & Secure Coding Report',
     category: 'Offensive Security',
-    image: '/assets/projects/webvuln/main.jpg',
-    docs: [{ name: '취약점 진단 보고서', url: '/assets/projects/webvuln/report.pdf' }],
-    gallery: ['/assets/projects/webvuln/captured1.png', '/assets/projects/webvuln/captured2.png'],
+    image: '/assets/projects/webvuln/report cover.jpg',
+    docs: [{ name: '취약점 진단 결과 보고서', url: '/assets/projects/webvuln/report.pdf' }],
+    gallery: [
+      '/assets/projects/webvuln/main.jpg',
+      '/assets/projects/webvuln/captured (1).png',
+      '/assets/projects/webvuln/captured (2).png',
+      '/assets/projects/webvuln/sqlmap_--current-db.png',
+    ],
     tags: ['OWASP Top 10', 'Burp Suite', 'Linux', 'Apache/PHP'],
     videos: [],
     period: '2025.11.28 (보고서 기준)',
     overview: '주요정보통신기반시설 기술적 취약점 가이드를 기준으로 수행한 웹 애플리케이션 모의해킹.',
     problem: '레거시 웹(LAMP)에 존재하는 SQL Injection, XSS 등 주요 취약점 방치.',
-    solution: '공격자 관점 모의해킹 및 시큐어 코딩/서버 설정 강화 조치.',
+    solution: '공격자 관점 모의해킹(Pentest) 및 시큐어 코딩/서버 설정 강화 조치.',
     results: ['High Risk 취약점 100% 조치', '관리자 페이지 접근 통제', '시큐어 코딩 가이드'],
   },
 ];
