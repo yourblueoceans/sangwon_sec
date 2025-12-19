@@ -8,9 +8,13 @@ const fadeInUp = {
 };
 
 const Footer = () => {
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    alert(`클립보드에 복사되었습니다: ${text}`);
+  };
+
   return (
     <footer className="relative isolate mt-0 overflow-hidden bg-[#050912] border-t border-slate-800">
-      {/* 배경 영상 경로 수정 (/sangwon_sec 추가) */}
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-20"
         src="/sangwon_sec/assets/profile/hero-profile.mp4"
@@ -36,24 +40,50 @@ const Footer = () => {
             Let's build a safer cloud together.
           </h3>
           <p className="text-slate-400 max-w-lg mx-auto leading-relaxed">
-            비즈니스의 안정성을 최우선으로 생각하는 엔지니어, 서상원입니다.<br/>
-            언제든 편하게 연락주세요.
+            비즈니스의 안정성을 최우선으로 생각하는 엔지니어, 서상원입니다.
           </p>
         </div>
 
-        <div className="flex items-center gap-6">
-          <a
-            href="mailto:yourblueoceans@gmail.com"
-            className="flex items-center gap-3 px-8 py-4 rounded-full bg-teal-600/20 border border-teal-500/50 text-teal-300 hover:bg-teal-500 hover:text-white transition-all shadow-[0_0_20px_rgba(45,212,191,0.2)] group"
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+          <div
+            className="group flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all cursor-pointer"
+            onClick={() => handleCopy('yourblueoceans@gmail.com')}
           >
-            <Icon icon="mdi:email-outline" className="text-2xl group-hover:animate-pulse" />
-            <span className="font-bold">yourblueoceans@gmail.com</span>
-          </a>
+            <div className="p-2 bg-teal-500/20 rounded-lg text-teal-400 group-hover:text-teal-300">
+              <Icon icon="mdi:email-outline" className="text-xl" />
+            </div>
+            <div className="text-left">
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Email</p>
+              <p className="text-sm md:text-base font-bold text-slate-200 group-hover:text-white transition-colors">
+                yourblueoceans@gmail.com
+              </p>
+            </div>
+            <Icon icon="mdi:content-copy" className="text-slate-500 group-hover:text-white ml-2" />
+          </div>
+
+          <div
+            className="group flex items-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all cursor-pointer"
+            onClick={() => handleCopy('010-9465-0226')}
+          >
+            <div className="p-2 bg-blue-500/20 rounded-lg text-blue-400 group-hover:text-blue-300">
+              <Icon icon="mdi:phone-outline" className="text-xl" />
+            </div>
+            <div className="text-left">
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Phone</p>
+              <p className="text-sm md:text-base font-bold text-slate-200 group-hover:text-white transition-colors">
+                010-9465-0226
+              </p>
+            </div>
+            <Icon icon="mdi:content-copy" className="text-slate-500 group-hover:text-white ml-2" />
+          </div>
+        </div>
+
+        <div className="flex gap-4 mt-4">
           <a
-            href="https://github.com"
+            href="https://github.com/yourblueoceans"
             target="_blank"
             rel="noreferrer"
-            className="p-4 rounded-full border border-white/10 bg-white/5 text-slate-400 transition hover:border-white/30 hover:text-white hover:bg-white/10"
+            className="p-3 rounded-full border border-white/10 bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="GitHub"
           >
             <Icon icon="mdi:github" className="text-2xl" />
@@ -61,9 +91,9 @@ const Footer = () => {
         </div>
 
         <div className="mt-10 pt-10 border-t border-white/10 w-full text-center">
-            <p className="text-xs text-slate-600 uppercase tracking-widest">
-                &copy; 2025 SANGWON SUH. All Rights Reserved.
-            </p>
+          <p className="text-xs text-slate-600 uppercase tracking-widest">
+            &copy; 2025 SANGWON SUH. All Rights Reserved.
+          </p>
         </div>
       </motion.div>
     </footer>
