@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Intro from './components/Intro';
-import Hero from './components/Hero'; // Profile
-import About from './components/About'; // History & Certs
+import Hero from './components/Hero';
+import About from './components/About';
 import Education from './components/Education';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import { Icon } from '@iconify/react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
 // 업그레이드된 Contact Card
 const ContactCard = ({ icon, label, value, type }) => {
@@ -77,32 +77,36 @@ const App = () => {
   const cursorDotRef = useRef(null);
   const cursorOutlineRef = useRef(null);
 
+  // Scroll Progress Indicator
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   useEffect(() => {
     const moveCursor = (e) => {
       const { clientX: x, clientY: y } = e;
-
       if (cursorDotRef.current) {
         cursorDotRef.current.style.left = `${x}px`;
         cursorDotRef.current.style.top = `${y}px`;
       }
-
       if (cursorOutlineRef.current) {
         cursorOutlineRef.current.animate(
-          {
-            left: `${x}px`,
-            top: `${y}px`,
-          },
-          { duration: 500, fill: 'forwards' }
+          { left: `${x}px`, top: `${y}px` },
+          { duration: 400, fill: 'forwards', easing: 'ease-out' }
         );
       }
     };
 
     const handleMouseOver = (e) => {
+      const target = e.target;
       const isClickable =
-        e.target.closest('a') ||
-        e.target.closest('button') ||
-        e.target.closest('input') ||
-        e.target.closest('.cursor-pointer');
+        target.closest('a') ||
+        target.closest('button') ||
+        target.closest('.cursor-pointer') ||
+        (target.tagName === 'IMG' && target.parentElement?.classList.contains('cursor-zoom-in'));
 
       if (isClickable) {
         document.body.classList.add('hovering');
@@ -123,6 +127,12 @@ const App = () => {
 
   return (
     <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-500 selection:text-white cursor-none">
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-blue-600 origin-left z-[100]"
+        style={{ scaleX }}
+      />
+
       {/* Dual Custom Cursor */}
       <div ref={cursorDotRef} className="cursor-dot hidden md:block" />
       <div ref={cursorOutlineRef} className="cursor-outline hidden md:block" />

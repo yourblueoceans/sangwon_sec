@@ -6,21 +6,22 @@ const BASE_PATH = import.meta.env.BASE_URL;
 const CERT_BASE = `${BASE_PATH}assets/certs`;
 
 const certifications = [
+  // 확장자 .png
   {
     name: '정보보안기사',
-    img: `${CERT_BASE}/cert-sec-engineer.jpg`,
+    img: `${CERT_BASE}/cert-sec-engineer.png`,
     date: '2025.12.19 (최종 합격)',
     issuer: 'KCA',
     licenseId: '250A140****',
-    desc: '정보보안 분야 최고 수준 국가기술자격.'
+    desc: '정보보안 분야 최고 수준 국가기술자격.',
   },
   {
     name: 'HSE 3급 (해킹보안전문가)',
-    img: `${CERT_BASE}/cert-hse.jpg`,
+    img: `${CERT_BASE}/cert-hse.png`,
     date: '2025.12.22',
     issuer: '한국해킹보안협회',
     licenseId: '발급 완료',
-    desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증.'
+    desc: '최신 해킹 기법 이해 및 침해사고 대응 기초 실무 능력 인증.',
   },
   { name: '리눅스마스터 2급', img: `${CERT_BASE}/cert-linux.jpg`, date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 능력 입증.' },
   { name: '네트워크관리사 2급', img: `${CERT_BASE}/cert-network.jpg`, date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 실무.' },
@@ -52,8 +53,24 @@ const experience = [
   { role: 'Pharmacy Clerk', company: 'Apotheco Pharmacy (USA)', period: '2022.03 - 2023.01', desc: '처방전 접수 및 전산 관리. 약품 재고 관리 및 배송 포장 업무 수행.' },
   { role: 'Manager (Tech Sales)', company: 'Computer Ahnex (LA)', period: '2021.01 - 2021.08', desc: 'PC 조립 및 수리, 보안 S/W 기술 영업. 고객 맞춤형 견적 상담 및 매장 관리.' },
   { role: '공동 사장', company: '하얀책상 4호점 (Cafe)', period: '2017.05 - 2018.03', desc: '매장 운영 총괄 및 마케팅 기획. 매출 관리 및 고객 서비스 품질 유지.' },
-  { role: 'Research Team Leader', company: 'LKSTC (Laos)', period: '2015.02 - 2016.09', desc: '현지 시장 조사 및 데이터 분석. 프로젝트 제안서 작성 및 현지 파트너 협업 조율.' }
+  { role: 'Research Team Leader', company: 'LKSTC (Laos)', period: '2015.02 - 2016.09', desc: '현지 시장 조사 및 데이터 분석. 프로젝트 제안서 작성 및 현지 파트너 협업 조율.' },
 ];
+
+// Stagger Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 50 } },
+};
 
 const About = () => {
   return (
@@ -68,10 +85,16 @@ const About = () => {
           </h2>
         </div>
 
-        {/* History */}
+        {/* History with stagger */}
         <div className="relative mb-32">
           <div className="hidden md:block timeline-line"></div>
-          <div className="space-y-12 md:space-y-0">
+          <motion.div
+            className="space-y-12 md:space-y-0"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-100px' }}
+          >
             {experience.map((exp, index) => (
               <div key={index} className={`flex flex-col md:flex-row items-center w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                 <div className="hidden md:block w-1/2" />
@@ -80,13 +103,9 @@ const About = () => {
                 </div>
                 <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}>
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-50px' }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    variants={itemVariants}
                     className="glass-panel bg-white p-6 md:p-8 rounded-3xl border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 relative group"
                   >
-                    <div className="md:hidden absolute left-[-10px] top-8 w-5 h-5 bg-white border-4 border-primary-500 rounded-full shadow-sm z-10"></div>
                     <span className="text-primary-600 text-[10px] md:text-xs font-bold font-mono uppercase tracking-wider mb-2 block">
                       {exp.period}
                     </span>
@@ -103,7 +122,7 @@ const About = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Separator */}
@@ -130,9 +149,7 @@ const About = () => {
                       className="text-6xl transition-all duration-500 transform drop-shadow-md filter grayscale opacity-60 group-hover/track:grayscale-0 group-hover/track:opacity-100 group-hover/track:scale-110"
                       style={{ color: tech.color }}
                     />
-                    <span className="text-xs font-bold text-slate-400 group-hover/track:text-slate-800 transition-colors uppercase tracking-wider">
-                      {tech.name}
-                    </span>
+                    <span className="text-xs font-bold text-slate-400 group-hover/track:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
                   </div>
                 ))}
               </div>
@@ -140,15 +157,22 @@ const About = () => {
           </div>
         </div>
 
-        {/* Certifications */}
+        {/* Certifications with stagger */}
         <div>
           <h3 className="text-3xl font-extrabold text-slate-900 mb-10 text-center flex items-center justify-center gap-4 font-heading">
             <Icon icon="mdi:license" className="text-primary-600 text-4xl" /> Certifications
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-50px' }}
+          >
             {certifications.map((cert, idx) => (
               <motion.div
                 key={idx}
+                variants={itemVariants}
                 whileHover={{ y: -5 }}
                 className="glass-panel cursor-pointer bg-white/80 p-5 rounded-[2rem] hover:border-primary-400 transition-all flex flex-col items-center text-center group relative overflow-hidden h-72 justify-between shadow-sm hover:shadow-lg"
               >
@@ -164,7 +188,7 @@ const About = () => {
                   />
                   <div className="hidden flex-col items-center justify-center text-slate-300">
                     <Icon icon="mdi:file-certificate-outline" className="text-5xl mb-2" />
-                    <span className="text-[10px] mt-2">이미지 준비중</span>
+                    <span className="text-[10px] mt-2 font-bold uppercase text-slate-400">이미지 없음</span>
                   </div>
 
                   <p className="text-lg font-black text-slate-900 truncate w-full mb-1">{cert.name}</p>
@@ -188,7 +212,7 @@ const About = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
