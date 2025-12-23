@@ -7,7 +7,7 @@ const CERT_BASE = `${BASE_PATH}assets/certs`;
 
 const certifications = [
   { name: '정보보안기사', img: `${CERT_BASE}/cert-sec-engineer.png`, date: '2025.12', issuer: 'KCA', licenseId: '250A140****', desc: '정보보안 분야 최고 수준 국가기술자격.' },
-  { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/cert-hse.png`, date: '2025.12', issuer: '한국해킹보안협회', licenseId: '발급 완료', desc: '최신 해킹 기법 이해 및 침해사고 대응.' },
+  { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/cert-hse.png`, date: '2025.12', issuer: '한국해킹보안협회', licenseId: 'HSE-2528-3****', desc: '최신 해킹 기법 이해 및 침해사고 대응.' },
   { name: '리눅스마스터 2급', img: `${CERT_BASE}/cert-linux.jpg`, date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 능력 입증.' },
   { name: '네트워크관리사 2급', img: `${CERT_BASE}/cert-network.jpg`, date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 실무.' },
   { name: 'Cisco CCST Cybersecurity', img: `${CERT_BASE}/cert-ccst.jpg`, date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해.' },
@@ -90,13 +90,13 @@ const About = () => {
                   </div>
                   <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}>
                     <div className="glass-panel bg-white p-6 md:p-8 rounded-3xl border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 relative group">
-                      <span className="text-primary-600 text-[10px] md:text-xs font-bold font-mono uppercase tracking-wider mb-2 block">
+                      <span className="text-primary-600 text-[10px] md:text-xs font-bold font-mono uppercase tracking-wider mb-2 block break-keep">
                         {exp.period}
                       </span>
                       <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-1 break-keep leading-tight">
                         {exp.company}
                       </h3>
-                      <p className="text-base md:text-lg font-bold text-teal-700 mb-3 flex items-center gap-2 md:justify-start justify-start">
+                      <p className="text-base md:text-lg font-bold text-teal-700 mb-3 flex items-center gap-2 md:justify-start justify-start break-keep">
                         <Icon icon="mdi:account-star-outline" /> {exp.role}
                       </p>
                       <p className="text-slate-600 text-sm md:text-base font-medium leading-relaxed break-keep">
@@ -111,26 +111,29 @@ const About = () => {
             <div className="md:hidden text-center pt-4">
               <button
                 onClick={() => setIsExpExpanded(!isExpExpanded)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200 transition-colors relative overflow-hidden group break-keep"
               >
-                {isExpExpanded ? '접기 (Show Less)' : '전체 경력 보기 (Show More)'}
-                <Icon icon="mdi:chevron-down" className={`transition-transform duration-300 ${isExpExpanded ? 'rotate-180' : ''}`} />
+                <div className="animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <span className="relative z-10 flex items-center gap-2">
+                  {isExpExpanded ? '접기 (Show Less)' : '전체 경력 보기 (Show More)'}
+                  <Icon icon="mdi:chevron-down" className={`transition-transform duration-300 ${isExpExpanded ? 'rotate-180' : ''}`} />
+                </span>
               </button>
             </div>
           </div>
         </div>
 
         {/* Separator */}
-        <div className="relative flex items-center justify-center py-12 md:py-24">
-          <div className="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent w-full max-w-3xl absolute"></div>
-          <span className="relative z-10 bg-[#F8FAFC] px-6 text-slate-400 font-mono text-xs md:text-sm uppercase tracking-widest text-center">
+        <div className="section-divider"></div>
+        <div className="text-center mb-12">
+          <span className="bg-[#F8FAFC] px-6 text-slate-400 font-mono text-xs md:text-sm uppercase tracking-widest relative -top-[44px] break-keep">
             Technical Expertise & Credentials
           </span>
         </div>
 
         {/* Tech Arsenal */}
         <div className="mb-20 md:mb-24 w-full">
-          <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-12 text-center flex items-center justify-center gap-2 font-heading">
+          <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-12 text-center flex items-center justify-center gap-2 font-heading break-keep">
             <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-3xl md:text-4xl" />
             Technical Arsenal
           </h3>
@@ -138,13 +141,18 @@ const About = () => {
             <div className="relative flex overflow-x-hidden py-2 md:py-4">
               <div className="animate-marquee whitespace-nowrap flex gap-12 md:gap-20 px-4" style={{ animationDuration: '80s' }}>
                 {techStack.map((tech, index) => (
-                  <div key={index} className="flex flex-col items-center gap-3 md:gap-4 min-w-[80px] md:min-w-[100px] transition-all duration-300">
+                  <div key={index} className="flex flex-col items-center gap-3 md:gap-4 min-w-[80px] md:min-w-[100px] transition-all duration-300 relative group/icon">
                     <Icon
                       icon={tech.icon}
                       className="text-4xl md:text-6xl transition-all duration-500 transform drop-shadow-md filter grayscale opacity-60 group-hover/track:grayscale-0 group-hover/track:opacity-100 group-hover/track:scale-110"
                       style={{ color: tech.color }}
                     />
-                    <span className="text-[10px] md:text-xs font-bold text-slate-400 group-hover/track:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
+                    <span className="text-[10px] md:text-xs font-bold text-slate-400 group-hover/track:text-slate-800 transition-colors uppercase tracking-wider break-keep">
+                      {tech.name}
+                    </span>
+                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover/icon:opacity-100 transition-opacity pointer-events-none whitespace-nowrap break-keep">
+                      {tech.name}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -154,7 +162,7 @@ const About = () => {
 
         {/* Certifications */}
         <div>
-          <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-10 text-center flex items-center justify-center gap-2 font-heading">
+          <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-10 text-center flex items-center justify-center gap-2 font-heading break-keep">
             <Icon icon="mdi:license" className="text-primary-600 text-3xl md:text-4xl" /> Certifications
           </h3>
 
@@ -172,7 +180,7 @@ const About = () => {
                 </div>
               ))}
             </motion.div>
-            <p className="text-center text-slate-400 text-xs mt-4 flex items-center justify-center gap-1 animate-pulse">
+            <p className="text-center text-slate-400 text-xs mt-4 flex items-center justify-center gap-1 animate-pulse break-keep">
               <Icon icon="mdi:gesture-swipe-horizontal" /> 옆으로 넘겨보세요
             </p>
           </motion.div>
@@ -199,15 +207,24 @@ const CertCard = ({ cert }) => (
         <span className="text-[10px] mt-2 font-bold uppercase text-slate-400">이미지 없음</span>
       </div>
 
-      <p className="text-lg font-black text-slate-900 truncate w-full mb-1">{cert.name}</p>
-      <p className="text-xs font-bold text-primary-600 uppercase tracking-wider mb-2">{cert.issuer}</p>
+      <p className="text-lg font-black text-slate-900 truncate w-full mb-1 break-keep">{cert.name}</p>
+      <p className="text-xs font-bold text-primary-600 uppercase tracking-wider mb-2 break-keep">{cert.issuer}</p>
 
       {cert.licenseId && (
-        <div className="bg-slate-100 text-slate-500 text-[10px] font-mono px-2 py-1 rounded-md border border-slate-200 flex items-center gap-1">
+        <div className="bg-slate-100 text-slate-500 text-[10px] font-mono px-2 py-1 rounded-md border border-slate-200 flex items-center gap-1 break-keep">
           <Icon icon="mdi:check-decagram" className="text-teal-500" />
           {cert.licenseId}
         </div>
       )}
+    </div>
+
+    <div className="absolute inset-0 bg-[#0F172A]/95 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-20">
+      <p className="text-white font-bold text-lg mb-2 break-keep">{cert.name}</p>
+      <p className="text-teal-400 text-sm font-bold uppercase mb-4 tracking-wider break-keep">{cert.issuer}</p>
+      <div className="w-8 h-0.5 bg-teal-500/50 mb-4"></div>
+      <p className="text-slate-300 text-sm leading-relaxed break-keep font-medium line-clamp-5">
+        {cert.desc}
+      </p>
     </div>
   </div>
 );
