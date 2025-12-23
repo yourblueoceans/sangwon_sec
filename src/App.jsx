@@ -9,7 +9,36 @@ import Footer from './components/Footer';
 import { Icon } from '@iconify/react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
-// 업그레이드된 Contact Card
+const BASE_PATH = import.meta.env.BASE_URL;
+const getPath = (path) => `${BASE_PATH}${path.startsWith('/') ? path.slice(1) : path}`;
+
+// Mobile Floating Action Bar
+const FloatingActionBar = () => {
+  return (
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 2, type: 'spring', stiffness: 260, damping: 20 }}
+      className="md:hidden fixed bottom-6 left-6 right-6 z-50 h-16 bg-[#0F172A]/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl flex items-center justify-evenly px-2"
+    >
+      <a href="tel:010-9465-0226" className="flex flex-col items-center gap-1 text-slate-300 hover:text-white p-2">
+        <Icon icon="mdi:phone" className="text-xl" />
+        <span className="text-[10px] font-bold">Call</span>
+      </a>
+      <div className="w-px h-8 bg-white/10" />
+      <a href="mailto:yourblueoceans@gmail.com" className="flex flex-col items-center gap-1 text-slate-300 hover:text-white p-2">
+        <Icon icon="mdi:email" className="text-xl" />
+        <span className="text-[10px] font-bold">Email</span>
+      </a>
+      <div className="w-px h-8 bg-white/10" />
+      <a href={getPath('assets/resume.pdf')} target="_blank" className="flex flex-col items-center gap-1 text-primary-400 hover:text-primary-300 p-2" rel="noreferrer">
+        <Icon icon="mdi:file-document" className="text-xl" />
+        <span className="text-[10px] font-bold">Resume</span>
+      </a>
+    </motion.div>
+  );
+};
+
 const ContactCard = ({ icon, label, value, type }) => {
   const [copied, setCopied] = useState(false);
 
@@ -24,7 +53,7 @@ const ContactCard = ({ icon, label, value, type }) => {
       onClick={handleCopy}
       whileHover={{ y: -8, scale: 1.02 }}
       whileTap={{ scale: 0.96 }}
-      className="group relative flex flex-col items-center justify-center w-full max-w-lg p-1 cursor-none"
+      className="group relative flex flex-col items-center justify-center w-full max-w-lg p-1 cursor-auto md:cursor-none"
     >
       <div className={`absolute inset-0 bg-gradient-to-r ${type === 'email' ? 'from-teal-500 via-cyan-400 to-teal-500' : 'from-blue-500 via-indigo-400 to-blue-500'} rounded-3xl opacity-20 blur-xl group-hover:opacity-60 transition-opacity duration-500 animate-pulse`} />
 
@@ -76,8 +105,6 @@ const ContactCard = ({ icon, label, value, type }) => {
 const App = () => {
   const cursorDotRef = useRef(null);
   const cursorOutlineRef = useRef(null);
-
-  // Scroll Progress Indicator
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -85,7 +112,10 @@ const App = () => {
     restDelta: 0.001,
   });
 
+  // 터치 디바이스에서는 커서 로직 비활성화
   useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
     const moveCursor = (e) => {
       const { clientX: x, clientY: y } = e;
       if (cursorDotRef.current) {
@@ -93,10 +123,7 @@ const App = () => {
         cursorDotRef.current.style.top = `${y}px`;
       }
       if (cursorOutlineRef.current) {
-        cursorOutlineRef.current.animate(
-          { left: `${x}px`, top: `${y}px` },
-          { duration: 400, fill: 'forwards', easing: 'ease-out' }
-        );
+        cursorOutlineRef.current.animate({ left: `${x}px`, top: `${y}px` }, { duration: 400, fill: 'forwards', easing: 'ease-out' });
       }
     };
 
@@ -126,14 +153,11 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-500 selection:text-white cursor-none">
+    <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-500 selection:text-white cursor-auto md:cursor-none">
       {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-blue-600 origin-left z-[100]"
-        style={{ scaleX }}
-      />
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-blue-600 origin-left z-[100]" style={{ scaleX }} />
 
-      {/* Dual Custom Cursor */}
+      {/* Dual Custom Cursor (PC only) */}
       <div ref={cursorDotRef} className="cursor-dot hidden md:block" />
       <div ref={cursorOutlineRef} className="cursor-outline hidden md:block" />
 
@@ -149,20 +173,20 @@ const App = () => {
         {/* Contact Section */}
         <section
           id="contact"
-          className="py-32 bg-[#050912] relative overflow-hidden flex flex-col items-center justify-center min-h-[80vh]"
+          className="py-24 md:py-32 bg-[#050912] relative overflow-hidden flex flex-col items-center justify-center min-h-[80vh] pb-32 md:pb-32"
         >
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[600px] bg-primary-900/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5" />
 
           <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-            <div className="text-center mb-24">
+            <div className="text-center mb-16 md:mb-24">
               <span className="inline-block py-1 px-3 rounded-full bg-primary-900/30 border border-primary-500/30 text-primary-400 font-mono text-xs tracking-[0.2em] uppercase mb-6 animate-fadeIn">
                 Open for Opportunities
               </span>
-              <h2 className="text-5xl md:text-7xl font-black text-white font-heading leading-tight tracking-tight mb-8">
+              <h2 className="text-4xl md:text-7xl font-black text-white font-heading leading-tight tracking-tight mb-8">
                 Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Connect.</span>
               </h2>
-              <p className="text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto break-keep leading-relaxed">
+              <p className="text-slate-400 text-base md:text-xl font-medium max-w-2xl mx-auto break-keep leading-relaxed">
                 보안 위협으로부터 비즈니스를 지키는 여정,<br className="hidden md:block" />
                 서상원이 든든한 파트너가 되어드리겠습니다.
               </p>
@@ -175,6 +199,9 @@ const App = () => {
           </div>
         </section>
       </main>
+
+      {/* Floating Action Bar (Mobile Only) */}
+      <FloatingActionBar />
 
       <Footer />
     </div>
