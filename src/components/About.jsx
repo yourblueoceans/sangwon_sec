@@ -5,16 +5,40 @@ import { Icon } from '@iconify/react';
 const BASE_PATH = import.meta.env.BASE_URL;
 const CERT_BASE = `${BASE_PATH}assets/certs`;
 
-// 3x3 전략적 배치 (중앙: 정보보안기사)
+// [전략적 배치] 3x3 그리드
 const certifications = [
   // Row 1: Infra Basics
   { name: '리눅스마스터 2급', img: `${CERT_BASE}/cert-linux.jpg`, date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 능력 입증.' },
   { name: '네트워크관리사 2급', img: `${CERT_BASE}/cert-network.jpg`, date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 실무.' },
   { name: 'Cisco CCST Cybersecurity', img: `${CERT_BASE}/cert-ccst.jpg`, date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해.' },
-  // Row 2: Core Security
-  { name: 'CPPG (개인정보관리사)', img: `${CERT_BASE}/cert-cppg.jpg`, date: '2025.08', issuer: 'CPO포럼', licenseId: 'G25-046-01-00532', desc: '개인정보보호 정책 수립 및 컴플라이언스 대응 능력.' },
-  { name: '정보보안기사', img: `${CERT_BASE}/cert-sec-engineer.jpg`, date: '2025.12', issuer: 'KCA', licenseId: '250A140****', desc: '정보보안 분야 최고 수준 국가기술자격.', isMain: true },
-  { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/cert-hse.jpg`, date: '2025.12', issuer: '한국해킹보안협회', licenseId: 'HSE-2528-3****', desc: '최신 해킹 기법 이해 및 침해사고 대응.' },
+  
+  // Row 2: Core Security (CPPG - InfoSec - HSE)
+  { 
+    name: 'CPPG (개인정보관리사)', 
+    img: `${CERT_BASE}/cert-cppg.jpg`,
+    date: '2025.08', 
+    issuer: 'CPO포럼', 
+    licenseId: 'G25-046-01-*****', 
+    desc: '개인정보보호 정책 수립 및 컴플라이언스 대응 능력.' 
+  },
+  { 
+    name: '정보보안기사', 
+    img: `${CERT_BASE}/cert-sec-engineer.jpg`,
+    date: '2025.12', 
+    issuer: 'KCA', 
+    licenseId: '250A140****', 
+    desc: '정보보안 분야 최고 수준 국가기술자격.',
+    isMain: true // 프리미엄 효과 타겟
+  },
+  { 
+    name: 'HSE 3급 (해킹보안전문가)', 
+    img: `${CERT_BASE}/cert-hse.jpg`,
+    date: '2025.12', 
+    issuer: '한국해킹보안협회', 
+    licenseId: 'HSE-2528-3****', 
+    desc: '최신 해킹 기법 이해 및 침해사고 대응.' 
+  },
+
   // Row 3: Cloud & Others
   { name: 'Microsoft SC-900', img: `${CERT_BASE}/cert-sc900.jpg`, date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드 보안, 컴플라이언스 기본.' },
   { name: 'TOEIC Speaking IH', img: `${CERT_BASE}/cert-toeic.jpg`, date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 영어 의사소통 능력 (150점).' },
@@ -165,20 +189,26 @@ const About = () => {
           </div>
         </div>
 
-        {/* Certifications */}
+        {/* Certifications - 3x3 Premium Grid */}
         <div>
           <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-10 text-center flex items-center justify-center gap-2 font-heading break-keep">
             <Icon icon="mdi:license" className="text-primary-600 text-3xl md:text-4xl" /> Certifications
           </h3>
-
-          <div className="hidden md:grid grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
+          
+          {/* Desktop: 3 Columns Grid */}
+          <div className="hidden md:grid grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto items-stretch">
             {certifications.map((cert, idx) => (
               <CertCard key={idx} cert={cert} />
             ))}
           </div>
 
+          {/* Mobile: Swipe Slider */}
           <motion.div ref={carouselRef} className="md:hidden overflow-hidden cursor-grab active:cursor-grabbing px-2 pb-10">
-            <motion.div drag="x" dragConstraints={{ right: 0, left: -width }} className="flex gap-4">
+            <motion.div 
+              drag="x" 
+              dragConstraints={{ right: 0, left: -width }} 
+              className="flex gap-4"
+            >
               {certifications.map((cert, idx) => (
                 <div key={idx} className="min-w-[280px] h-72">
                   <CertCard cert={cert} />
@@ -190,58 +220,75 @@ const About = () => {
             </p>
           </motion.div>
         </div>
+
       </div>
     </section>
   );
 };
 
+// [High-End] 프리미엄 카드 컴포넌트
 const CertCard = ({ cert }) => {
-  const isMain = !!cert.isMain;
+  const isMain = !!cert.isMain; 
 
   return (
-    <div
-      className={`glass-panel bg-white/80 p-5 rounded-[2rem] flex flex-col items-center text-center h-full justify-between relative overflow-hidden group transition-all duration-300
-        ${isMain ? 'border-2 border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.3)] scale-[1.02] z-10' : 'border border-slate-200 hover:border-primary-400 hover:shadow-xl shadow-lg'}`}
+    <motion.div
+      animate={
+        isMain
+          ? {
+              boxShadow: [
+                '0px 0px 0px rgba(251,191,36,0)',
+                '0px 0px 20px rgba(251,191,36,0.35)',
+                '0px 0px 0px rgba(251,191,36,0)',
+              ],
+              scale: [1.03, 1.04, 1.03],
+            }
+          : {}
+      }
+      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+      className={`
+        glass-panel bg-white/80 p-5 rounded-[2rem] flex flex-col items-center text-center h-full justify-between relative overflow-hidden group transition-all duration-300
+        ${isMain ? 'border-2 border-amber-300 z-10' : 'border border-slate-200 hover:border-primary-400 hover:shadow-xl'}
+      `}
     >
+      {/* Main Card Background Glow (은은한 후광) */}
+      {isMain && (
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50/60 via-transparent to-transparent pointer-events-none" />
+      )}
+
       {/* Main Badge */}
       {isMain && (
-        <div className="absolute top-0 right-0 bg-amber-400 text-white text-[10px] font-black px-3 py-1 rounded-bl-2xl z-20 shadow-sm uppercase tracking-widest">
-          Core Cert
+        <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-400 to-yellow-500 text-white text-[10px] font-black px-3 py-1 rounded-bl-2xl z-20 shadow-sm uppercase tracking-widest flex items-center gap-1">
+          <Icon icon="mdi:crown" /> Core Cert
         </div>
       )}
 
       <div className="flex-1 flex flex-col items-center justify-center w-full relative z-10">
-        <img
-          src={cert.img}
-          alt={cert.name}
+        <img 
+          src={cert.img} 
+          alt={cert.name} 
           className={`object-contain mb-4 drop-shadow-sm transition-transform duration-500 ${isMain ? 'h-24 group-hover:scale-110' : 'h-20 group-hover:scale-105'}`}
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'flex';
-          }}
+          onError={(e)=>{ e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
         />
+        {/* Fallback Icon */}
         <div className="hidden flex-col items-center justify-center text-slate-300">
           <Icon icon="mdi:file-certificate-outline" className="text-5xl mb-2" />
           <span className="text-[10px] mt-2 font-bold uppercase text-slate-400">이미지 없음</span>
         </div>
-
+        
         <p className={`font-black truncate w-full mb-1 break-keep ${isMain ? 'text-xl text-amber-600' : 'text-lg text-slate-900'}`}>
           {cert.name}
         </p>
         <p className="text-xs font-bold text-primary-600 uppercase tracking-wider mb-2 break-keep">{cert.issuer}</p>
-
+        
         {cert.licenseId && (
-          <div
-            className={`text-[10px] font-mono px-2 py-1 rounded-md border flex items-center gap-1 break-keep ${
-              isMain ? 'bg-amber-50 text-amber-600 border-amber-200' : 'bg-slate-100 text-slate-500 border-slate-200'
-            }`}
-          >
-            <Icon icon="mdi:check-decagram" className={isMain ? 'text-amber-500' : 'text-teal-500'} />
+          <div className={`text-[10px] font-mono px-2 py-1 rounded-md border flex items-center gap-1 break-keep ${isMain ? 'bg-amber-50 text-amber-600 border-amber-200 font-bold' : 'bg-slate-100 text-slate-500 border-slate-200'}`}>
+            <Icon icon="mdi:check-decagram" className={isMain ? "text-amber-500" : "text-teal-500"} />
             {cert.licenseId}
           </div>
         )}
       </div>
-
+      
+      {/* Hover Overlay */}
       <div className="absolute inset-0 bg-[#0F172A]/95 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-20">
         <p className={`font-bold text-lg mb-2 break-keep ${isMain ? 'text-amber-400' : 'text-white'}`}>{cert.name}</p>
         <p className="text-teal-400 text-sm font-bold uppercase mb-4 tracking-wider break-keep">{cert.issuer}</p>
@@ -250,7 +297,7 @@ const CertCard = ({ cert }) => {
           {cert.desc}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
