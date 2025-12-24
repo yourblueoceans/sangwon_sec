@@ -89,3 +89,24 @@ body.hovering .cursor-outline {
 }
 
 input, textarea { cursor: text; }
+
+/* [New] Premium Rotating Border Animation */
+@keyframes border-spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Property definition for smoother animation (Chromium browsers) */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animate-border-spin {
+  animation: border-spin 3s linear infinite;
+}
