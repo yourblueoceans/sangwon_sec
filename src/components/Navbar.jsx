@@ -71,7 +71,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#0F172A]/95 backdrop-blur-xl border-t border-white/10 p-8 flex flex-col gap-6 shadow-2xl h-screen">
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#0F172A]/95 backdrop-blur-xl border-t border-white/10 p-8 flex flex-col gap-6 shadow-2xl h-[100dvh]">
           {navLinks.map((link) => (
             <a
               key={link.name}

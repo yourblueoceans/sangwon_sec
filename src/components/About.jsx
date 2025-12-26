@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
@@ -71,15 +71,10 @@ const experience = [
 ];
 
 const About = () => {
-  const carouselRef = useRef();
-  const [width, setWidth] = useState(0);
   const [isExpExpanded, setIsExpExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (carouselRef.current) {
-      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-    }
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -201,22 +196,18 @@ const About = () => {
           </div>
 
           {/* Mobile: Snap Scroll Slider */}
-          <motion.div ref={carouselRef} className="md:hidden overflow-hidden cursor-grab active:cursor-grabbing px-2 pb-10">
-            <motion.div 
-              drag="x" 
-              dragConstraints={{ right: 0, left: -width }} 
-              className="flex gap-4 snap-x snap-mandatory"
-            >
-              {certifications.map((cert, idx) => (
-                <div key={idx} className="min-w-[280px] h-72 snap-center">
+          <div className="md:hidden overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 -mx-4 pb-8 scrollbar-hide">
+            {certifications.map((cert, idx) => (
+              <div key={idx} className="min-w-[75vw] snap-center">
+                <div className="h-72">
                   <CertCard cert={cert} />
                 </div>
-              ))}
-            </motion.div>
-            <p className="text-center text-slate-400 text-xs mt-4 flex items-center justify-center gap-1 animate-pulse">
-              <Icon icon="mdi:gesture-swipe-horizontal" /> 옆으로 넘겨보세요
-            </p>
-          </motion.div>
+              </div>
+            ))}
+          </div>
+          <p className="md:hidden text-center text-slate-400 text-xs mt-4 flex items-center justify-center gap-1 animate-pulse relative -top-2">
+            <Icon icon="mdi:gesture-swipe-horizontal" /> 옆으로 넘겨보세요
+          </p>
         </div>
 
       </div>

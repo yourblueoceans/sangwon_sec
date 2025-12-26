@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
@@ -104,14 +104,6 @@ const Projects = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
   const [viewImage, setViewImage] = useState(null);
-  const carouselRef = useRef();
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (carouselRef.current) {
-      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-    }
-  }, []);
 
   const selectedProject = projectData.find((p) => p.id === selectedId);
 
@@ -139,19 +131,17 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Mobile Slider */}
-        <motion.div ref={carouselRef} className="md:hidden overflow-hidden cursor-grab active:cursor-grabbing px-1 pb-10 -mx-4 px-4">
-          <motion.div drag="x" dragConstraints={{ right: 0, left: -width }} className="flex gap-6">
-            {projectData.map((project) => (
-              <div key={project.id} className="min-w-[300px]">
-                <ProjectCard project={project} onClick={() => openModal(project.id)} isMobile />
-              </div>
-            ))}
-          </motion.div>
-          <p className="text-center text-slate-400 text-xs mt-6 flex items-center justify-center gap-1 animate-pulse">
-            <Icon icon="mdi:gesture-swipe-horizontal" /> 옆으로 넘겨보세요
-          </p>
-        </motion.div>
+        {/* [Improved] Mobile Slider with CSS Snap */}
+        <div className="md:hidden overflow-x-auto snap-x snap-mandatory flex gap-6 px-4 -mx-4 pb-8 scrollbar-hide">
+          {projectData.map((project) => (
+            <div key={project.id} className="min-w-[85vw] snap-center">
+              <ProjectCard project={project} onClick={() => openModal(project.id)} isMobile />
+            </div>
+          ))}
+        </div>
+        <p className="md:hidden text-center text-slate-400 text-xs mt-6 flex items-center justify-center gap-1 animate-pulse">
+          <Icon icon="mdi:gesture-swipe-horizontal" /> 옆으로 넘겨보세요
+        </p>
       </div>
 
       {/* Responsive Modal */}
