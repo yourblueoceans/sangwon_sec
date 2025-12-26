@@ -57,16 +57,25 @@ const Education = () => {
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Icon icon={school.icon} className="text-9xl text-slate-400" />
               </div>
+
               <div className="relative z-10">
-                <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4 ${school.type.includes('Degree') ? 'bg-blue-50 text-blue-600' : 'bg-teal-50 text-teal-600'}`}>
-                  {school.type}
-                </span>
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${school.type.includes('Degree') ? 'bg-blue-50 text-blue-600' : 'bg-teal-50 text-teal-600'}`}>
+                    {school.type}
+                  </span>
+                  <div className="w-11 h-11 rounded-2xl bg-slate-100 flex items-center justify-center shadow-inner group-hover:bg-primary-50 transition-colors">
+                    <Icon icon={school.icon} className="text-2xl text-slate-400 group-hover:text-primary-500 transition-colors" />
+                  </div>
+                </div>
+
                 <h3 className="text-2xl font-black text-slate-900 mb-1 break-keep leading-tight">{school.name}</h3>
                 <p className="text-primary-600 font-bold text-sm mb-4 break-keep">{school.major}</p>
+
                 <div className="flex items-center gap-2 text-slate-400 text-xs font-mono mb-4 break-keep">
                   <Icon icon="mdi:calendar-clock" />
                   {school.period}
                 </div>
+
                 <hr className="border-slate-100 my-4" />
                 <p className="text-slate-600 text-sm font-medium leading-relaxed break-keep">
                   {school.desc}
