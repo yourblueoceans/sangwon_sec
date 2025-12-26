@@ -154,6 +154,9 @@ const App = () => {
 
   return (
     <div className="bg-bg-main min-h-screen text-slate-700 font-sans relative selection:bg-primary-500 selection:text-white cursor-auto md:cursor-none">
+      {/* [New] Global Noise Overlay */}
+      <div className="bg-noise"></div>
+
       {/* Scroll Progress Bar */}
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-blue-600 origin-left z-[100]" style={{ scaleX }} />
 

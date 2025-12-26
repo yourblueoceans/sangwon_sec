@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Icon } from '@iconify/react';
 
 const IMG_BASE = '/sangwon_sec/assets/projects';
@@ -144,7 +144,7 @@ const Projects = () => {
           <motion.div drag="x" dragConstraints={{ right: 0, left: -width }} className="flex gap-6">
             {projectData.map((project) => (
               <div key={project.id} className="min-w-[300px]">
-                <ProjectCard project={project} onClick={() => openModal(project.id)} />
+                <ProjectCard project={project} onClick={() => openModal(project.id)} isMobile />
               </div>
             ))}
           </motion.div>
@@ -323,30 +323,59 @@ const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project, onClick }) => (
-  <motion.div
-    layoutId={project.id}
-    onClick={onClick}
-    className="group cursor-pointer rounded-[2rem] bg-white border border-slate-200 overflow-hidden hover:border-primary-400 transition-all duration-500 hover:shadow-2xl h-full flex flex-col"
-  >
-    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 shrink-0">
-      <img src={project.image} alt={project.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" onError={(e) => { e.target.style.display = 'none'; }} />
-      <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-extrabold text-primary-700 uppercase tracking-wider border border-white/50">
-        {project.category}
+// 3D Tilt 카드
+const ProjectCard = ({ project, onClick, isMobile = false }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [5, -5]);
+  const rotateY = useTransform(x, [-100, 100], [-5, 5]);
+  const springConfig = { damping: 20, stiffness: 300 };
+  const rotateXSpring = useSpring(rotateX, springConfig);
+  const rotateYSpring = useSpring(rotateY, springConfig);
+
+  const handleMouseMove = (e) => {
+    if (isMobile) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+    x.set(xPct * 200);
+    y.set(yPct * 200);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      layoutId={project.id}
+      onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={!isMobile ? { rotateX: rotateXSpring, rotateY: rotateYSpring, transformStyle: 'preserve-3d' } : {}}
+      whileHover={!isMobile ? { scale: 1.02, z: 50 } : {}}
+      className="group cursor-pointer rounded-[2rem] bg-white border border-slate-200 overflow-hidden hover:border-primary-400 transition-shadow duration-500 hover:shadow-2xl h-full flex flex-col relative"
+    >
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 shrink-0 transform-gpu">
+        <img src={project.image} alt={project.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" onError={(e) => { e.target.style.display = 'none'; }} />
+        <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-extrabold text-primary-700 uppercase tracking-wider border border-white/50 z-10">
+          {project.category}
+        </div>
       </div>
-    </div>
-    <div className="p-6 md:p-8 flex flex-col flex-grow">
-      <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2 leading-tight font-heading">{project.title}</h3>
-      <p className="text-sm md:text-base text-slate-600 mb-4 font-medium line-clamp-2">{project.subtitle}</p>
-      <div className="flex flex-wrap gap-2 mt-auto">
-        {project.tags.slice(0, 3).map((tag) => (
-          <span key={tag} className="px-2.5 py-1 text-[10px] font-bold text-slate-600 bg-slate-100 rounded-lg border border-slate-200">
-            {tag}
-          </span>
-        ))}
+      <div className="p-6 md:p-8 flex flex-col flex-grow bg-white relative z-0">
+        <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2 leading-tight font-heading group-hover:text-primary-600 transition-colors">{project.title}</h3>
+        <p className="text-sm md:text-base text-slate-600 mb-4 font-medium line-clamp-2">{project.subtitle}</p>
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.tags.slice(0, 3).map((tag) => (
+            <span key={tag} className="px-2.5 py-1 text-[10px] font-bold text-slate-600 bg-slate-100 rounded-lg border border-slate-200">
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 export default Projects;
