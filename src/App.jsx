@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Intro from './components/Intro';
-// import Hero from './components/Hero';
-import Hero3D from './components/Hero3D';
+import Hero from './components/Hero';
+// import Hero3D from './components/Hero3D';
 import About from './components/About';
 import Education from './components/Education';
 import Projects from './components/Projects';
@@ -169,8 +169,7 @@ const App = () => {
 
       <main>
         <Intro />
-        {/* <Hero /> */}
-        <Hero3D />
+        <Hero />
         <About />
         <Education />
         <Projects />
