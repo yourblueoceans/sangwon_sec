@@ -1,70 +1,98 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+import { Icon } from '@iconify/react';
 
 const Intro = () => {
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0B1120] text-white">
-      {/* Cinematic Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80%] h-[60%] bg-teal-600/20 rounded-full blur-[180px] animate-pulse" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 brightness-100 contrast-150"></div>
+    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0B1120]">
+      
+      {/* 1. [Background] Spline 3D Scene */}
+      <div className="absolute inset-0 z-0">
+        <iframe 
+            src='https://my.spline.design/claritystream-55FEXkAZJ2jV9DAXsajMVbCY/' 
+            frameBorder='0' 
+            width='100%' 
+            height='100%'
+            title="3D Background"
+            className="w-full h-full object-cover scale-105 pointer-events-none"
+        ></iframe>
+        {/* 가독성을 위한 오버레이 */}
+        <div className="absolute inset-0 bg-[#0B1120]/60 backdrop-blur-[1px] z-10"></div>
       </div>
 
-      <div className="relative z-10 text-center px-4 w-full max-w-7xl">
+      {/* 2. [Content] Typography */}
+      <div className="relative z-20 text-center px-4 w-full max-w-7xl mt-[-5vh]">
+        
+        {/* Top Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 0.5 }}
-          className="mb-8 md:mb-12"
+          className="mb-8 md:mb-12 flex justify-center"
         >
-          <span className="text-teal-400/90 font-mono text-xs md:text-base tracking-[0.6em] uppercase border-b border-teal-500/20 pb-4 block w-fit mx-auto">
-            System & Cloud Protection
+          <span className="inline-flex items-center gap-2 text-teal-400/90 font-mono text-xs md:text-sm tracking-[0.4em] uppercase border border-teal-500/30 px-4 py-2 rounded-full bg-black/20 backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span>
+            PORTFOLIO
           </span>
         </motion.div>
 
-        {/* Typography */}
-        <div className="flex flex-col items-center justify-center font-black tracking-tighter leading-none">
-          <motion.h1
-            initial={{ opacity: 0, filter: 'blur(20px)' }}
-            animate={{ opacity: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 1.5, ease: 'easeOut' }}
-            className="text-6xl md:text-8xl lg:text-[10rem] text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-300 to-slate-600 drop-shadow-2xl mb-2"
-          >
-            SECURITY
-          </motion.h1>
-
-          <div className="h-[60px] md:h-[140px] flex items-center justify-center">
-            <TypeAnimation
-              sequence={[1000, 'ENGINEER', 3000, 'ARCHITECT', 3000, 'SPECIALIST', 3000]}
-              wrapper="span"
-              speed={20}
-              repeat={Infinity}
-              className="text-5xl md:text-8xl lg:text-[9rem] text-teal-500 drop-shadow-[0_0_30px_rgba(20,184,166,0.4)]"
-              cursor
-            />
-          </div>
+        {/* Main Title Area */}
+        <div className="relative font-black tracking-tighter leading-none text-white mix-blend-overlay opacity-90">
+            <motion.h1
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="text-[12vw] md:text-[8rem] lg:text-[10rem] bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl"
+            >
+                SECURITY
+            </motion.h1>
+            
+            {/* Typing Effect */}
+            <div className="h-[40px] md:h-[80px] lg:h-[100px] flex items-center justify-center mt-2 md:mt-4">
+                <TypeAnimation
+                sequence={[
+                    1000,
+                    'ENGINEER',
+                    2000,
+                    'ARCHITECT',
+                    2000,
+                    'SPECIALIST',
+                    2000,
+                ]}
+                wrapper="span"
+                speed={20}
+                repeat={Infinity}
+                className="text-4xl md:text-6xl lg:text-7xl text-teal-400 font-heading drop-shadow-[0_0_20px_rgba(45,212,191,0.5)]"
+                cursor={true}
+                />
+            </div>
         </div>
 
+        {/* Name */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 2 }}
-          className="mt-12 md:mt-16"
+          className="mt-16 md:mt-24"
         >
-          <p className="text-slate-400 text-lg md:text-2xl font-medium tracking-[0.3em] uppercase">SANGWON SUH</p>
+          <p className="text-slate-300 text-sm md:text-xl font-medium tracking-[0.5em] uppercase border-t border-white/10 pt-8 inline-block px-12">
+            SANGWON SUH
+          </p>
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ duration: 2, delay: 3, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-500 flex flex-col items-center gap-2 pointer-events-none"
+      {/* Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1, y: [0, 10, 0] }} 
+        transition={{ delay: 2.5, duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-slate-500"
       >
-        <span className="text-[10px] font-bold tracking-widest uppercase">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-slate-500 to-transparent"></div>
+        <span className="text-[10px] uppercase tracking-widest font-bold">Scroll Down</span>
+        <Icon icon="mdi:chevron-down" className="text-2xl animate-bounce" />
       </motion.div>
+
     </section>
   );
 };
