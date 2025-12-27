@@ -95,7 +95,7 @@ const About = () => {
                     <div className="glass-panel bg-white p-6 md:p-8 rounded-3xl border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300 relative group">
                       <div className={`flex flex-col ${index % 2 === 0 ? 'md:items-end' : 'md:items-start'} items-start`}>
                         <div className="flex items-center gap-3 mb-3">
-                          <div className={`w-10 h-10 rounded-full ${exp.bg} flex items-center justify-center shadow-sm`}>
+                          <div className={`w-10 h-10 rounded-full ${exp.bg} flex items-center justify-center shadow-md`}>
                             <Icon icon={exp.logo} className={`text-xl ${exp.color}`} />
                           </div>
                           <span className="text-primary-600 text-[10px] md:text-xs font-bold font-mono uppercase tracking-wider block">
