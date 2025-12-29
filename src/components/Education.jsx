@@ -12,7 +12,7 @@ const schools = [
         major: "클라우드 보안 엔지니어 과정",
         period: "2025.03 - 2026.02 (예정)",
         desc: "AWS 클라우드 인프라 구축 및 정보보안 실무 집중 훈련 (1,200시간)",
-        logoImg: `${LOGO_BASE}/logo-poly.png`, 
+        logoImg: `${LOGO_BASE}/logo-poly.png`,
         icon: "mdi:school-outline",
         type: "Job Training"
     },
@@ -21,7 +21,7 @@ const schools = [
         major: "경영학과 (Business Administration)",
         period: "2007.03 - 2014.08 (졸업)",
         desc: "비즈니스 프로세스 이해 및 조직 관리 기초 역량 함양",
-        logoImg: `${LOGO_BASE}/logo-daejeon.png`, 
+        logoImg: `${LOGO_BASE}/logo-daejeon.png`,
         icon: "mdi:academic-cap-outline",
         type: "Bachelor's Degree"
     }
@@ -52,9 +52,11 @@ const Education = () => {
           </p>
         </div>
 
+        {/* 1. Academic & Training Institutions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 md:mb-24">
             {schools.map((school, idx) => (
                 <div key={idx} className="bg-white rounded-[2rem] p-8 border border-slate-200 shadow-md hover:shadow-xl hover:border-primary-300 transition-all group relative overflow-hidden">
+                    {/* Background Icon (Blurred) */}
                     <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none grayscale group-hover:grayscale-0 transition-all">
                         {school.logoImg ? (
                              <img src={school.logoImg} alt="" className="w-32 h-32 object-contain opacity-50" />
@@ -64,16 +66,18 @@ const Education = () => {
                     </div>
                     
                     <div className="relative z-10">
+                        {/* Logo / Type Badge */}
                         <div className="flex items-center justify-between mb-4">
                             <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${school.type.includes('Degree') ? 'bg-blue-50 text-blue-600' : 'bg-teal-50 text-teal-600'}`}>
                                 {school.type}
                             </span>
                             
-                            <div className="w-12 h-12 bg-white rounded-full border border-slate-100 shadow-sm flex items-center justify-center overflow-hidden p-1">
+                            {/* Main Logo Display - Larger & Rounded Rect */}
+                            <div className="w-16 h-16 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-center justify-center overflow-hidden p-2">
                                 {school.logoImg ? (
                                     <img src={school.logoImg} alt={school.name} className="w-full h-full object-contain" onError={(e)=>{e.target.style.display='none'; e.target.nextSibling.style.display='block'}} />
                                 ) : null}
-                                <Icon icon={school.icon} className="text-2xl text-slate-400" style={{display: school.logoImg ? 'none' : 'block'}} />
+                                <Icon icon={school.icon} className="text-3xl text-slate-400" style={{display: school.logoImg ? 'none' : 'block'}} />
                             </div>
                         </div>
 
@@ -94,12 +98,14 @@ const Education = () => {
             ))}
         </div>
 
+        {/* Divider Text */}
         <div className="text-center mb-10">
              <span className="bg-slate-100 px-4 py-1 rounded-full text-slate-500 font-bold text-xs uppercase tracking-widest">
                 Detailed Curriculum Modules
             </span>
         </div>
 
+        {/* 2. Detailed Curriculum */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8">
           {modules.map((mod, idx) => (
             <EduCard key={idx} mod={mod} />
