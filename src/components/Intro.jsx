@@ -10,7 +10,7 @@ const Intro = () => {
       {/* 1. [Background] Spline 3D Scene */}
       <div className="absolute inset-0 z-0">
         <iframe 
-            src='https://my.spline.design/claritystream-55FEXkAZJ2jV9DAXsajMVbCY/' 
+            src='https://my.spline.design/claritystream-dTXEHcx6T4fe6MRqrDqtjZea/' 
             frameBorder='0' 
             width='100%' 
             height='100%'
