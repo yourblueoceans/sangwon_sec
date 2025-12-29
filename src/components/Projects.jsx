@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 
 const IMG_BASE = '/sangwon_sec/assets/projects';
 
+// projectData unchanged
 const projectData = [
   {
     id: 'lockument',
@@ -153,10 +154,10 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Mobile Slider */}
+        {/* Mobile Slider (Snap Scroll) */}
         <div className="md:hidden overflow-x-auto snap-x snap-mandatory flex gap-6 px-4 -mx-4 pb-8 scrollbar-hide">
             {projectData.map((project) => (
-                <div key={project.id} className="min-w-[85vw] snap-center">
+                <div key={project.id} className="min-w-[90vw] snap-center">
                     <ProjectCard 
                         project={project} 
                         layoutId={`${project.id}-mobile`}
@@ -185,7 +186,7 @@ const Projects = () => {
               exit={{ y: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               onClick={(e) => e.stopPropagation()} 
-              className={`relative w-full bg-white shadow-2xl overflow-hidden flex flex-col border border-white/40 fixed bottom-0 left-0 rounded-t-[2rem] h-[85vh] md:h-auto md:max-h-[85vh] md:static md:rounded-[2.5rem] md:max-w-6xl`}
+              className={`relative w-full bg-white shadow-2xl overflow-hidden flex flex-col border border-white/40 fixed bottom-0 left-0 rounded-t-[2rem] h-[90vh] md:h-auto md:max-h-[85vh] md:static md:rounded-[2.5rem] md:max-w-6xl`}
             >
               <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
 
@@ -195,8 +196,8 @@ const Projects = () => {
 
               <div className="bg-white/80 backdrop-blur-md border-b border-slate-100 p-5 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sticky top-0 z-10 shrink-0">
                 <div className="flex-1 min-w-0 pr-8 md:pr-0">
-                  <h2 className="text-xl md:text-3xl font-black text-slate-900 mb-1 truncate">{selectedProject.title}</h2>
-                  <p className="text-primary-600 font-bold text-xs md:text-base truncate">{selectedProject.subtitle}</p>
+                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-1 truncate">{selectedProject.title}</h2>
+                  <p className="text-primary-600 font-bold text-sm md:text-base truncate">{selectedProject.subtitle}</p>
                 </div>
                 <div className="flex bg-slate-100/50 p-1 rounded-full border border-slate-200/50 self-stretch md:self-center backdrop-blur-sm overflow-x-auto scrollbar-hide">
                   {['overview', 'docs', 'gallery'].map((tab) => (
@@ -206,19 +207,17 @@ const Projects = () => {
                 <button onClick={closeModal} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 transition-colors"><Icon icon="mdi:close" className="text-2xl" /></button>
               </div>
 
-              <div className="p-5 md:p-10 overflow-y-auto flex-grow bg-[#FAFAFA]/50 pb-32 md:pb-10 relative z-0">
+              <div className="p-6 md:p-10 overflow-y-auto flex-grow bg-[#FAFAFA]/50 pb-32 md:pb-10 relative z-0">
                 {activeTab === 'overview' && (
                   <div className="flex flex-col gap-10 animate-fadeIn">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-white p-6 md:p-8 rounded-3xl border border-red-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-red-100 transition-colors"></div>
+                        <div className="bg-white p-6 md:p-8 rounded-3xl border border-red-100 shadow-sm relative overflow-hidden">
                             <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2 text-lg relative z-10"><Icon icon="mdi:alert-decagram" className="text-red-500 text-2xl" /> Problem</h4>
-                            <p className="text-slate-600 text-[15px] md:text-base leading-relaxed font-medium break-keep relative z-10">{selectedProject.problem}</p>
+                            <p className="text-slate-600 text-base leading-relaxed font-medium break-keep relative z-10">{selectedProject.problem}</p>
                         </div>
-                        <div className="bg-white p-6 md:p-8 rounded-3xl border border-teal-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-teal-100 transition-colors"></div>
+                        <div className="bg-white p-6 md:p-8 rounded-3xl border border-teal-100 shadow-sm relative overflow-hidden">
                             <h4 className="font-black text-teal-800 mb-3 flex items-center gap-2 text-lg relative z-10"><Icon icon="mdi:checkbox-marked-circle" className="text-teal-500 text-2xl" /> Solution</h4>
-                            <p className="text-teal-900 text-[15px] md:text-base leading-relaxed font-medium break-keep relative z-10">{selectedProject.solution}</p>
+                            <p className="text-teal-900 text-base leading-relaxed font-medium break-keep relative z-10">{selectedProject.solution}</p>
                         </div>
                     </div>
 
@@ -232,11 +231,6 @@ const Projects = () => {
                                     {selectedProject.videos.map((vid, idx) => (
                                         vid.id && (
                                             <div key={idx} className="relative group">
-                                                <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-slate-300 group-hover:border-primary-500 transition-colors rounded-tl-sm"></div>
-                                                <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-slate-300 group-hover:border-primary-500 transition-colors rounded-tr-sm"></div>
-                                                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-slate-300 group-hover:border-primary-500 transition-colors rounded-bl-sm"></div>
-                                                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-slate-300 group-hover:border-primary-500 transition-colors rounded-br-sm"></div>
-                                                
                                                 <div className="bg-slate-900 p-1.5 rounded-xl shadow-xl overflow-hidden">
                                                     <div className="flex items-center justify-between px-3 py-2 bg-slate-800 rounded-t-lg mb-0.5">
                                                         <span className="text-[10px] font-mono text-primary-400 flex items-center gap-2">
@@ -259,13 +253,12 @@ const Projects = () => {
 
                         <div className="space-y-8">
                             <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-yellow-50/50 pointer-events-none"></div>
                                 <h3 className="text-lg md:text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2"><Icon icon="mdi:trophy-award" className="text-yellow-500 text-2xl"/> Key Results</h3>
                                 <ul className="space-y-4">
                                     {selectedProject.results.map((res, i) => (
-                                        <li key={i} className="flex items-start gap-4 text-[15px] group">
-                                            <div className="mt-1 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-sm">
-                                                <Icon icon="mdi:check" className="text-green-600 text-sm" />
+                                        <li key={i} className="flex items-start gap-4 text-base group">
+                                            <div className="mt-1 w-7 h-7 md:w-6 md:h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                                                <Icon icon="mdi:check" className="text-green-600 text-base md:text-sm" />
                                             </div>
                                             <span className="font-bold text-slate-700 leading-relaxed pt-0.5">{res}</span>
                                         </li>
@@ -277,7 +270,7 @@ const Projects = () => {
                                 <h3 className="text-lg md:text-xl font-extrabold text-slate-900 mb-4 flex items-center gap-2"><Icon icon="mdi:code-braces" className="text-slate-400 text-2xl"/> Tech Stack</h3>
                                 <div className="flex flex-wrap gap-2.5">
                                     {selectedProject.tags.map((t) => (
-                                        <span key={t} className="px-4 py-2 bg-white rounded-xl text-xs md:text-sm font-bold text-slate-600 border border-slate-200 shadow-sm hover:border-primary-400 hover:text-primary-700 hover:shadow-md transition-all cursor-default select-none">
+                                        <span key={t} className="px-4 py-2 bg-white rounded-xl text-sm md:text-sm font-bold text-slate-600 border border-slate-200 shadow-sm">
                                             {t}
                                         </span>
                                     ))}
@@ -290,7 +283,7 @@ const Projects = () => {
                 {activeTab === 'docs' && (
                     <div className="grid grid-cols-1 gap-4 animate-fadeIn">
                         {selectedProject.docs.map((doc, idx)=>(
-                            <a key={idx} href={doc.url} target="_blank" className="flex items-center gap-5 p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:bg-slate-50 hover:border-primary-200 hover:shadow-md transition-all group">
+                            <a key={idx} href={doc.url} target="_blank" className="flex items-center gap-5 p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:bg-slate-50 transition-all group">
                                 <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-primary-50 transition-colors shadow-inner">
                                     <Icon icon={doc.type === 'pptx' ? "mdi:file-powerpoint" : "mdi:file-document"} className={`text-3xl ${doc.type === 'pptx' ? 'text-orange-500' : 'text-blue-500'}`}/>
                                 </div>
@@ -322,6 +315,7 @@ const Projects = () => {
         )}
       </AnimatePresence>
 
+      {/* Lightbox */}
       <AnimatePresence>
         {viewImage && (
             <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4" onClick={() => setViewImage(null)}>
@@ -372,7 +366,7 @@ const ProjectCard = ({ project, onClick, isMobile = false, layoutId }) => {
             whileHover={!isMobile ? { scale: 1.02, z: 50 } : {}}
             className="group cursor-pointer rounded-[2rem] bg-white border border-slate-200 overflow-hidden hover:border-primary-400 transition-shadow duration-500 hover:shadow-2xl h-full flex flex-col relative"
         >
-            {/* [New] Premium Shine Effect Layer */}
+            {/* Shine Effect */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 mix-blend-overlay">
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-shine" />
             </div>
@@ -384,11 +378,11 @@ const ProjectCard = ({ project, onClick, isMobile = false, layoutId }) => {
                 </div>
             </div>
             <div className="p-6 md:p-8 flex flex-col flex-grow bg-white relative z-0">
-                <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2 leading-tight font-heading group-hover:text-primary-600 transition-colors">{project.title}</h3>
-                <p className="text-sm md:text-base text-slate-600 mb-4 font-medium line-clamp-2">{project.subtitle}</p>
+                <h3 className="text-2xl md:text-2xl font-black text-slate-900 mb-2 leading-tight font-heading group-hover:text-primary-600 transition-colors">{project.title}</h3>
+                <p className="text-base md:text-base text-slate-600 mb-4 font-medium line-clamp-2">{project.subtitle}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="px-2.5 py-1 text-[10px] font-bold text-slate-600 bg-slate-100 rounded-lg border border-slate-200">{tag}</span>
+                        <span key={tag} className="px-3 py-1 text-[11px] font-bold text-slate-600 bg-slate-100 rounded-lg border border-slate-200">{tag}</span>
                     ))}
                 </div>
             </div>

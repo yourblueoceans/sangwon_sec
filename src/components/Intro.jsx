@@ -15,7 +15,7 @@ const Intro = () => {
             width='100%' 
             height='100%'
             title="3D Background"
-            className="w-full h-full object-cover scale-105 pointer-events-none"
+            className="w-full h-full object-cover scale-[1.3] origin-center pointer-events-none"
         ></iframe>
         {/* 가독성을 위한 오버레이 */}
         <div className="absolute inset-0 bg-[#0B1120]/60 backdrop-blur-[1px] z-10"></div>
