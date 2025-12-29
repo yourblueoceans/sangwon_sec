@@ -15,79 +15,75 @@ body {
   @apply bg-[#F8FAFC] text-slate-700 font-sans antialiased selection:bg-teal-500 selection:text-white;
   font-family: "Pretendard Variable", Pretendard, sans-serif;
   overflow-x: hidden;
-  cursor: none; /* PC 기본 커서 숨김 (모바일은 JS로 제어) */
+  cursor: none;
 }
 
-/* --- [New] Global Atmosphere --- */
+/* --- Global Atmosphere --- */
 
-/* 1) Custom Scrollbar */
+/* 1. Custom Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #0F172A; }
 ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #2DD4BF; }
 
-/* 2) Film Grain Noise */
+/* 2. Film Grain Noise (Optimized for Mobile) */
 .bg-noise {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
   z-index: 50;
   opacity: 0.03;
+  /* Default: Use SVG Noise */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* 3) Glitch Text Effect */
-.glitch-wrapper { position: relative; display: inline-block; }
-.glitch { position: relative; color: #2DD4BF; }
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #0B1120;
-}
-.glitch::before {
-  left: 2px;
-  text-shadow: -1px 0 #ff00c1;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim 5s infinite linear alternate-reverse;
-}
-.glitch::after {
-  left: -2px;
-  text-shadow: -1px 0 #00fff9;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim2 5s infinite linear alternate-reverse;
-}
-@keyframes glitch-anim {
-  0% { clip: rect(31px, 9999px, 94px, 0); }
-  20% { clip: rect(6px, 9999px, 83px, 0); }
-  40% { clip: rect(89px, 9999px, 2px, 0); }
-  60% { clip: rect(21px, 9999px, 63px, 0); }
-  80% { clip: rect(54px, 9999px, 14px, 0); }
-  100% { clip: rect(12px, 9999px, 59px, 0); }
-}
-@keyframes glitch-anim2 {
-  0% { clip: rect(66px, 9999px, 18px, 0); }
-  20% { clip: rect(10px, 9999px, 4px, 0); }
-  40% { clip: rect(35px, 9999px, 92px, 0); }
-  60% { clip: rect(8px, 9999px, 24px, 0); }
-  80% { clip: rect(56px, 9999px, 73px, 0); }
-  100% { clip: rect(23px, 9999px, 46px, 0); }
+/* [Fix] 모바일에서는 무거운 SVG 필터 노이즈를 끕니다 */
+@media (max-width: 768px) {
+  .bg-noise {
+    background-image: none; /* 제거하거나 */
+    /* background-image: url('/path/to/static-noise.png'); 처럼 가벼운 이미지로 대체 가능 */
+  }
 }
 
-/* --- Utilities --- */
+/* 3. Glitch Text */
+.glitch-wrapper { position: relative; display: inline-block; }
+.glitch { position: relative; color: #2DD4BF; }
+.glitch::before, .glitch::after {
+  content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #0B1120;
+}
+.glitch::before { left: 2px; text-shadow: -1px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 5s infinite linear alternate-reverse; }
+.glitch::after { left: -2px; text-shadow: -1px 0 #00fff9; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim2 5s infinite linear alternate-reverse; }
+
+@keyframes glitch-anim {
+  0% { clip: rect(31px, 9999px, 94px, 0); } 20% { clip: rect(6px, 9999px, 83px, 0); }
+  40% { clip: rect(89px, 9999px, 2px, 0); } 60% { clip: rect(21px, 9999px, 63px, 0); }
+  80% { clip: rect(54px, 9999px, 14px, 0); } 100% { clip: rect(12px, 9999px, 59px, 0); }
+}
+@keyframes glitch-anim2 {
+  0% { clip: rect(66px, 9999px, 18px, 0); } 20% { clip: rect(10px, 9999px, 4px, 0); }
+  40% { clip: rect(35px, 9999px, 92px, 0); } 60% { clip: rect(8px, 9999px, 24px, 0); }
+  80% { clip: rect(56px, 9999px, 73px, 0); } 100% { clip: rect(23px, 9999px, 46px, 0); }
+}
+
+/* Utilities */
 .break-keep { word-break: keep-all; overflow-wrap: break-word; }
 .section-divider { @apply w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-50 my-8; }
 
-/* Rotating Border Animation */
+/* Rotating Border */
 @property --angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 @keyframes border-spin { from { --angle: 0deg; } to { --angle: 360deg; } }
 .animate-border-spin { animation: border-spin 3s linear infinite; }
+
+/* Shine Effect */
+@keyframes shine { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.animate-shine { animation: shine 2s infinite; }
+
+/* Marquee */
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.animate-marquee { animation: marquee linear infinite; }
 
 /* Shimmer */
 @keyframes shimmer { 0% { transform: translateX(-150%); } 100% { transform: translateX(150%); } }
@@ -97,42 +93,9 @@ body {
   transform: skewX(-20deg); animation: shimmer 2s infinite;
 }
 
-/* --- Trendy & Minimal Cursor (PC) --- */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  background-color: white;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: exclusion;
-}
-.cursor-outline {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 24px;
-  height: 24px;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: exclusion;
-  transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
-  opacity: 0.7;
-}
-body.hovering .cursor-dot { opacity: 0; }
-body.hovering .cursor-outline {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 1);
-  border-color: transparent;
-  mix-blend-mode: exclusion;
-  opacity: 1;
-}
-input, textarea { cursor: text; }
+/* Scrollbar Hide Utility */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Hardware Acceleration Class */
+.gpu-accel { transform: translateZ(0); will-change: transform; }

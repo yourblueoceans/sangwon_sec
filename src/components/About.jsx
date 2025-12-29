@@ -6,36 +6,14 @@ const BASE_PATH = import.meta.env.BASE_URL;
 const CERT_BASE = `${BASE_PATH}assets/certs`;
 const LOGO_BASE = `${BASE_PATH}assets/logos`;
 
-// [전략적 데이터 배치] 3x3 그리드
+// [Data] Certifications
 const certifications = [
   { name: '리눅스마스터 2급', img: `${CERT_BASE}/cert-linux.jpg`, date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 능력 입증.' },
   { name: '네트워크관리사 2급', img: `${CERT_BASE}/cert-network.jpg`, date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 실무.' },
   { name: 'Cisco CCST Cybersecurity', img: `${CERT_BASE}/cert-ccst.jpg`, date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해.' },
-  { 
-    name: 'CPPG (개인정보관리사)', 
-    img: `${CERT_BASE}/cert-cppg.jpg`,
-    date: '2025.08', 
-    issuer: 'CPO포럼', 
-    licenseId: 'G25-046-01-*****', 
-    desc: '개인정보보호 정책 수립 및 컴플라이언스 대응 능력.' 
-  },
-  { 
-    name: '정보보안기사', 
-    img: `${CERT_BASE}/cert-sec-engineer.jpg`,
-    date: '2025.12', 
-    issuer: 'KCA', 
-    licenseId: '250A140****', 
-    desc: '정보보안 분야 최고 수준 국가기술자격.',
-    isMain: true 
-  },
-  { 
-    name: 'HSE 3급 (해킹보안전문가)', 
-    img: `${CERT_BASE}/cert-hse.jpg}`,
-    date: '2025.12', 
-    issuer: '한국해킹보안협회', 
-    licenseId: 'HSE-2528-3****', 
-    desc: '최신 해킹 기법 이해 및 침해사고 대응.' 
-  },
+  { name: 'CPPG (개인정보관리사)', img: `${CERT_BASE}/cert-cppg.jpg`, date: '2025.08', issuer: 'CPO포럼', licenseId: 'G25-046-01-*****', desc: '개인정보보호 정책 수립 및 컴플라이언스 대응 능력.' },
+  { name: '정보보안기사', img: `${CERT_BASE}/cert-sec-engineer.jpg`, date: '2025.12', issuer: 'KCA', licenseId: '250A140****', desc: '정보보안 분야 최고 수준 국가기술자격.', isMain: true },
+  { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/cert-hse.jpg`, date: '2025.12', issuer: '한국해킹보안협회', licenseId: 'HSE-2528-3****', desc: '최신 해킹 기법 이해 및 침해사고 대응.' },
   { name: 'Microsoft SC-900', img: `${CERT_BASE}/cert-sc900.jpg`, date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드 보안, 컴플라이언스 기본.' },
   { name: 'TOEIC Speaking IH', img: `${CERT_BASE}/cert-toeic.jpg`, date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 영어 의사소통 능력 (150점).' },
   { name: '한국사능력검정 1급', img: `${CERT_BASE}/cert-korean-history.jpg`, date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '인문학적 소양 및 역사적 사고력 함양.' },
@@ -57,76 +35,13 @@ const techItems = [
 const techStack = [...techItems, ...techItems, ...techItems];
 
 const experience = [
-    { 
-        role: "교육생 (클라우드 보안)", 
-        company: "한국폴리텍대학", 
-        period: "2025.03 - 2026.02 (예정)", 
-        desc: "총 1,200시간. AWS/Linux 기반 보안 인프라 구축. 캡스톤 프로젝트 팀장으로 'LOCKUMENT' 개발 및 금상 수상.",
-        logo: "mdi:school", 
-        logoImg: `${LOGO_BASE}/logo-poly.png`, 
-        color: "text-blue-600",
-        bg: "bg-white" 
-    },
-    { 
-        role: "개인사업자 (해외구매대행)", 
-        company: "스마트스토어 운영", 
-        period: "2024.01 - 현재", 
-        desc: "상품 소싱부터 통관, CS까지 이커머스 전 과정 1인 운영. 고객 클레임 대응 및 프로세스 관리.",
-        logo: "mdi:storefront",
-        logoImg: `${LOGO_BASE}/logo-smartstore.jpg`, 
-        color: "text-green-600",
-        bg: "bg-white"
-    },
-    { 
-        role: "Passenger Traffic Agent", 
-        company: "대한항공 (San Francisco)", 
-        period: "2023.02 - 2023.08", 
-        desc: "공항 현장 운영 및 위기 관리. CBP 인터뷰 통역 지원, 태풍 결항 시 승객 안내 및 대체편 조율.",
-        logo: "mdi:airplane", 
-        logoImg: `${LOGO_BASE}/logo-koreanair.jpg`, 
-        color: "text-sky-600",
-        bg: "bg-white"
-    },
-    { 
-        role: "Pharmacy Clerk", 
-        company: "Apotheco Pharmacy (USA)", 
-        period: "2022.03 - 2023.01", 
-        desc: "처방전 접수 및 전산 관리. 약품 재고 관리 및 배송 포장 업무 수행.",
-        logo: "mdi:pill",
-        logoImg: `${LOGO_BASE}/logo-apotheco.jpg`, 
-        color: "text-red-500",
-        bg: "bg-white"
-    },
-    { 
-        role: "Manager (Tech Sales)", 
-        company: "Computer Ahnex (LA)", 
-        period: "2021.01 - 2021.08", 
-        desc: "PC 조립 및 수리, 보안 S/W 기술 영업. 고객 맞춤형 견적 상담 및 매장 관리.",
-        logo: "mdi:monitor",
-        logoImg: `${LOGO_BASE}/logo-ahnex.jpg`,
-        color: "text-purple-600",
-        bg: "bg-white"
-    },
-    { 
-        role: "공동 사장", 
-        company: "하얀책상 4호점 (Cafe)", 
-        period: "2017.05 - 2018.03", 
-        desc: "매장 운영 총괄 및 마케팅 기획. 매출 관리 및 고객 서비스 품질 유지.",
-        logo: "mdi:coffee",
-        logoImg: `${LOGO_BASE}/logo-whitedesk.jpg`, 
-        color: "text-amber-700",
-        bg: "bg-white"
-    },
-    { 
-        role: "Research Team Leader", 
-        company: "LKSTC (Laos)", 
-        period: "2015.02 - 2016.09", 
-        desc: "현지 시장 조사 및 데이터 분석. 프로젝트 제안서 작성 및 현지 파트너 협업 조율.",
-        logo: "mdi:map-search",
-        logoImg: `${LOGO_BASE}/logo-lkstc.jpg`, 
-        color: "text-teal-600",
-        bg: "bg-white"
-    }
+    { role: "교육생 (클라우드 보안)", company: "한국폴리텍대학", period: "2025.03 - 2026.02 (예정)", desc: "총 1,200시간. AWS/Linux 기반 보안 인프라 구축. 캡스톤 프로젝트 팀장으로 'LOCKUMENT' 개발 및 금상 수상.", logo: "mdi:school", logoImg: `${LOGO_BASE}/logo-poly.png`, color: "text-blue-600", bg: "bg-white" },
+    { role: "개인사업자 (해외구매대행)", company: "스마트스토어 운영", period: "2024.01 - 현재", desc: "상품 소싱부터 통관, CS까지 이커머스 전 과정 1인 운영. 고객 클레임 대응 및 프로세스 관리.", logo: "mdi:storefront", logoImg: `${LOGO_BASE}/logo-smartstore.jpg`, color: "text-green-600", bg: "bg-white" },
+    { role: "Passenger Traffic Agent", company: "대한항공 (San Francisco)", period: "2023.02 - 2023.08", desc: "공항 현장 운영 및 위기 관리. CBP 인터뷰 통역 지원, 태풍 결항 시 승객 안내 및 대체편 조율.", logo: "mdi:airplane", logoImg: `${LOGO_BASE}/logo-koreanair.jpg`, color: "text-sky-600", bg: "bg-white" },
+    { role: "Pharmacy Clerk", company: "Apotheco Pharmacy (USA)", period: "2022.03 - 2023.01", desc: "처방전 접수 및 전산 관리. 약품 재고 관리 및 배송 포장 업무 수행.", logo: "mdi:pill", logoImg: `${LOGO_BASE}/logo-apotheco.jpg`, color: "text-red-500", bg: "bg-white" },
+    { role: "Manager (Tech Sales)", company: "Computer Ahnex (LA)", period: "2021.01 - 2021.08", desc: "PC 조립 및 수리, 보안 S/W 기술 영업. 고객 맞춤형 견적 상담 및 매장 관리.", logo: "mdi:monitor", logoImg: `${LOGO_BASE}/logo-ahnex.jpg`, color: "text-purple-600", bg: "bg-white" },
+    { role: "공동 사장", company: "하얀책상 4호점 (Cafe)", period: "2017.05 - 2018.03", desc: "매장 운영 총괄 및 마케팅 기획. 매출 관리 및 고객 서비스 품질 유지.", logo: "mdi:coffee", logoImg: `${LOGO_BASE}/logo-whitedesk.jpg`, color: "text-amber-700", bg: "bg-white" },
+    { role: "Research Team Leader", company: "LKSTC (Laos)", period: "2015.02 - 2016.09", desc: "현지 시장 조사 및 데이터 분석. 프로젝트 제안서 작성 및 현지 파트너 협업 조율.", logo: "mdi:map-search", logoImg: `${LOGO_BASE}/logo-lkstc.jpg`, color: "text-teal-600", bg: "bg-white" }
 ];
 
 const About = () => {
@@ -146,6 +61,12 @@ const About = () => {
   }, []);
 
   const visibleExperience = (isMobile && !isExpExpanded) ? experience.slice(0, 3) : experience;
+
+  // [Logic] 모바일용 자격증 순서 재정렬 (정보보안기사 1순위)
+  const mobileCertifications = [
+    certifications.find(c => c.isMain === true),
+    ...certifications.filter(c => c.isMain !== true)
+  ].filter(Boolean);
 
   return (
     <section id="about" className="py-20 md:py-32 relative bg-bg-main overflow-hidden">
@@ -181,77 +102,43 @@ const About = () => {
                             <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}>
                                 <div className="glass-panel bg-white p-6 md:p-8 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative group">
                                     <div className={`flex flex-col ${index % 2 === 0 ? 'md:items-end' : 'md:items-start'} items-start`}>
-                                        
                                         <div className={`flex items-center gap-4 mb-4 ${index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
-                                            <div className="w-14 h-14 md:w-16 md:h-16 bg-white rounded-2xl shadow-md border border-slate-100 flex items-center justify-center overflow-hidden p-2 shrink-0 group-hover:scale-105 transition-transform duration-300">
+                                            <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-2xl shadow-md border border-slate-100 flex items-center justify-center overflow-hidden p-1 shrink-0 group-hover:scale-105 transition-transform duration-300">
                                                 {exp.logoImg ? (
-                                                    <img 
-                                                        src={exp.logoImg} 
-                                                        alt={exp.company} 
-                                                        className="w-full h-full object-contain" 
-                                                        onError={(e) => {
-                                                            e.target.style.display = 'none';
-                                                            e.target.nextSibling.style.display = 'block';
-                                                        }}
-                                                    />
+                                                    <img src={exp.logoImg} alt={exp.company} className="w-full h-full object-contain" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
                                                 ) : null}
-                                                <Icon 
-                                                    icon={exp.logo} 
-                                                    className={`text-3xl ${exp.color}`} 
-                                                    style={{ display: exp.logoImg ? 'none' : 'block' }} 
-                                                />
+                                                <Icon icon={exp.logo} className={`text-4xl ${exp.color}`} style={{ display: exp.logoImg ? 'none' : 'block' }} />
                                             </div>
-                                            
-                                            <div className={`${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                                                <span className="text-primary-600 text-[10px] md:text-xs font-bold font-mono uppercase tracking-wider block mb-1">
-                                                    {exp.period}
-                                                </span>
-                                                <h3 className="text-lg md:text-2xl font-black text-slate-900 leading-tight break-keep">
-                                                    {exp.company}
-                                                </h3>
+                                            <div className={`${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} flex-1`}>
+                                                <span className="text-primary-600 text-xs font-bold font-mono uppercase tracking-wider block mb-1">{exp.period}</span>
+                                                <h3 className="text-lg md:text-2xl font-black text-slate-900 leading-tight break-keep">{exp.company}</h3>
                                             </div>
                                         </div>
-
                                         <p className="text-sm md:text-lg font-bold text-teal-700 mb-3 flex items-center gap-2">
                                             <Icon icon="mdi:account-star-outline" /> {exp.role}
                                         </p>
-                                        <p className="text-slate-600 text-sm md:text-base font-medium leading-relaxed break-keep">
-                                            {exp.desc}
-                                        </p>
+                                        <p className="text-slate-600 text-sm md:text-base font-medium leading-relaxed break-keep">{exp.desc}</p>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </AnimatePresence>
-                
                 <div className="md:hidden text-center pt-4">
-                    <button 
-                        onClick={() => setIsExpExpanded(!isExpExpanded)}
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200 transition-colors relative overflow-hidden group"
-                    >
+                    <button onClick={() => setIsExpExpanded(!isExpExpanded)} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-slate-600 font-bold text-sm hover:bg-slate-200 transition-colors relative overflow-hidden group">
                         <div className="animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <span className="relative z-10 flex items-center gap-2">
-                             {isExpExpanded ? '접기 (Show Less)' : '전체 경력 보기 (Show More)'}
-                             <Icon icon="mdi:chevron-down" className={`transition-transform duration-300 ${isExpExpanded ? 'rotate-180' : ''}`} />
-                        </span>
+                        <span className="relative z-10 flex items-center gap-2">{isExpExpanded ? '접기 (Show Less)' : '전체 경력 보기 (Show More)'}<Icon icon="mdi:chevron-down" className={`transition-transform duration-300 ${isExpExpanded ? 'rotate-180' : ''}`} /></span>
                     </button>
                 </div>
             </div>
         </div>
 
-        {/* Separator & Tech Stack (생략 - 기존 유지) */}
         <div className="section-divider"></div>
-        <div className="text-center mb-12">
-            <span className="bg-[#F8FAFC] px-6 text-slate-400 font-mono text-xs md:text-sm uppercase tracking-widest relative -top-[44px]">
-                Technical Expertise & Credentials
-            </span>
-        </div>
+        
+        {/* Tech Stack (생략 - 기존 유지) */}
+        <div className="text-center mb-12"><span className="bg-[#F8FAFC] px-6 text-slate-400 font-mono text-xs md:text-sm uppercase tracking-widest relative -top-[44px]">Technical Expertise & Credentials</span></div>
         <div className="mb-20 md:mb-24 w-full">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-12 text-center flex items-center justify-center gap-2 font-heading">
-                    <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-3xl md:text-4xl" />
-                    Technical Arsenal
-            </h3>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-12 text-center flex items-center justify-center gap-2 font-heading"><Icon icon="mdi:toolbox-outline" className="text-primary-600 text-3xl md:text-4xl" /> Technical Arsenal</h3>
             <div className="glass-panel rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 bg-white/70 shadow-xl border border-white/50 w-full overflow-hidden group/track">
                 <div className="relative flex overflow-x-hidden py-2 md:py-4">
                     <div className="animate-marquee whitespace-nowrap flex gap-12 md:gap-20 px-4" style={{ animationDuration: '80s' }}>
@@ -259,7 +146,6 @@ const About = () => {
                             <div key={index} className="flex flex-col items-center gap-3 md:gap-4 min-w-[80px] md:min-w-[100px] transition-all duration-300 relative group/icon">
                                 <Icon icon={tech.icon} className="text-4xl md:text-6xl transition-all duration-500 transform drop-shadow-md filter grayscale opacity-60 group-hover/track:grayscale-0 group-hover/track:opacity-100 group-hover/track:scale-110" style={{ color: tech.color }} />
                                 <span className="text-[10px] md:text-xs font-bold text-slate-400 group-hover/track:text-slate-800 transition-colors uppercase tracking-wider">{tech.name}</span>
-                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover/icon:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">{tech.name}</div>
                             </div>
                         ))}
                     </div>
@@ -267,22 +153,22 @@ const About = () => {
             </div>
         </div>
 
-        {/* Certifications (Snap Scroll) */}
+        {/* Certifications */}
         <div>
             <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-10 text-center flex items-center justify-center gap-2 font-heading">
                 <Icon icon="mdi:license" className="text-primary-600 text-3xl md:text-4xl" /> Certifications
             </h3>
             
-            {/* Desktop */}
+            {/* Desktop: 3x3 Grid (기존 유지) */}
             <div className="hidden md:grid grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto items-stretch">
                 {certifications.map((cert, idx) => (
                     <CertCard key={idx} cert={cert} />
                 ))}
             </div>
 
-            {/* Mobile */}
+            {/* Mobile: 재정렬된 배열 사용 */}
             <div className="md:hidden overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 -mx-4 pb-8 scrollbar-hide">
-                {certifications.map((cert, idx) => (
+                {mobileCertifications.map((cert, idx) => (
                     <div key={idx} className="min-w-[75vw] snap-center">
                         <div className="h-72">
                             <CertCard cert={cert} />
