@@ -21,7 +21,7 @@ const schools = [
         major: "경영학과 (Business Administration)",
         period: "2007.03 - 2014.08 (졸업)",
         desc: "비즈니스 프로세스 이해 및 조직 관리 기초 역량 함양",
-        logoImg: `${LOGO_BASE}/logo-daejeon.png`,
+        logoImg: `${LOGO_BASE}/logo-daejeon.jpg`,
         icon: "mdi:academic-cap-outline",
         type: "Bachelor's Degree"
     }

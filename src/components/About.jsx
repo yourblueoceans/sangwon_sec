@@ -93,7 +93,7 @@ const experience = [
         period: "2017.05 - 2018.03", 
         desc: "매장 운영 총괄 및 마케팅 기획. 매출 관리 및 고객 서비스 품질 유지.",
         logo: "mdi:coffee",
-        logoImg: `${LOGO_BASE}/logo-cafe.jpg`, 
+        logoImg: `${LOGO_BASE}/logo-whitedest.jpg`, 
         color: "text-amber-700",
         bg: "bg-white"
     },
