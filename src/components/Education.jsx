@@ -21,7 +21,7 @@ const schools = [
         major: "경영학과 (Business Administration)",
         period: "2007.03 - 2014.08 (졸업)",
         desc: "비즈니스 프로세스 이해 및 조직 관리 기초 역량 함양",
-        logoImg: `${LOGO_BASE}/logo-daejeon.jpg`,
+        logoImg: `${LOGO_BASE}/logo-daejeon.jpg`, 
         icon: "mdi:academic-cap-outline",
         type: "Bachelor's Degree"
     }
@@ -56,7 +56,7 @@ const Education = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 md:mb-24">
             {schools.map((school, idx) => (
                 <div key={idx} className="bg-white rounded-[2rem] p-8 border border-slate-200 shadow-md hover:shadow-xl hover:border-primary-300 transition-all group relative overflow-hidden">
-                    {/* Background Icon (Blurred) */}
+                    {/* Background Icon */}
                     <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none grayscale group-hover:grayscale-0 transition-all">
                         {school.logoImg ? (
                              <img src={school.logoImg} alt="" className="w-32 h-32 object-contain opacity-50" />
@@ -72,7 +72,7 @@ const Education = () => {
                                 {school.type}
                             </span>
                             
-                            {/* Main Logo Display - Larger & Rounded Rect */}
+                            {/* Main Logo Display (Same size as About) */}
                             <div className="w-16 h-16 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-center justify-center overflow-hidden p-2">
                                 {school.logoImg ? (
                                     <img src={school.logoImg} alt={school.name} className="w-full h-full object-contain" onError={(e)=>{e.target.style.display='none'; e.target.nextSibling.style.display='block'}} />

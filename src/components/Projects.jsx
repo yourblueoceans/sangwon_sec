@@ -103,7 +103,6 @@ const projectData = [
 ];
 
 const Projects = () => {
-  // [Fix] selectedId(데이터용)와 selectedLayoutId(애니메이션용) 분리
   const [selectedId, setSelectedId] = useState(null);
   const [selectedLayoutId, setSelectedLayoutId] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
@@ -119,14 +118,12 @@ const Projects = () => {
 
   const selectedProject = projectData.find((p) => p.id === selectedId);
 
-  // [Fix] 모달 열 때 Layout ID를 정확히 지정
   const openModal = (project, isMobile) => {
     setSelectedId(project.id);
     setSelectedLayoutId(isMobile ? `${project.id}-mobile` : project.id);
     setActiveTab('overview');
   };
 
-  // 모달 닫기 함수
   const closeModal = () => {
     setSelectedId(null);
     setSelectedLayoutId(null);
@@ -150,7 +147,7 @@ const Projects = () => {
             <ProjectCard 
                 key={project.id} 
                 project={project} 
-                layoutId={project.id} // PC용 순수 ID
+                layoutId={project.id}
                 onClick={() => openModal(project, false)} 
             />
           ))}
@@ -162,7 +159,7 @@ const Projects = () => {
                 <div key={project.id} className="min-w-[85vw] snap-center">
                     <ProjectCard 
                         project={project} 
-                        layoutId={`${project.id}-mobile`} // [Fix] Mobile ID 구분
+                        layoutId={`${project.id}-mobile`}
                         onClick={() => openModal(project, true)} 
                         isMobile={true} 
                     />
@@ -170,7 +167,6 @@ const Projects = () => {
             ))}
         </div>
         
-        {/* Swipe Hint */}
         <p className="md:hidden text-center text-slate-400 text-xs flex items-center justify-center gap-1 animate-pulse relative -top-4">
             <Icon icon="mdi:gesture-swipe-horizontal" /> 옆으로 넘겨보세요
         </p>
@@ -180,16 +176,10 @@ const Projects = () => {
       <AnimatePresence>
         {selectedId && selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center md:px-4 bg-slate-900/60 backdrop-blur-xl">
-            <motion.div 
-                initial={{ opacity: 0 }} 
-                animate={{ opacity: 1 }} 
-                exit={{ opacity: 0 }} 
-                onClick={closeModal} 
-                className="absolute inset-0" 
-            />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeModal} className="absolute inset-0" />
             
             <motion.div
-              layoutId={selectedLayoutId} // [Fix] 클릭한 카드의 ID와 일치시킴
+              layoutId={selectedLayoutId}
               initial={{ y: "100%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0 }}
@@ -197,21 +187,17 @@ const Projects = () => {
               onClick={(e) => e.stopPropagation()} 
               className={`relative w-full bg-white shadow-2xl overflow-hidden flex flex-col border border-white/40 fixed bottom-0 left-0 rounded-t-[2rem] h-[85vh] md:h-auto md:max-h-[85vh] md:static md:rounded-[2.5rem] md:max-w-6xl`}
             >
-              {/* [New] Tech Grid Background */}
               <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
 
-              {/* Mobile Drag Handle */}
               <div className="md:hidden w-full flex justify-center pt-3 pb-1 cursor-grab active:cursor-grabbing" onClick={closeModal}>
                   <div className="w-12 h-1.5 bg-slate-200 rounded-full"></div>
               </div>
 
-              {/* Header */}
               <div className="bg-white/80 backdrop-blur-md border-b border-slate-100 p-5 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 sticky top-0 z-10 shrink-0">
                 <div className="flex-1 min-w-0 pr-8 md:pr-0">
                   <h2 className="text-xl md:text-3xl font-black text-slate-900 mb-1 truncate">{selectedProject.title}</h2>
                   <p className="text-primary-600 font-bold text-xs md:text-base truncate">{selectedProject.subtitle}</p>
                 </div>
-                {/* [Upgrade] Improved Glass Tabs */}
                 <div className="flex bg-slate-100/50 p-1 rounded-full border border-slate-200/50 self-stretch md:self-center backdrop-blur-sm overflow-x-auto scrollbar-hide">
                   {['overview', 'docs', 'gallery'].map((tab) => (
                     <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 md:flex-none px-6 py-2 rounded-full text-xs md:text-sm font-bold transition-all capitalize whitespace-nowrap ${activeTab === tab ? 'bg-white text-slate-900 shadow-md ring-1 ring-black/5' : 'text-slate-500 hover:text-slate-900'}`}>{tab}</button>
@@ -220,11 +206,9 @@ const Projects = () => {
                 <button onClick={closeModal} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 transition-colors"><Icon icon="mdi:close" className="text-2xl" /></button>
               </div>
 
-              {/* Content */}
               <div className="p-5 md:p-10 overflow-y-auto flex-grow bg-[#FAFAFA]/50 pb-32 md:pb-10 relative z-0">
                 {activeTab === 'overview' && (
                   <div className="flex flex-col gap-10 animate-fadeIn">
-                    {/* Problem & Solution */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="bg-white p-6 md:p-8 rounded-3xl border border-red-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
                             <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-red-100 transition-colors"></div>
@@ -239,7 +223,6 @@ const Projects = () => {
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        {/* Video Section */}
                         <div className="space-y-6">
                             <h3 className="text-lg md:text-xl font-extrabold text-slate-900 flex items-center gap-2">
                                 <Icon icon="mdi:cctv" className="text-red-600 text-2xl"/> Security Demo Feeds
@@ -249,7 +232,6 @@ const Projects = () => {
                                     {selectedProject.videos.map((vid, idx) => (
                                         vid.id && (
                                             <div key={idx} className="relative group">
-                                                {/* Cyber Tech Borders (CCTV Effect) */}
                                                 <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-slate-300 group-hover:border-primary-500 transition-colors rounded-tl-sm"></div>
                                                 <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-slate-300 group-hover:border-primary-500 transition-colors rounded-tr-sm"></div>
                                                 <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-slate-300 group-hover:border-primary-500 transition-colors rounded-bl-sm"></div>
@@ -275,10 +257,8 @@ const Projects = () => {
                             )}
                         </div>
 
-                        {/* Results & Tech */}
                         <div className="space-y-8">
                             <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden">
-                                {/* [New] Result Background Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-yellow-50/50 pointer-events-none"></div>
                                 <h3 className="text-lg md:text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2"><Icon icon="mdi:trophy-award" className="text-yellow-500 text-2xl"/> Key Results</h3>
                                 <ul className="space-y-4">
@@ -307,7 +287,6 @@ const Projects = () => {
                     </div>
                   </div>
                 )}
-                {/* Docs Tab */}
                 {activeTab === 'docs' && (
                     <div className="grid grid-cols-1 gap-4 animate-fadeIn">
                         {selectedProject.docs.map((doc, idx)=>(
@@ -325,7 +304,6 @@ const Projects = () => {
                         ))}
                     </div>
                 )}
-                {/* Gallery Tab */}
                 {activeTab === 'gallery' && (
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 animate-fadeIn">
                         {selectedProject.gallery.map((img, i) => (
@@ -344,7 +322,6 @@ const Projects = () => {
         )}
       </AnimatePresence>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {viewImage && (
             <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4" onClick={() => setViewImage(null)}>
@@ -361,7 +338,6 @@ const Projects = () => {
   );
 };
 
-// 3D Tilt Project Card (Same logic, slightly tuned)
 const ProjectCard = ({ project, onClick, isMobile = false, layoutId }) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -388,7 +364,7 @@ const ProjectCard = ({ project, onClick, isMobile = false, layoutId }) => {
 
     return (
         <motion.div
-            layoutId={layoutId} // [Fix] Use unique layoutId
+            layoutId={layoutId}
             onClick={onClick}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
@@ -396,6 +372,11 @@ const ProjectCard = ({ project, onClick, isMobile = false, layoutId }) => {
             whileHover={!isMobile ? { scale: 1.02, z: 50 } : {}}
             className="group cursor-pointer rounded-[2rem] bg-white border border-slate-200 overflow-hidden hover:border-primary-400 transition-shadow duration-500 hover:shadow-2xl h-full flex flex-col relative"
         >
+            {/* [New] Premium Shine Effect Layer */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 mix-blend-overlay">
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-shine" />
+            </div>
+
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 shrink-0 transform-gpu">
                 <img src={project.image} alt={project.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" onError={(e) => { e.target.style.display = 'none'; }} />
                 <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-extrabold text-primary-700 uppercase tracking-wider border border-white/50 z-10">

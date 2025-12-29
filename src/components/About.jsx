@@ -6,20 +6,41 @@ const BASE_PATH = import.meta.env.BASE_URL;
 const CERT_BASE = `${BASE_PATH}assets/certs`;
 const LOGO_BASE = `${BASE_PATH}assets/logos`;
 
-// Certifications
+// [전략적 데이터 배치] 3x3 그리드
 const certifications = [
   { name: '리눅스마스터 2급', img: `${CERT_BASE}/cert-linux.jpg`, date: '2025.10', issuer: 'KAIT', licenseId: 'LMS-2053-00****', desc: 'Linux 시스템 설치, 운영, 관리 능력 입증.' },
   { name: '네트워크관리사 2급', img: `${CERT_BASE}/cert-network.jpg`, date: '2025.04', issuer: 'ICQA', licenseId: 'NT207****', desc: '네트워크 전송매체, 토폴로지 기술 실무.' },
   { name: 'Cisco CCST Cybersecurity', img: `${CERT_BASE}/cert-ccst.jpg`, date: '2025.11', issuer: 'Cisco', licenseId: 'waBsQ-****', desc: '글로벌 보안 위협 환경 이해.' },
-  { name: 'CPPG (개인정보관리사)', img: `${CERT_BASE}/cert-cppg.jpg`, date: '2025.08', issuer: 'CPO포럼', licenseId: 'G25-046-01-*****', desc: '개인정보보호 정책 수립 및 컴플라이언스 대응 능력.' },
-  { name: '정보보안기사', img: `${CERT_BASE}/cert-sec-engineer.jpg`, date: '2025.12', issuer: 'KCA', licenseId: '250A140****', desc: '정보보안 분야 최고 수준 국가기술자격.', isMain: true },
-  { name: 'HSE 3급 (해킹보안전문가)', img: `${CERT_BASE}/cert-hse.jpg`, date: '2025.12', issuer: '한국해킹보안협회', licenseId: 'HSE-2528-3****', desc: '최신 해킹 기법 이해 및 침해사고 대응.' },
+  { 
+    name: 'CPPG (개인정보관리사)', 
+    img: `${CERT_BASE}/cert-cppg.jpg`,
+    date: '2025.08', 
+    issuer: 'CPO포럼', 
+    licenseId: 'G25-046-01-*****', 
+    desc: '개인정보보호 정책 수립 및 컴플라이언스 대응 능력.' 
+  },
+  { 
+    name: '정보보안기사', 
+    img: `${CERT_BASE}/cert-sec-engineer.jpg`,
+    date: '2025.12', 
+    issuer: 'KCA', 
+    licenseId: '250A140****', 
+    desc: '정보보안 분야 최고 수준 국가기술자격.',
+    isMain: true 
+  },
+  { 
+    name: 'HSE 3급 (해킹보안전문가)', 
+    img: `${CERT_BASE}/cert-hse.jpg}`,
+    date: '2025.12', 
+    issuer: '한국해킹보안협회', 
+    licenseId: 'HSE-2528-3****', 
+    desc: '최신 해킹 기법 이해 및 침해사고 대응.' 
+  },
   { name: 'Microsoft SC-900', img: `${CERT_BASE}/cert-sc900.jpg`, date: '2025.12', issuer: 'Microsoft', licenseId: 'F4HN-****', desc: 'MS 클라우드 보안, 컴플라이언스 기본.' },
   { name: 'TOEIC Speaking IH', img: `${CERT_BASE}/cert-toeic.jpg`, date: '2024.09', issuer: 'ETS', licenseId: '10****', desc: '비즈니스 영어 의사소통 능력 (150점).' },
   { name: '한국사능력검정 1급', img: `${CERT_BASE}/cert-korean-history.jpg`, date: '2017.02', issuer: '국사편찬위원회', licenseId: '34-10****', desc: '인문학적 소양 및 역사적 사고력 함양.' },
 ];
 
-// Tech stack
 const techItems = [
   { icon: 'logos:linux-tux', name: 'Linux', color: '#FCC624' },
   { icon: 'logos:docker-icon', name: 'Docker', color: '#2496ED' },
@@ -35,7 +56,6 @@ const techItems = [
 ];
 const techStack = [...techItems, ...techItems, ...techItems];
 
-// Experience with logo images
 const experience = [
     { 
         role: "교육생 (클라우드 보안)", 
@@ -83,7 +103,7 @@ const experience = [
         period: "2021.01 - 2021.08", 
         desc: "PC 조립 및 수리, 보안 S/W 기술 영업. 고객 맞춤형 견적 상담 및 매장 관리.",
         logo: "mdi:monitor",
-        logoImg: `${LOGO_BASE}/logo-ahnex.jpg`, 
+        logoImg: `${LOGO_BASE}/logo-ahnex.jpg`,
         color: "text-purple-600",
         bg: "bg-white"
     },
@@ -93,7 +113,7 @@ const experience = [
         period: "2017.05 - 2018.03", 
         desc: "매장 운영 총괄 및 마케팅 기획. 매출 관리 및 고객 서비스 품질 유지.",
         logo: "mdi:coffee",
-        logoImg: `${LOGO_BASE}/logo-whitedest.jpg`, 
+        logoImg: `${LOGO_BASE}/logo-whitedesk.jpg`, 
         color: "text-amber-700",
         bg: "bg-white"
     },
@@ -139,7 +159,7 @@ const About = () => {
           </h2>
         </div>
         
-        {/* History Timeline */}
+        {/* History Area */}
         <div className="relative mb-24 md:mb-32">
             <div className="hidden md:block timeline-line"></div>
             <div className="space-y-8 md:space-y-0">
@@ -162,9 +182,8 @@ const About = () => {
                                 <div className="glass-panel bg-white p-6 md:p-8 rounded-[2rem] border border-white/60 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative group">
                                     <div className={`flex flex-col ${index % 2 === 0 ? 'md:items-end' : 'md:items-start'} items-start`}>
                                         
-                                        {/* Logo / Brand Area */}
                                         <div className={`flex items-center gap-4 mb-4 ${index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
-                                            <div className="w-16 h-16 bg-white rounded-2xl shadow-md border border-slate-100 flex items-center justify-center overflow-hidden p-2 shrink-0 group-hover:scale-105 transition-transform duration-300">
+                                            <div className="w-14 h-14 md:w-16 md:h-16 bg-white rounded-2xl shadow-md border border-slate-100 flex items-center justify-center overflow-hidden p-2 shrink-0 group-hover:scale-105 transition-transform duration-300">
                                                 {exp.logoImg ? (
                                                     <img 
                                                         src={exp.logoImg} 
@@ -184,16 +203,16 @@ const About = () => {
                                             </div>
                                             
                                             <div className={`${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                                                <span className="text-primary-600 text-xs font-bold font-mono uppercase tracking-wider block mb-1">
+                                                <span className="text-primary-600 text-[10px] md:text-xs font-bold font-mono uppercase tracking-wider block mb-1">
                                                     {exp.period}
                                                 </span>
-                                                <h3 className="text-xl md:text-2xl font-black text-slate-900 leading-tight break-keep">
+                                                <h3 className="text-lg md:text-2xl font-black text-slate-900 leading-tight break-keep">
                                                     {exp.company}
                                                 </h3>
                                             </div>
                                         </div>
 
-                                        <p className="text-base md:text-lg font-bold text-teal-700 mb-3 flex items-center gap-2">
+                                        <p className="text-sm md:text-lg font-bold text-teal-700 mb-3 flex items-center gap-2">
                                             <Icon icon="mdi:account-star-outline" /> {exp.role}
                                         </p>
                                         <p className="text-slate-600 text-sm md:text-base font-medium leading-relaxed break-keep">
@@ -221,7 +240,7 @@ const About = () => {
             </div>
         </div>
 
-        {/* Separator & Tech & Certs */}
+        {/* Separator & Tech Stack (생략 - 기존 유지) */}
         <div className="section-divider"></div>
         <div className="text-center mb-12">
             <span className="bg-[#F8FAFC] px-6 text-slate-400 font-mono text-xs md:text-sm uppercase tracking-widest relative -top-[44px]">
@@ -229,7 +248,7 @@ const About = () => {
             </span>
         </div>
         <div className="mb-20 md:mb-24 w-full">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-12 text-center flex itemscenter justify-center gap-2 font-heading">
+            <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-12 text-center flex items-center justify-center gap-2 font-heading">
                     <Icon icon="mdi:toolbox-outline" className="text-primary-600 text-3xl md:text-4xl" />
                     Technical Arsenal
             </h3>
@@ -247,15 +266,21 @@ const About = () => {
                 </div>
             </div>
         </div>
+
+        {/* Certifications (Snap Scroll) */}
         <div>
             <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-8 md:mb-10 text-center flex items-center justify-center gap-2 font-heading">
                 <Icon icon="mdi:license" className="text-primary-600 text-3xl md:text-4xl" /> Certifications
             </h3>
+            
+            {/* Desktop */}
             <div className="hidden md:grid grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto items-stretch">
                 {certifications.map((cert, idx) => (
                     <CertCard key={idx} cert={cert} />
                 ))}
             </div>
+
+            {/* Mobile */}
             <div className="md:hidden overflow-x-auto snap-x snap-mandatory flex gap-4 px-4 -mx-4 pb-8 scrollbar-hide">
                 {certifications.map((cert, idx) => (
                     <div key={idx} className="min-w-[75vw] snap-center">
@@ -291,7 +316,7 @@ const CertCard = ({ cert }) => {
                 <div className="hidden flex-col items-center justify-center text-slate-300"><Icon icon="mdi:file-certificate-outline" className="text-5xl mb-2" /><span className="text-[10px] mt-2 font-bold uppercase text-slate-400">이미지 없음</span></div>
                 <p className={`font-black truncate w-full mb-1 break-keep ${isMain ? 'text-xl text-slate-900' : 'text-lg text-slate-800'}`}>{cert.name}</p>
                 <p className="text-xs font-bold text-primary-600 uppercase tracking-wider mb-3">{cert.issuer}</p>
-                {cert.licenseId && (<div className={`text-[10px] font-mono px-3 py-1.5 rounded-full border flex itemscenter gap-1.5 ${isMain ? 'bg-amber-50 text-amber-700 border-amber-200 font-bold shadow-sm' : 'bg-slate-50 text-slate-500 border-slate-200'}`}><Icon icon="mdi:check-decagram" className={isMain ? "text-amber-500" : "text-teal-500"} />{cert.licenseId}</div>)}
+                {cert.licenseId && (<div className={`text-[10px] font-mono px-3 py-1.5 rounded-full border flex items-center gap-1.5 ${isMain ? 'bg-amber-50 text-amber-700 border-amber-200 font-bold shadow-sm' : 'bg-slate-50 text-slate-500 border-slate-200'}`}><Icon icon="mdi:check-decagram" className={isMain ? "text-amber-500" : "text-teal-500"} />{cert.licenseId}</div>)}
             </div>
             <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 text-center transition-all duration-300 translate-y-full group-hover:translate-y-0 ${isMain ? 'bg-slate-900/95 backdrop-blur-sm' : 'bg-[#0F172A]/95 backdrop-blur-sm'}`}>
                 <p className={`font-bold text-lg mb-2 break-keep ${isMain ? 'text-amber-400' : 'text-white'}`}>{cert.name}</p>
