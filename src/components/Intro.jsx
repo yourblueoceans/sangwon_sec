@@ -7,7 +7,7 @@ const Intro = () => {
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0B1120]">
       
-      {/* 1. [Background] Spline 3D Scene */}
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
         <iframe 
             src='https://my.spline.design/claritystream-dTXEHcx6T4fe6MRqrDqtjZea/' 
@@ -15,16 +15,16 @@ const Intro = () => {
             width='100%' 
             height='100%'
             title="3D Background"
-            className="w-full h-full object-cover scale-[1.3] origin-center pointer-events-none"
+            // [Final Fix] scale-[1.3]: 로고 제거를 위한 확대 / pointer-events-none: 스크롤 간섭 방지
+            className="w-full h-full object-cover scale-[1.3] origin-center pointer-events-none" 
         ></iframe>
-        {/* 가독성을 위한 오버레이 */}
+        {/* Dark Overlay for Text Visibility */}
         <div className="absolute inset-0 bg-[#0B1120]/60 backdrop-blur-[1px] z-10"></div>
       </div>
 
-      {/* 2. [Content] Typography */}
+      {/* Content Layer */}
       <div className="relative z-20 text-center px-4 w-full max-w-7xl mt-[-5vh]">
         
-        {/* Top Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,27 +37,22 @@ const Intro = () => {
           </span>
         </motion.div>
 
-        {/* Main Title Area */}
         <div className="relative font-black tracking-tighter leading-none text-white mix-blend-overlay opacity-90">
             <motion.h1
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
-                className="text-[12vw] md:text-[8rem] lg:text-[10rem] bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl"
+                className="text-[13vw] md:text-[9rem] lg:text-[11rem] bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400 drop-shadow-2xl select-none"
             >
                 SECURITY
             </motion.h1>
             
-            {/* Typing Effect */}
             <div className="h-[40px] md:h-[80px] lg:h-[100px] flex items-center justify-center mt-2 md:mt-4">
                 <TypeAnimation
                 sequence={[
-                    1000,
-                    'ENGINEER',
-                    2000,
-                    'ARCHITECT',
-                    2000,
-                    'SPECIALIST',
+                    1000, 'ENGINEER',
+                    2000, 'ARCHITECT',
+                    2000, 'SPECIALIST',
                     2000,
                 ]}
                 wrapper="span"
@@ -69,7 +64,6 @@ const Intro = () => {
             </div>
         </div>
 
-        {/* Name */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -82,7 +76,6 @@ const Intro = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1, y: [0, 10, 0] }} 
@@ -92,7 +85,6 @@ const Intro = () => {
         <span className="text-[10px] uppercase tracking-widest font-bold">Scroll Down</span>
         <Icon icon="mdi:chevron-down" className="text-2xl animate-bounce" />
       </motion.div>
-
     </section>
   );
 };
